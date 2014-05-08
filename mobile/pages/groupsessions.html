@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        window.location.href = "http://m.godochurch.com";
+    </script>
+</head>
+<body style="background-color: #343131; color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+    <div data-role="page" id="pg_groupsessions" class="ui-page-theme-a">
+
+        <div data-role="header">
+
+            <a href="#" id="pgFUPGrpSessionBack" class="ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext" data-transition="flip">Groups</a>
+            <h1 class="pageHeader">Sessions</h1>
+            <a href="#" class="ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext btnGrpAddNewSession" id="mainMenuAddSession">New</a>
+
+
+        </div>
+        <div  class="ui-content" style="padding: 15px">
+
+            <div class="pageViewContent">
+                <div data-role="popup" class="ui-content" id="pg_groupsessions_errpopup" data-theme="e">
+                    <div id="pg_groupsessions_errpopmsg"></div>
+                </div>
+
+                <div id="grpSessionsView">
+
+                    <div id="grpSessionList" class="grpSessionSubView">
+                        <script id="groupsession-template" type="text/html">
+                            <li data-role="list-divider">
+                                <h5 data-bind="text: sessionDateDisplay"></h5>
+
+                            </li>
+
+                            <li>
+                                <a data-bind="attr: {'data-id': id}" class="sessionItemEdit" data-transition="slide">
+
+                                    <div data-bind="html: 'Session Name: ' + name" style="font-size: small"></div>
+                                    <div data-bind="html: 'Flagged: ' + flagSession" style="font-size: small"></div>
+                                    <div data-bind="html: 'More Info: ' + moreInfo" style="white-space: normal;font-size: small"></div>
+                                    <div style="font-size: small"><i>(click here to edit this session)</i></div>
+                                </a>
+
+                                <a data-bind="attr: {'data-id': id}" href="#" class="sessionItemAttendance" data-position-to="window"></a>
+
+                            </li>
+                        </script>
+
+                        <div class="ui-bar ui-bar-h">
+                            <div data-bind="html:selectedGroup.groupName()" style=" text-align:center">Group Sessions</div>
+
+                        </div>
+                        <div class="ui-content  ui-body-h" style="text-align:center; font-size:small">
+                            These are all the sessions you have captured for this group. To view the attendance click on the
+                            <a href="#" class="ui-btn ui-btn-d ui-icon-gear ui-btn-icon-notext ui-btn-inline"></a>icon
+                        </div>
+
+
+                        <ul data-role="listview" data-split-icon="gear" data-split-theme="d" data-inset="true" data-theme="b" id="grpSessionsList" data-bind="template: { name: 'groupsession-template', foreach: selectedGroup.sessions}"></ul>
+                    </div>
+
+                    <div id="grpSessionEdit" style="display: none" class="grpSessionSubView">
+
+                        <div class="ui-bar ui-bar-h">
+                            <div style=" text-align:center">Session Info</div>
+
+                        </div>
+                        <div class=" ui-content ui-body-h" style="text-align:center; font-size:small">
+                            Enter the basic information for this session and click update.
+
+                        </div>
+
+
+
+
+
+                        <div class="ui-field-contain">
+                            <label for="grpSessionName">
+                                Session Name
+                            </label>
+                            <input id="grpSessionName" data-clear-btn="true" data-bind="value:selectedGroupSession.name" placeholder="Session Name" type="text" />
+                        </div>
+
+                        <div class="ui-field-contain">
+                            <label for="grpSessionDate">Date:</label>
+                            <input type="date" id="grpSessionDate" value="" />
+                        </div>
+
+                        <div class="ui-field-contain">
+                            <label for="grpSessionMoreInfo">
+                                More Info
+                            </label>
+                            <textarea style="height: 100px; width: 100%" data-bind="value:selectedGroupSession.moreInfo" id="grpSessionMoreInfo"></textarea>
+                        </div>
+
+                        <div class="ui-field-contain">
+                            <label>
+                                <input type="checkbox" data-bind="checked:selectedGroupSession.flagSession" />
+
+                                Flag this group session with leadership
+                            </label>
+                        </div>
+
+
+
+                        <button class="ui-btn ui-btn-b " id="btnGrpUpdateSession">Update</button>
+                        <button class="ui-btn ui-btn-a ui-btn-inline" id="btnGrpUpdateSessionCancel">Cancel</button>
+                        <button class="ui-btn ui-btn-e ui-btn-inline " id="btnGrpDeleteSession">Delete</button>
+                    </div>
+
+                    <div id="grpNoSessions" style="display: none" class="grpSessionSubView">
+
+                        <div class="ui-bar ui-bar-h ui-corner-top" style="text-align:center">
+                            <h1>No Sessions</h1>
+                        </div>
+
+                        <div class="ui-content ui-body-h ui-corner-top">
+                            <p>
+                                Currently we have no record of any sessions for this group.
+                            </p>
+
+                            <button class="ui-btn ui-btn-b btnGrpAddNewSession ">Add New Session</button>
+                        </div>
+
+                    </div>
+
+                    <div id="grpSessionsAttendance" class="grpSessionSubView" style="display: none">
+
+
+                        <div id="grpNoMembersToAdd" style="display: none">
+
+                            <div class="ui-bar ui-bar-h ui-corner-top" style="text-align:center">
+                                <h1>No Members</h1>
+                            </div>
+
+                            <div class="ui-content ui-body-h ui-corner-top">
+                                <p>
+                                    At the date of this session, there were no members assigned to this group. Either add members to the group, or change the date of this
+                                    session.
+                                </p>
+
+                                <button class="ui-btn ui-btn-b  " id="btnGrpSessionsAddMembers">Add Members</button>
+                                <button class="ui-btn ui-btn-a btnMainMenuBackToSessions">Edit Session</button>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <div id="sessionAttDiv">
+
+                            <div class="ui-bar ui-bar-h" style="text-align:center">
+                                <div data-bind="html:selectedGroupSession.name"></div>
+                                <div data-bind="html:'Date: ' + selectedGroupSession.sessionDateDisplay()"></div>
+                            </div>
+
+
+
+                            <div class="ui-content ui-body-h" style="text-align:center; font-size:small">
+                                <div>Use the tool below to manage which members attended this group session.</div>
+                                <a href="#" class="btnMainMenuBackToSessions">View Sessions List</a>
+                            </div>
+
+
+                            <div class="ui-bar ui-bar-a" style="text-align:center">
+                                <h6>Attendance</h6>
+                                <div><small>Mark 'Yes' the members who were present, otherwise mark 'No'.</small></div>
+                            </div>
+
+
+
+
+                            <script id="grpSessionAttendance-template" type="text/html">
+                                <li>
+                                    <div class="ui-bar ui-bar-b" data-bind="html:name, visible:attended()">
+                                    </div>
+
+                                    <div class="ui-bar ui-bar-a" data-bind="html:name, visible:!attended()">
+                                    </div>
+
+                                    <div style="text-align:center">
+                                        <input type="checkbox" data-role="flipswitch" data-theme="a" data-off-text="No" data-on-text="Yes" data-bind="checked:attended,attr:{'data-id':id}" class="ui-mini grpSessionAttFlipSwtch">
+
+                                    </div>
+
+
+
+                                </li>
+                            </script>
+                            <ul data-role="listview" data-theme="a" data-inset="true" class="grpAttendanceList" id="grpMembersAttendance" data-bind="template: { name: 'grpSessionAttendance-template', foreach: selectedGroupSession.attendance}"></ul>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            </div>
+    </div>
+</body>
+</html>

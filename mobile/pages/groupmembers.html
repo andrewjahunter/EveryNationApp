@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        window.location.href = "http://m.godochurch.com";
+    </script>
+</head>
+<body style="background-color: #343131; color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+    <div data-role="page" id="pg_groupmembers" class="ui-page-theme-a">
+
+        <div data-role="panel" id="panelAddNewMember" data-position="right" data-display="overlay" data-theme="g">
+
+            <script id="addnewmembers-template" type="text/html">
+                <li >
+                    <a data-bind="attr: {'data-id': id}" data-transition="slide">
+                        <h5 data-bind='text: firstName + " " + lastName'></h5>
+                        <div data-bind="html: email" style="font-size: x-small"></div>
+                        <div data-bind="html: mobileNumber" style="font-size: x-small"></div>
+                    </a>
+                    <a class="ui-btn addGrpMember  " href="#" data-bind="attr: {'data-id': id}"  data-position-to="window"></a>
+                </li>
+            </script>
+
+
+            <div class="ui-content ui-body-g"  style="padding: 2px">
+                Search Person<a href="#addNewMemberPopupHelp" data-rel="popup"   data-position-to="window" class="ui-icon-alt ui-btn ui-btn-h ui-icon-info ui-btn-icon-notext "   data-inline="true"  data-transition="slideup" >Learn more</a>
+            </div>
+
+            <div data-role="popup" id="addNewMemberPopupHelp" data-overlay-theme="a" style="max-width: 400px;"
+                class="ui-corner-all">
+                <div data-role="header" data-theme="h" class="ui-corner-top">
+                    <h1>Add Members</h1>
+                </div>
+                <div  class="ui-corner-bottom ui-content ui-body-a">
+
+                    <p>
+                        To look for a person in the database, simply <strong>type their name (or part of their name)</strong> into the text box provided. e.g. Type Rick Far to find
+                        all people in the database whose first name starts with 'Rick' and whose surname starts with 'Far'. Click Search 
+                    </p>
+
+                    <p>From that list of results (if found) <strong>click the 'check' icon</strong> to add them to the group</p>
+                    <p>
+                        If no result is found it is most likely because the person you are looking for <strong>has not registered</strong> in the database or you
+                        don't have the <strong>right permissions</strong> to view their account info. Either ask the person you to register in the database or request your
+                        church office to elevate your permissions in the system.
+                    </p>
+
+
+                    <a href="#"  class="ui-btn ui-btn-h"   data-rel="back">Done!</a>
+
+                </div>
+            </div>
+
+
+            <input id="txtNewMemberSearchString" placeholder="name..." value="" type="text" />
+
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <div class="ui-btn ui-btn-b" id="btnSearchNewMember" data-inline="true">search</div>
+                </div>
+                <div class="ui-block-b">
+                    <div class="ui-btn ui-btn-a" data-rel="close" id="btnCloseSearchNewMember" data-inline="true">close</div>
+                </div>
+            </div>
+            <a href="#sg_cantfind_members" data-rel="popup" data-transition="slideup" data-position-to="window" class="ui-btn ui-btn-d">can't find person?</a>
+
+
+            <ul data-role="listview" data-split-icon="check" data-split-theme="c" data-inset="true" data-theme="a" id="addNewMembersList" data-bind="template: { name: 'addnewmembers-template', foreach: newMembersResults}"></ul>
+
+
+        </div>
+        <div data-role="header">
+
+            <a href="#" id="grpMembersGoToGroups" class="ui-btn ui-btn-b ui-icon-back ui-btn-icon-notext"   >back</a>
+            <h1 class="pageHeader" data-bind="html:selectedGroup.groupName()">Group</h1>
+            <a href="#" class="btnOpenAddGroupMemberPanel ui-btn ui-btn-b ui-icon-plus "    >add</a>
+            
+
+
+        </div>
+        <div  class="ui-content" style="padding: 15px">
+
+
+            <div class="pageViewContent">
+
+                <div data-role="popup" class="ui-content ui-body-e" id="pg_groupmembers_errpopup">
+                    <div id="pg_groupmembers_errpopmsg"></div>
+                </div>
+
+
+                <div id="grpActiveMembers" style="display: none">
+                    <script id="groupmembers-template" type="text/html">
+                        <li data-role="list-divider">
+                            <h5 data-bind="text: displayName"></h5>
+
+                        </li>
+                        <li>
+                            <a data-bind="attr: {'data-id': id}" data-transition="slide">
+                                <div data-bind="html: 'Email: ' + email" style="font-size: small"></div>
+                                <div data-bind="html: 'Mobile: ' + mobileNumber" style="font-size: small"></div>
+                                <div data-bind="html: 'Birthday: ' + birthday" style="font-size: small"></div>
+
+                            </a>
+                            <a data-bind="attr: {'data-id': id}" href="#" class="deactivategrpmember" data-position-to="window"></a>
+                        </li>
+                    </script>
+
+
+
+
+                    <div id="grpActiveMembersListSection">
+                        <div class="ui-bar ui-bar-h">
+                            <div style="text-align:center">Active Members</div>
+                        </div>
+                        <div class="ui-content ui-body-h" style="text-align: center; font-size: small">
+                            <div>These are all the Active members of this group. To De-Activate a member click on the 'X' next to their name.</div>
+                            <a id="btnGrpViewInActiveMembers" href="#">View In-Active Members</a>
+                        </div>
+
+
+                        <ul data-role="listview" data-split-icon="delete" data-split-theme="d" data-inset="true" data-theme="b" class="membersListView" id="grpActiveMembersList" data-bind="template: { name: 'groupmembers-template', foreach: ko.utils.arrayFilter(selectedGroup.members(), function(itm){ return itm.isActive==true})}"></ul>
+
+                        <button class="ui-btn ui-btn-a" id="btnReloadMembers">Reload</button>
+                    </div>
+
+                    <div id="grpDeActivateMemberReason" style="display: none">
+                        <div class="ui-bar ui-bar-h">
+                            <div style="text-align:center">De-Activate Member</div>
+                        </div>
+                        <div class="ui-content ui-body-h">Please provide a reason why you are removing this person from the group</div>
+                        <div class="ui-field-contain">
+                            <label for="ddlGrpMemDeActiveReason">
+                                Reason
+                            </label>
+                            <select id="ddlGrpMemDeActiveReason" data-bind="options: refData.groupMembersInActiveReasons, optionsText:'reason',optionsValue:'id'"></select>
+                        </div>
+                        <div class="ui-field-contain">
+                            <label for="grpMemDeActivateMoreInfo">
+                                More Info
+                            </label>
+                            <input id="grpMemDeActivateMoreInfo" data-clear-btn="true" placeholder="More info" type="text" />
+                        </div>
+                        <button class="ui-btn ui-btn-b ui-btn-inline" id="btnGrpDeActivateMemGo">De-Activate</button>
+                        <button class="ui-btn ui-btn-a ui-btn-inline" id="btnGrpDeActivateMemCancel">Cancel</button>
+                        <button class="ui-btn ui-btn-e" id="btnDeleteMemberForever">Delete</button>
+
+                    </div>
+
+                    <div data-role="popup" id="memberDeletePopup" style="max-width: 400px;"
+                         class="ui-corner-all">
+                        <div data-role="header" data-theme="e" class="ui-corner-top">
+                            <h1>Delete?</h1>
+
+                        </div>
+                        <div class="ui-corner-bottom ui-content ui-body-a">
+                            <div class="ui-title" style="text-align: center; font-size: larger" data-bind="html:selectedGroupMember.displayName"></div>
+
+                            <p>
+                                Are you sure you want to delete this member from the group? All data relating to this member will be lost forever?
+                            </p>
+                            <a href="#" class="ui-btn ui-btn-e" data-inline="true" id="btnMemberConfirmDelete">Delete</a>
+                            <a href="#" class="ui-btn ui-btn-a" data-rel="back" data-inline="true">Cancel</a>
+                            <div class="ui-content ui-body-e" id="deleteGrpMemErr" style="display:none">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div id="grpInActiveMembers" style="display: none">
+                    <script id="groupinactivemembers-template" type="text/html">
+                        <li data-role="list-divider">
+                            <h5 data-bind="text: displayName"></h5>
+
+                        </li>
+                        <li>
+                            <a data-bind="attr: {'data-id': id}" data-transition="slide">
+                                <div data-bind="html: 'Email: ' + email" style="font-size: small"></div>
+                                <div data-bind="html: 'Mobile: ' + mobileNumber" style="font-size: small"></div>
+                                <div data-bind="html: 'Birthday: ' + birthday" style="font-size: small"></div>
+                                <div data-bind="html: 'Inactive Reason: ' + inActiveReason" style="font-size: small; white-space: normal"></div>
+                                <div data-bind="html: 'More Info: ' + moreInfo" style="font-size: small; white-space: normal"></div>
+                            </a>
+                            <a data-bind="attr: {'data-id': id}" href="#" class="activategrpmember" data-position-to="window"></a>
+                        </li>
+                    </script>
+
+
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center">In-Active Members</div>
+                    </div>
+
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size: small">
+                        <div>These are all the In-Active members of this group. To activate a member click on the 'check' next to their name.</div>
+                        <a id="btnGrpViewActiveMembers" href="#">View Active Members</a>
+                    </div>
+
+
+                    <ul data-role="listview" data-split-icon="check" data-split-theme="c" data-inset="true" data-theme="b" class="membersListView" id="grpInActiveMembersList" data-bind="template: { name: 'groupinactivemembers-template', foreach: ko.utils.arrayFilter(selectedGroup.members(), function(itm){ return itm.isActive==false})}"></ul>
+
+                </div>
+
+                <div id="grpNoMembers" style="display: none">
+
+                    <div data-role="header" data-theme="h" class="ui-corner-top">
+                        <h1>No Members</h1>
+                    </div>
+
+                    <div class="ui-content ui-body-h  ui-corner-top">
+                        <p>
+                            Currently there are no members of this group.
+                        </p>
+                        <p>
+                            Members can be added in two ways.
+
+                        </p>
+                        <ul>
+                            <li>If this groups membership is 'Open', members can log in using this app, find this group and <strong>"Join" themselves</strong> to the group.</li>
+                            <li>
+                                Using the <strong>search tool provided</strong> find the person, then click the "check" icon to add them to the group.
+
+                            </li>
+
+                        </ul>
+                        <button class="ui-btn ui-btn-a btnOpenAddGroupMemberPanel">Add New Member</button>
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
+
+            </div>
+
+        <div data-role="popup" id="sg_cantfind_members" data-overlay-theme="a" style="max-width: 400px;"
+                class="ui-corner-all">
+                <div data-role="header" data-theme="h" class="ui-corner-top">
+                    <h1>Cant Find?</h1>
+                </div>
+                <div  class="ui-corner-bottom ui-content ui-body-a ">
+
+                    <p>
+                        There are <strong>two reason</strong> why you may not be able to find the person you are looking for. 
+                    </p>
+                    <ol>
+                        <li>If you do not have the <strong>right permissions</strong> you will not be allowed to view other peoples information. Please ask your church to add you into the right security group if you are a
+                             leader in the church
+
+                        </li>
+                        <li>
+                            The person you are looking <strong>may not be in the database</strong>. Simply ask that person to register with this church. Their info will then be available.
+                        </li>
+                    </ol>
+                    
+
+                    <a href="#" class="ui-btn ui-btn-h "    data-rel="back">Done!</a>
+
+                </div>
+            </div>
+    </div>
+</body>
+</html>

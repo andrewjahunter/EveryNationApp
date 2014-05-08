@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Messages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        window.location.href = "http://m.godochurch.com";
+    </script>
+</head>
+<body style="background-color: #343131; color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+
+    <div data-role="page" id="pg_messages" class="ui-page-theme-a">
+        
+        <div data-role="header">
+            <a href="#" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext headerMenuHome">home</a>
+
+            <!--<a href="#" id="pg_messages_showMenu" class="ui-btn ui-btn-b ui-icon-bars ui-btn-icon-notext"    >menu</a>-->
+            <h1 class="pageHeader" id="pg_messages_header" data-bind="html:labels[1400]">Messages</h1>
+
+        </div>
+        <!-- /header -->
+        <div  class="ui-content" style="padding: 15px">
+
+            <div class="pageViewContent">
+
+
+
+                <label for="msgCount"><small>Show this many messages:</small></label>
+                <input type="range" data-theme="b" name="msgCount" id="msgCount" data-highlight="true" min="0" max="25" value="10" />
+
+
+
+                <div class="filter-flipswitch">
+                    <label for="MsgViewed"><small>Only show me Un-Read Messages:</small></label>
+                    <select name="MsgViewed" id="MsgViewed" data-theme="b" data-role="flipswitch" class="ui-mini">
+                        <option value="0" selected="selected">Yes</option>
+                        <option value="-1">No</option>
+                    </select>
+                </div>
+                <div>
+                    <a id="btnMarkAllAsRead" href="#" >Mark all as read</a>
+                </div>
+
+
+                <div data-bind="foreach: messages">
+                    <div class="ui-body-d  ui-corner-all" style="padding: 10px;">
+                        <div class="ui-body-b  ui-corner-all" style="padding: 10px; text-align: center">
+                            <strong data-bind="html:subject"></strong>
+                        </div>
+                        <p data-bind="html:messageBody">
+                        </p>
+
+                        <p><i><small data-bind="html:'Sent By: ' + sentBy + '    Sent From: ' + portalName + '    Viewed On: ' +  viewedOn"></small></i></p>
+                    </div>
+
+
+                    <a class="ui-btn ui-btn-b ui-mini ui-btn-inline  btnReadMsg" data-bind="attr: {'data-id': id}, visible: !viewed" href="#">Mark as Read</a>
+
+                    <a class="ui-btn ui-btn-b ui-mini ui-btn-inline  btnUnReadMsg" data-bind="attr: {'data-id': id}, visible: viewed " href="#">Mark as Un-Read</a>
+
+
+                    <a class="ui-btn ui-btn-a ui-mini ui-btn-inline  btnReplyMsg" data-bind="attr: {'data-id': id}, visible: replyEnabled" href="#">Reply</a>
+
+
+                    <br />
+                </div>
+
+
+
+
+
+                <div id="pg_messages_none" style="display: none">
+                    <div data-role="header" data-theme="h" class="ui-corner-top">
+                        <h1>No Messages</h1>
+                    </div>
+                    <div class="ui-content ui-body-h ui-corner-bottom">
+                        <p>
+                            You have no messages
+                        </p>
+                        <p>
+                            This page will show you by default all messages that you have not viewed. To view prior messages simply flip the "switch-button" to allow all messages to be viewed.
+                        </p>
+                    </div>
+                </div>
+
+
+
+
+
+                <div data-role="popup" id="popupReplyDialog" data-theme="b" data-dismissible="false" style="max-width: 400px;" class="ui-corner-all">
+                    <div data-role="header" data-theme="b" class="ui-corner-top">
+                        <h1>Reply</h1>
+                    </div>
+                    <div class="ui-body-b ui-corner-bottom ui-content">
+                        <p>Type your repy into the box provided and click send. </p>
+                        <div>
+                            <i>
+                                <small id="popupReplyHeader">
+                                    A push notification will be sent to the person mobile phone.
+                                </small>
+                            </i>
+                        </div>
+                        <textarea style="height: 100px; width: 100%" id="txtMsgReply"></textarea>
+                        <a href="#" class="ui-btn ui-btn-a ui-btn-inline " id="btnCancelReply">Cancel</a>
+                        <a href="#" class="ui-btn ui-btn-b ui-btn-inline " id="btnSendReply" data-transition="flow">Send</a>
+                        <div id="replyPopupMsg" class="ui-content ui-body-e" style="display:none"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            </div>
+
+    </div>
+
+    <!-- /page -->
+
+</body>
+</html>

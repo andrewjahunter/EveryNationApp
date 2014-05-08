@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>My Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link href="../styles/jquery-ui-1.9.1.custom.min.css" rel="stylesheet" />
+    <link href="../styles/app.css" rel="stylesheet" />
+    <link href="../styles/gdc.mobile.min.css" rel="stylesheet" />
+    <link href="../styles/jquery.mobile.icons.min.css" rel="stylesheet" />
+    <link href="../styles/jquery.mobile.structure-1.4.0.min.css" rel="stylesheet" /> 
+    <script data-main="../scripts/app/appstart.min.js" src="../../scripts/libraries/require.js"></script>-->
+   
+    <script type="text/javascript">
+        window.location.href = "http://m.godochurch.com";
+    </script>
+</head>
+<body style="background-color: #343131; color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+
+    <div data-role="page" id="pg_signin" class="ui-page-theme-a">
+        <div data-role="header">
+            <h1 class="pageHeader" id="pg_signin_header">Sign In</h1>
+        </div>
+
+       
+
+          
+               
+                <!-- /header -->
+            <div class="ui-content" style="padding: 15px">
+                <div class="pageViewContent">
+                    <!--<div style="width: 72px; margin-left: auto; margin-right: auto">
+                        <img src="../img/inAppIcon.png" style="width: 100%; height: auto" />
+                    </div>-->
+                    <div class="ui-field-contain">
+                        <label for="txtSignInUserName">
+                            user name
+                        </label>
+                        <input id="txtSignInUserName" data-clear-btn="true" class="required" name="username" placeholder="" value="" type="text" />
+                    </div>
+                    <div class="ui-field-contain">
+
+                        <label for="txtSignInPassword">
+                            password
+                        </label>
+                        <input id="txtSignInPassword" data-clear-btn="true" placeholder="" value="" type="password" />
+                    </div>
+
+                    <button type="button" class="ui-btn ui-btn-b" id="btnSignIn">
+                        Sign In
+                    </button>
+                    <div>
+                        <a id="btnSignInRegister" href="#" data-transition="slide">Register a new account</a>
+                    </div>
+                    <br />
+                    <div>
+                        <a id="btnForgotInfo" href="#" data-transition="slide">Forgot your login information?</a>
+                    </div>
+
+
+
+
+
+
+                    <div data-role="popup" id="popupSignInMissingData" data-overlay-theme="a" data-dismissible="false" style="max-width: 400px;" class="ui-corner-all">
+                        <div data-role="header" data-theme="e" class="ui-corner-top">
+                            <h1>Missing?</h1>
+                        </div>
+                        <div class="ui-corner-bottom ui-content">
+
+                            <p>You are missing some data. Please enter your username and password</p>
+                            <button id="btnSignInCloseMissingDataMsg" class="ui-btn ui-btn-e">Ok</button>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div data-role="popup" id="signInPopupFail" data-transition="slideup" style="max-width: 450px;"
+                         class="ui-corner-all">
+                        <div data-role="header" data-theme="e" class="ui-corner-top">
+                            <h1 id="signInPopupFailHeader">Failed?</h1>
+                        </div>
+                        <div class="ui-corner-bottom ui-content ui-body-a">
+                            <h3 class="ui-title" id="signInPopupFailTitle">We are not able to authorize this request</h3>
+                            <p id="signInPopupFailMsg">
+                            </p>
+                            <a href="#" class="ui-btn ui-btn-e ui-btn-inline" data-rel="back">try again</a>
+                            <a href="#" class="ui-btn ui-btn-a ui-btn-inline" id="btnRegFailSignIn" data-transition="flow">register</a>
+                        </div>
+                    </div>
+
+
+                    <div data-role="popup" id="signInPopupVerificationRequired" data-overlay-theme="a" style="max-width: 450px;"
+                         class="ui-corner-all">
+                        <div data-role="header" data-theme="d" class="ui-corner-top">
+                            <h1 id="emailVerificationHeader">Verification</h1>
+                        </div>
+                        <div class="ui-corner-bottom ui-content ui-body-a">
+                            <h3 id="emailVerificationTitle" class="ui-title">Your account has not been verified</h3>
+                            <p id="emailVerificationMessage">
+                                To activate your account we need to know your email is valid. Please click the validate link in the email we sent you.
+                            </p>
+                            <div class="ui-btn ui-btn-d ui-btn-inline" id="btnSignInResendEmail">resend email</div>
+
+                            <a href="#" class="ui-btn ui-btn-a ui-btn-inline" data-rel="back" id="btnSignInValidateTryAgain">sign in</a>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+        
+
+        
+
+
+
+        </div>
+
+    <!-- /page -->
+
+</body>
+</html>

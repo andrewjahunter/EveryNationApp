@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        window.location.href = "http://m.godochurch.com";
+    </script>
+</head>
+<body  style="background-color:#343131;  color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+    <div data-role="page" id="pg_intro1" class="introPage ui-page-theme-a"  >
+
+        <div data-role="header">
+
+            <h1 class="pageHeader">Podcasts</h1>
+        </div>
+        <div  class="ui-content" style="padding: 15px">
+         
+            <div class="pageViewContent">
+
+                <div style="width: 100%; width: 150px; height: 150px; margin-left: auto; margin-right: auto; margin-bottom:20px">
+                    <!--<img src="../img/rss.png" style="width: 100%; height: auto" />-->
+                    <img src="../img/appimg/podcast.png" style="width:100%; height:auto"  />
+
+                </div>
+
+                <div class="ui-body-d  ui-corner-all" style="padding: 10px">
+                    <div class="ui-body-c  ui-corner-all" style="padding: 10px; text-align:center">
+                        <strong>Latest Podcasts</strong>
+                    </div>
+
+                    <p>
+                       Access the latest sermons from Sunday directly from your mobile phone. Subscribe to a podcast channel and receive auto updates via email.
+                    </p>
+                </div>
+                <a href="#" id="pgInt1GoToInt2" class="ui-btn ui-btn-b " data-transition="flow">next</a>
+
+            </div>
+
+
+
+            </div>
+
+        <script>
+            $("#pg_intro1").on('swipeleft', function () {
+                $.mobile.changePage("intro2.html", { "transition": "flow" })
+              
+            });
+
+            $("#pgInt1GoToInt2").on(gdd.app.userTap, function () {
+               
+                gdd.app.loadPage(gdd.views.pageinfo.intro2, { transition: "flow" })
+            })
+
+
+           
+
+        </script>
+    </div>
+</body>
+</html>

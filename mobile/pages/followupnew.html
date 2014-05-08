@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>My Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        window.location.href = "http://m.godochurch.com";
+    </script>
+</head>
+<body style="background-color: #343131; color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+
+    <div data-role="page" id="pg_followupnew" class="ui-page-theme-a" >
+
+
+        <div data-role="header">
+            <a href="#" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext headerMenuHome">home</a>
+
+            <h1 class="pageHeader" id="pg_followupnew_header">New...</h1>
+            <a href="#" id="pgFUPNewBack" class="ui-btn ui-btn-b ui-icon-delete ui-btn-icon-notext">cancel</a>
+
+        </div>
+        <!-- /header -->
+        <div  class="ui-content" style="padding: 15px">
+            <div class="pageViewContent">
+                <div data-role="popup" class="ui-content" id="pg_FUPNew_errpopup" data-theme="e">
+                    <div id="pg_FUPNew_errpopup_msg"></div>
+                </div>
+                <form id="formFUPNew">
+                    <div class="ui-field-contain">
+                        <label for="txtFUPNewFirstName">
+                            First Name
+                        </label>
+                        <input id="txtFUPNewFirstName" data-bind="value:selectedRecord.firstName" data-clear-btn="true" placeholder="first name" name="firstname" value="" type="text" required="required" />
+                    </div>
+                    <div class="ui-field-contain">
+
+                        <label for="txtFUPNewLastName">
+                            Last Name
+                        </label>
+                        <input id="txtFUPNewLastName" data-bind="value:selectedRecord.lastName" data-clear-btn="true" name="lastname" placeholder="last name" value="" type="text" required="required" />
+                    </div>
+
+                    <div class="ui-field-contain">
+
+                        <label for="txtFUPNewEmail">
+                            Email
+                        </label>
+                        <input id="txtFUPNewEmail" data-bind="value:selectedRecord.personEmail" data-clear-btn="true" placeholder="email address" value="" type="email" />
+                    </div>
+
+                    <div class="ui-field-contain">
+
+                        <label for="txtFUPNewMobileNumber">
+                            Mobile Number
+                        </label>
+                        <input id="txtFUPNewMobileNumber" name="telnumber" data-bind="value:selectedRecord.personTel" data-clear-btn="true" placeholder="mobile number" value="" type="text" />
+                    </div>
+
+
+
+                    <div class="ui-field-contain">
+                        <label for="ddlFUPNewRegions">
+                            <span data-bind="html:labels[2000]"></span>
+                        </label>
+                        <select id="ddlFUPNewRegions" data-bind="options: refData.regions, value:selectedRecord.regionId, optionsText: 'name', optionsValue: 'id'"></select>
+
+                    </div>
+
+                    <div class="ui-field-contain">
+                        <label for="ddlFUPNewLocations">
+                            <span data-bind="html:labels[1152]"></span>
+
+                        </label>
+                        <select id="ddlFUPNewLocations" data-bind="options: refData.locations, value:selectedRecord.locationId, optionsText: 'name', optionsValue: 'id'"></select>
+
+                    </div>
+
+                    <div class="ui-field-contain">
+                        <label for="ddlFUPNewAgeProfiles">
+                            Age Profile
+                        </label>
+                        <select id="ddlFUPNewAgeProfiles" data-bind="options: refData.ageProfiles, value:selectedRecord.ageProfileId, optionsText: 'name', optionsValue: 'id'"></select>
+
+                    </div>
+
+                    <div class="ui-field-contain">
+                        <label for="ddlFUPNewReason">
+                            Reason
+                        </label>
+                        <select id="ddlFUPNewReason" data-bind="options: refData.reasons, value:selectedRecord.reasonId, optionsText: 'reason', optionsValue: 'id'"></select>
+
+                    </div>
+
+                    <div class="ui-field-contain">
+                        <label for="ddlFUPNewGender">
+                            Gender
+                        </label>
+                        <select id="ddlFUPNewGender" data-bind="value:selectedRecord.personGender">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+
+                    </div>
+
+                </form>
+                <button id="btnFUPNewAssignGroup" class="ui-btn ui-btn-d">Assign To Group</button>
+                <div id="FUBNewGroupAssigned" style="display:none">
+                    <div id="FUBNewGroupInfo"></div>
+                    <a href="#" id="btnFUPClearGroup">Remove Group</a>
+                </div>
+                <button id="btnFUPNewAddRecord" class="ui-btn ui-btn-b">Add This Record</button>
+
+
+
+                <div data-role="popup" id="newFUBAssignGroupMessage" data-overlay-theme="a" style="max-width: 450px;"
+                     class="ui-corner-all">
+                    <div data-role="header" data-theme="h" class="ui-corner-top">
+                        <h4>Group Notice</h4>
+                    </div>
+                    <div class="ui-corner-bottom ui-content ui-body-h">
+                        <p>You have assigned this new record to a group. We will automatically do the following when you add this record:</p>
+                        <ul>
+                            <li><div id="newFUBGroupLeaderMsg"></div></li>
+                            <li><div id="newFUBGroupNameMsg"></div></li>
+                        </ul>
+                        <p>You can remove the group assignment by clicking 'Remove Group'</p>
+
+                        <a href="#" class="ui-btn ui-btn-b" data-rel="back">Ok</a>
+                    </div>
+                </div>
+
+
+            </div>
+
+            </div>
+
+    </div>
+
+    <!-- /page -->
+
+</body>
+</html>

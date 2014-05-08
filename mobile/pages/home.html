@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--<link href="../styles/jquery-ui-1.9.1.custom.min.css" rel="stylesheet" />
+    <link href="../styles/app.css" rel="stylesheet" />
+    <link href="../styles/gdc.mobile.min.css" rel="stylesheet" />-->
+    <!-- <link href="../styles/jquery.mobile.structure-1.3.0.min.css" rel="stylesheet" />-->
+    <!--<link href="../styles/jquery.mobile.structure-1.4.0.min.css" rel="stylesheet" />
+    <link href="../styles/jquery.mobile.icons.min.css" rel="stylesheet" />
+    <script data-main="../scripts/app/appstart.js" src="../../scripts/libraries/require.js"></script>-->
+    <!--<script type="text/javascript">
+        window.location.href = "http://localhost/m/index.html";
+    </script>-->
+    <script type="text/javascript">
+        window.location.href = "http://m.godochurch.com";
+    </script>
+</head>
+<body style="background-color: #343131; color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+    <div data-role="page" id="pg_home" class="ui-page-theme-a">
+
+        <style type="text/css">
+           
+        </style>
+
+
+
+        <div data-role="header">
+
+            <h1 class="pageHeader" id="pg_home_header">Home</h1>
+
+
+        </div>
+
+
+
+        <div data-role="main" class="ui-content" style="padding: 15px">
+
+            <div id="pgHomeContent" style="display:none">
+                <!--<img border="0" src="" alt="facebook profile pic" id="pg_home_fb_picurl" style="float: right; display: inline" />-->
+                <div id="appNoticeMsg" class="ui-border-all ui-content ui-body-d" style="display: none; margin-bottom:10px; text-align:center; font-size:small">
+
+                </div>
+
+
+
+                <div data-role="popup" class="ui-content ui-body-h" id="msgpopup">
+                    <div id="msgpopupcontent"></div>
+                </div>
+
+
+          
+
+                <div class="pageViewContent">
+
+
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a">
+
+                            <div class="mainMenuBtn ui-btn ui-btn-b" id="btnHomePinfo">
+
+                                <div>
+                                    <img src="../img/appimg/user.png" class="menuBtnImg" />
+                                </div>
+                                <div class=" menuBtnTxt" data-bind="html:labels[1000]">
+
+                                </div>
+
+                            </div>
+
+                           
+                        </div>
+                        <div class="ui-block-b">
+
+                            <div class="mainMenuBtn ui-btn ui-btn-b" id="btnHomeMessages">
+
+                                <div>
+                                    <img src="../img/appimg/messages.png" class="menuBtnImg" />
+                                </div>
+                                <div class="menuBtnTxt" data-bind="html:labels[1400]">
+
+                                </div><span class="ui-li-count  bubbleMessagesCount"></span>
+
+                            </div>
+
+
+                           
+                        </div>
+                    </fieldset>
+
+
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <div class="mainMenuBtn ui-btn ui-btn-b" id="btnGroupsMenu">
+
+                                <div>
+                                    <img src="../img/appimg/groups.png" class="menuBtnImg" />
+                                </div>
+                                <div class="menuBtnTxt" data-bind="html:labels[1100]">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui-block-b">
+                            <div class="mainMenuBtn ui-btn ui-btn-b" id="btnHomeFeeds">
+                                <div>
+                                    <img src="../img/appimg/microphone.png" class="menuBtnImg" />
+
+                                </div>
+                                <div class="menuBtnTxt" data-bind="html:labels[1200]">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a">
+
+                            <div class="mainMenuBtn ui-btn ui-btn-b" id="btnHomeEvents">
+
+                                <div>
+                                    <img src="../img/appimg/calendar.png" class="menuBtnImg" />
+                                </div>
+                                <div class="menuBtnTxt" data-bind="html:labels[1250]">
+
+                                </div>
+                            </div>
+
+
+                           
+                        </div>
+                        <div class="ui-block-b">
+                            <div class="mainMenuBtn ui-btn ui-btn-b" id="btnHomeSubs">
+
+                                <div>
+                                    <img src="../img/appimg/rss.png" class="menuBtnImg" />
+                                </div>
+                                <div class="menuBtnTxt" data-bind="html:labels[1300]">
+
+                                </div>
+                            </div>
+
+                            <!--<div class="mainMenuBtn ui-btn ui-btn-b" id="btnHomeChurchLife">
+
+                                <div>
+                                    <img src="../img/appimg/list.png" class="menuBtnImg" />
+                                </div>
+                                <div class="menuBtnTxt" data-bind="html:labels[1350]">
+
+                                </div>
+                            </div>-->
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <div class="mainMenuBtn ui-btn ui-btn-b" id="btHomeFollowUp">
+
+                                <div>
+                                    <img src="../img/appimg/followup.png" class="menuBtnImg" />
+                                </div>
+                                <div class="menuBtnTxt" data-bind="html:labels[1150]">
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="ui-block-b">
+                            <a class="mainMenuBtn ui-btn ui-btn-b" href="#" id="home_settings_menu">
+
+                                <div>
+                                    <img src="../img/appimg/settings.png" class="menuBtnImg" />
+                                </div>
+                                <div class="menuBtnTxt">
+                                    Settings
+                                </div>
+
+                            </a>
+                        </div>
+                    </fieldset>
+
+                    <!--<fieldset class="ui-grid-a">
+                        <div class="ui-block-a">
+                          
+                        </div>
+                        <div class="ui-block-b">
+                            <div class="mainMenuBtn ui-btn ui-btn-b" id="btnHomeReports">
+                                <div class="ui-grid-a">
+                                    <div class="ui-block-a">
+                                        <img src="../img/appimg/reports.png" class="menuBtnImg" />
+                                    </div>
+                                    <div class="ui-block-b menuBtnTxt">
+                                        Reports (Coming Soon)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>-->
+
+
+                    <div>
+                        <p style="font-size:small; font-style:italic" id="pgHomeDbName"></p>
+                    </div>
+                </div>
+
+
+               
+
+
+                <div data-role="popup" id="pg_home_viewintro" data-overlay-theme="a" style="max-width: 400px;"
+                     class="ui-corner-all">
+                    <div data-role="header" data-theme="h" class="ui-corner-top">
+                        <h1>View Intro</h1>
+                    </div>
+                    <div class="ui-corner-bottom ui-content ui-body-a">
+                        <p>
+                            Is this the <strong>first time</strong> you are using the godochurch application?
+                        </p>
+                        <p>
+                            View our <strong>quick start tutorial</strong> which will highlight the key features
+                            and tools available to you.
+                        </p>
+
+                        <a href="#" id="btnHomePopupViewQuickStart" class="ui-btn ui-btn-h">View Quick Start</a>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</body>
+
+
+
+</html>

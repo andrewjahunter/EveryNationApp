@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>My Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        window.location.href = "http://m.godochurch.com";
+    </script>
+</head>
+<body style="background-color: #343131; color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+
+    <div data-role="page" id="pg_register1" class="ui-page-theme-a">
+
+        <div data-role="header">
+            <h1 id="pg_register1_header" class="pageHeader">Register</h1>
+            <a href="#" class="ui-btn ui-btn-b ui-icon-delete ui-btn-icon-notext reg1Cancel"   >cancel</a>
+        </div>
+        <div data-role="content" style="padding: 15px">
+            <div class="pageViewContent">
+                <!--<div style="width: 72px; margin-left: auto; margin-right: auto">
+                    <img src="../img/inAppIcon.png" style="width: 100%; height: auto" />
+                </div>-->
+                <div data-role="popup" class="ui-content" id="pg_reg1_errpopup" data-theme="e">
+                    <div id="pg_reg1_errmsg"></div>
+                </div>
+                <form id="pg_register1_form">
+                    <div data-role="fieldcontain">
+                        <label for="txtReg1FirstName">
+                            First Name
+                        </label>
+                        <input id="txtReg1FirstName" name="firstname" data-bind="value: firstName" class="required" placeholder="first name" type="text" />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="txtReg1LastName">
+                            Last Name
+                        </label>
+                        <input id="txtReg1LastName" name="lastname" data-bind="value: lastName" class="required" placeholder="last name" type="text" />
+                    </div>
+                    <div data-role="fieldcontain">
+
+                        <label for="txtReg1LastName">
+                            Email
+                        </label>
+                        <input id="txtReg1Email" name="email" data-bind="value: email" placeholder="email address" value="" type="email" />
+
+
+                    </div>
+                </form>
+                <div id="regStep2" class="ui-btn ui-btn-b">next</div>
+                <a class="ui-btn ui-btn-a reg1Cancel">cancel</a>
+
+
+                <div data-role="popup" id="pg_reg1_emailtaken" data-overlay-theme="a" data-theme="d" data-dismissible="false" style="max-width: 400px;" class="ui-corner-all">
+                    <div data-role="header" data-theme="d" class="ui-corner-top">
+                        <h1>Email Taken</h1>
+                    </div>
+                    <div class="ui-corner-bottom ui-content ui-body-a">
+                        <h3 class="ui-title">This email has already been taken!</h3>
+                        <p>
+                            If you have ever registered with any of the churches on either gododata or gododchurch you can simply use those
+                            same login credentials to sign in here.
+
+                        </p>
+                        <p>If you have forgotten your information, please click forgot info button.</p>
+                        <a href="#" class="ui-btn ui-btn-d" data-rel="back">ok</a>
+                        <a href="#" id="btnReg1ForgotInfo" class="ui-btn ui-btn-a">forgot info?</a>
+                    </div>
+                </div>
+
+                <div data-role="popup" id="popupReg1MissingData" data-overlay-theme="a" data-dismissible="false" style="max-width: 400px;" class="ui-corner-all">
+                    <div data-role="header" data-theme="e" class="ui-corner-top">
+                        <h1>Missing?</h1>
+                    </div>
+                    <div data-role="content" class="ui-corner-bottom ui-content">
+
+                        <p>You are missing some data. All the fields above need to be completed and a valid email address provided</p>
+                        <button id="btnReg1CloseMissingDataMsg" class="ui-btn ui-btn-e">Ok</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        
+
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>My Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        window.location.href = "http://m.godochurch.com";
+    </script>
+</head>
+<body style="background-color: #343131; color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+
+    <div data-role="page" id="pg_followup" class="ui-page-theme-a">
+
+
+
+        <div data-role="header">
+            <a href="#" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext headerMenuHome">home</a>
+
+            <!--<a href="#" id="pg_followup_showMenu" class="ui-btn ui-btn-b ui-icon-bars ui-btn-icon-notext ">menu<span class="slideMenuButtonBubbleSpan"></span></a>-->
+            <h1 class="pageHeader" id="pg_followup_header">Follow Up</h1>
+            <a href="#" class="ui-btn ui-btn-b ui-icon-plus" id="btnFUPNew">add</a>
+
+        </div>
+        <!-- /header -->
+        <div class="ui-content" style="padding: 15px">
+
+            <div class="pageViewContent">
+
+                <script id="myfollowup-template" type="text/html">
+                    <li>
+                        <a class="myFUPRecord" data-bind="attr: {'data-id': id}" data-transition="slide">
+                            <h5 data-bind='text: personName'></h5>
+                            <p><strong>email: </strong><span data-bind="html:personEmail"></span></p>
+                            <p><strong>tel: </strong><span data-bind="html:personTel"></span></p>
+                            <p><strong>reason: </strong><span data-bind="html:reason"></span></p>
+                            <p><strong>gender: </strong><span data-bind="html:personGender"></span></p>
+                            <p class="ui-li-aside" data-bind="html:status"></p>
+                        </a>
+                        <a data-bind="attr: {'data-id': id}" href="#" class="myFUPRecord" data-position-to="window"></a>
+                    </li>
+                </script>
+
+
+
+
+                <div data-role="popup" class="ui-content" id="pg_FUP_errpopup" data-theme="e">
+                    <div id="pg_FUP_errpopup_msg"></div>
+                </div>
+
+                <div class="ui-field-contain">
+                    <label>
+                        <input type="checkbox" id="chkBoxIncludeComplete" />
+
+                        Include complete records
+                    </label>
+                </div>
+
+                <div id="FUPList">
+
+
+                    <ul data-role="listview" data-split-icon="gear" data-split-theme="d" data-inset="true" data-theme="b" id="myFollowUpList" data-bind="template: { name: 'myfollowup-template', foreach: myFollowUpList}"></ul>
+                </div>
+                <div id="pg_followup_none" style="display: none">
+
+                    <div data-role="header" data-theme="h" class="ui-corner-top">
+                        <h1>No Records</h1>
+                    </div>
+
+
+
+                    <div class="ui-content ui-body-h  ui-corner-bottom">
+
+                        <p>
+                            There is currently nobody in the church that you need to be actively following up.
+                        </p>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- /page -->
+
+</body>
+</html>
