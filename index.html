@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script src="mobile/scripts/app/appExt.js"></script>
+   
+
+    <script type="text/javascript">
+        //1000-1999 Mobile All Portal, 2000 and up al other mobile restricted to their portals,<1000 admin- all portals
+        // alert("App Code on Index")
+
+        gdd.init.appInfo = 'appcode:2001|version:1.2.0'
+        // alert("Location: " + window.location.href)
+        gdd.init.pathToIndexPage = window.location.href;
+        // alert(gdd.init.appInfo)
+
+
+    </script>
+    <link href="mobile/styles/app.css" rel="stylesheet" />
+   
+    <script data-main="mobile/scripts/app/appstart.min.js" src="scripts/libraries/require.js"></script>
+
+    <link href="mobile/styles/jquery-ui-1.9.1.custom.min.css" rel="stylesheet" />
+    <link href="mobile/styles/gdc.mobile.min.css" rel="stylesheet" />
+    <link href="mobile/styles/jquery.mobile.icons-1.4.2.min.css" rel="stylesheet" />
+    <link href="mobile/styles/jquery.mobile.structure-1.4.2.min.css" rel="stylesheet" />
+    
+  
+    <script type="text/javascript" src="PushNotification.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+   
+  
+</head>
+<!-- -->
+<body style="color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif" onload="gdd.init.indexPageLoaded();" >
+  
+
+   
+
+    <div data-role="popup" id="globalQuickMessage" class="ui-body-a globalPopup globalWidget globalQuickPopup" style="display:none"> </div>
+
+    <div data-role="popup" id="globalQuickErr" class="ui-body-e globalPopup globalWidget globalQuickPopup" style="display:none"> </div>
+
+    <div data-role="panel" id="globalSlidingMenu" class="globalWidget" style="display:none" data-display="reveal" data-theme="g">
+        <div style="width: 100%; max-width: 80px; max-height: 80px; margin-left: auto; margin-right: auto">
+            <img border="0" src="" id="glb_menu_fbpic" alt="facebook profile pic" style="width: 100%; height: auto" />
+
+        </div>
+        <ul data-role="listview" data-theme="i" id="glbSlideMenuListView" data-inset="true" data-divider-theme="g">
+
+            <li><a href="#" id="glb_menu_home">Home</a></li>
+            <li><a href="#" id="glb_menu_pinfo"><div data-bind="html:customLabels[1000]"></div></a></li>
+            <li><a href="#" id="glb_menu_messages"><div data-bind="html:customLabels[1400]"></div><span class="ui-li-count  bubbleMessagesCount"></span></a></li>
+            <li><a href="#" id="glb_menu_groups"><div data-bind="html:customLabels[1100]"></div></a></li>
+
+            <li><a href="#" id="glb_menu_sermons"><div data-bind="html:customLabels[1200]"></div></a></li>
+            <li><a href="#" id="glb_menu_eventProfiles"><div data-bind="html:customLabels[1250]"></div></a></li>
+
+            <li><a href="#" id="glb_menu_followup"><div data-bind="html:customLabels[1150]"></div></a></li>
+          
+            <!--<li><a href="#" id="glb_menu_subs"><div data-bind="html:customLabels[1300]"></div></a></li>-->
+            <!--<li><a href="#" id="glb_menu_churchlife"><div data-bind="html:customLabels[1350]"></div></a></li>-->
+
+            <li> <a href="#" id="glb_menu_closeMenu" data-theme="d">Close Menu</a></li>
+        </ul>
+    </div>
+
+
+
+    <div data-role="popup" class="globalPopup" id="globalErrorMessage" data-overlay-theme="b" data-theme="e" data-dismissible="false" style="max-width: 400px; display: none">
+        <div data-role="header" data-theme="e">
+            <h1 id="glbErrMsgHeader">Error!</h1>
+        </div>
+        <div role="main" class="ui-content ui-body-a">
+            <p id="glbErrMsgContent">
+            </p>
+            <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-e" data-rel="back">Ok</a>
+        </div>
+    </div>
+
+    <div data-role="popup" class="globalPopup" id="globalMessage" data-overlay-theme="b" data-theme="a" data-dismissible="false" style="max-width: 400px; display: none">
+        <div data-role="header" data-theme="b">
+            <h1 id="glbMsgHeader">Message</h1>
+        </div>
+        <div role="main" class="ui-content ui-body-a">
+            <p id="glbMsgContent">
+            </p>
+            <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a" data-rel="back">Ok</a>
+        </div>
+    </div>
+
+    
+    
+
+    <!---->
+    <div data-role="page" id="pg_index" style="background-color:white">
+        <div data-role="header">
+            <h1 class="pageHeader">Start</h1>
+
+        </div>
+                <div data-role="main" class="ui-content">
+
+                    <div class="pageViewContent">
+                        <div style="background-color:white">
+
+
+                            <div style="height:250px; margin-bottom: 10px; margin-top:50px;">
+
+
+                                <div id="splashOne" data-nextid="splashTwo" style="height:100%">
+                                    <div style="width:250px; margin-left: auto; margin-right: auto;">
+                                        <img src="mobile/img/appimg/gdcmobile.png" style="width:250px; height:130px" />
+
+                                    </div>
+                                    <div>
+                                        <p style="text-align:center;margin:5px">
+                                            Go mobile, using your mobile phone, tablet or even your desktop.
+                                        </p>
+                                    </div>
+
+
+                                </div>
+
+                                <div id="splashTwo" data-nextid="splashThree" style="height:100%; display:none">
+                                    <div style="width:150px; margin-left: auto; margin-right: auto;">
+                                        <img src="mobile/img/appimg/groups2.png" style="width:150px; height:150px" />
+
+                                    </div>
+                                    <div>
+                                        <p style="text-align:center;margin:5px">
+                                            Track your small groups, communicate with your group members, and manage weekly attendance.
+                                        </p>
+                                    </div>
+
+
+                                </div>
+
+                                <div id="splashThree" data-nextid="splashFour" style="height: 100%; display: none">
+                                    <div style="width:200px; margin-left: auto; margin-right: auto;">
+                                        <img src="mobile/img/appimg/communicate.png" style="width:200px; height:100px" />
+
+                                    </div>
+                                    <div>
+                                        <p style="text-align:center;margin:5px">
+                                            Communicate directly with people in your groups using Push Notifications, SMS and Email.
+                                        </p>
+                                    </div>
+
+
+                                </div>
+
+                                <div id="splashFour" data-nextid="splashFive" style="height: 100%; display: none">
+                                    <div style="width:132px; margin-left: auto; margin-right: auto;">
+                                        <img src="mobile/img/appimg/maps.png" style="width:132px; height:150px" />
+
+                                    </div>
+                                    <div>
+                                        <p style="text-align:center;margin:5px">
+                                            The mapping  tools allow you to find groups in your neighbourhood or simply provide easy directions to your weekly meeting.
+                                        </p>
+                                    </div>
+
+
+                                </div>
+
+                                <div id="splashFive" data-nextid="splashOne" style="height: 100%; display: none">
+                                    <div style="width:150px; margin-left: auto; margin-right: auto;">
+                                        <img src="mobile/img/appimg/podcast.png" style="width:150px; height:150px" />
+
+                                    </div>
+                                    <div>
+                                        <p style="text-align:center;margin:5px">
+                                            Get the latest sermons delivered directly to your mobile phone or simply subscribe to the podcast.
+                                        </p>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                            <div style="width:150px; margin-left: auto; margin-right: auto;">
+                                <div class="ui-btn ui-btn-b" id="btnIdxSignIn" style="display:none">Sign In</div>
+                                <div class="ui-btn ui-btn-b" id="btnIdxStart" style="display:none">Start</div>
+                                <button id="btnIdxErrConn" class="ui-btn ui-btn-b ui-mini" style="display:none" onclick="window.location.href = gdd.init.pathToIndexPage">Try Again</button>
+
+                            </div>
+                            <hr />
+                            <div style="width:250px; margin-left: auto; margin-right: auto;">
+                                <div id="progressState" style="text-align: center; font-style:italic">connecting....</div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+    </div>
+    
+   
+    
+
+</body>
+
+
+
+
+</html>
