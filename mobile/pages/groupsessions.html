@@ -167,7 +167,7 @@
 
                             <div class="ui-bar ui-bar-a" style="text-align:center">
                                 <h6>Attendance</h6>
-                                <div><small>Mark 'Yes' the members who were present, otherwise mark 'No'.</small></div>
+                                <div><small>'✓' the members who were present, otherwise mark 'X'.</small></div>
                             </div>
 
 
@@ -175,7 +175,19 @@
 
                             <script id="grpSessionAttendance-template" type="text/html">
                                 <li>
-                                    <div class="ui-bar ui-bar-b" data-bind="html:name, visible:attended()">
+
+                                    <table width="100%">
+
+                                        <tbody>
+                                            <tr>
+                                                <td data-bind="text: name"></td>
+
+                                                <td align="right"><input type="checkbox" data-role="flipswitch" data-theme="a" data-off-text="X" data-on-text="✓" data-bind="checked:attended,attr:{'data-id':id}" class="ui-mini grpSessionAttFlipSwtch"></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--<div class="ui-bar ui-bar-b" data-bind="html:name, visible:attended()">
                                     </div>
 
                                     <div class="ui-bar ui-bar-a" data-bind="html:name, visible:!attended()">
@@ -184,7 +196,7 @@
                                     <div style="text-align:center">
                                         <input type="checkbox" data-role="flipswitch" data-theme="a" data-off-text="No" data-on-text="Yes" data-bind="checked:attended,attr:{'data-id':id}" class="ui-mini grpSessionAttFlipSwtch">
 
-                                    </div>
+                                    </div>-->
 
 
 

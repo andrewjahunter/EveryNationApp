@@ -15,23 +15,33 @@
         <div data-role="panel" id="pg_authportal_addnewportal" data-position="right" data-display="push" data-theme="g">
 
             <div id="authPortalSearchForAllDatabases">
-                <div  class="ui-content ui-body-g"  style="padding: 2px">
-                    Search For Church<a href="#pg_authportals_activate_help" data-rel="popup"  data-position-to="window" class="ui-icon-alt ui-btn ui-btn-h ui-icon-info ui-btn-icon-notext ui-btn-inline"  data-transition="slideup"  >Learn more</a>
-                </div>
-               
-                <div data-role="popup" id="searchPortalPopup" class="ui-content ui-body-h" style="max-width: 400px;">
-                    <p>Enter the name of the church/ministry you are looking for and click "search". Click the database to add it to your account.</p>
-                </div>
-                <input id="txtPortalSearchString" placeholder="church name" value="" type="text" />
 
-                <div class="ui-grid-a">
-                    <div class="ui-block-a">
-                        <div class="ui-btn ui-btn-b ui-btn-inline" id="btnSearchPortals" >search</div>
-                    </div>
-                    <div class="ui-block-b">
-                        <div data-rel="close" class="ui-btn ui-btn-a ui-btn-inline" >close</div>
-                    </div>
+
+                <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                   <small>Type the name of the church you are looking for and click 'Search'. <i>(you can type only part of the name)</i></small>                 
+                </div> 
+                <input id="txtPortalSearchString" placeholder="type here..." value="" type="text" />
+                <div class="ui-btn ui-btn-b ui-btn-inline ui-mini" id="btnSearchPortals">Search</div>
+                <div data-rel="close" class="ui-btn ui-btn-a ui-btn-inline ui-mini">Close</div>
+                
+                
+                <div>
+
                 </div>
+              
+                <!---->
+
+
+                <!--<div  class="ui-content ui-body-g"  style="padding: 2px">
+                    Search For Church<a href="#pg_authportals_activate_help" data-rel="popup"  data-position-to="window" class="ui-icon-alt ui-btn ui-btn-h ui-icon-info ui-btn-icon-notext ui-btn-inline"  data-transition="slideup"  >Learn more</a>
+                </div>-->
+               
+                <!--<div data-role="popup" id="searchPortalPopup" class="ui-content ui-body-h" style="max-width: 400px;">
+                    <p>Enter the name of the church/ministry you are looking for and click "search". Click the database to add it to your account.</p>
+                </div>-->
+               
+
+                
             </div>
 
             <div id="authPortalSearchForFilteredDatabases">
@@ -51,7 +61,7 @@
 
 
             <ul data-role="listview" data-split-icon="check" data-split-theme="c" data-inset="true" data-theme="a" id="searchPortals" data-bind="template: { name: 'addportal-template', foreach: portalSearchResults}"></ul>
-            <a href="#pg_authportal_cantfindchurch" id="btnMyChurchIsMissing"  class="ui-btn ui-btn-d"  data-rel="popup" data-transition="slideup" data-position-to="window" >My Church Is Missing?</a>
+            <a href="#pg_authportal_cantfindchurch" id="btnMyChurchIsMissing" class="ui-btn ui-btn-d ui-mini "     data-rel="popup" data-transition="slideup" data-position-to="window" >Can't find your church?</a>
         </div>
 
         <div data-role="header">
@@ -93,7 +103,7 @@
             <div class="pageViewContent">
 
 
-                <a href="#sg_list_actionmenu" data-rel="popup" data-position-to="window" class="ui-btn ui-btn-i ui-icon-bullets ui-btn-icon-left" data-transition="pop">Actions...</a>
+                <!--<a href="#sg_list_actionmenu" data-rel="popup" data-position-to="window" class="ui-btn ui-btn-i ui-icon-bullets ui-btn-icon-left" data-transition="pop">Actions...</a>
                 <div data-role="popup" id="sg_list_actionmenu" data-theme="i">
                     <ul data-role="listview" data-inset="true" style="min-width: 210px;" data-theme="i">
 
@@ -104,14 +114,25 @@
 
 
                     </ul>
-                </div>
+                </div>-->
+                
+                
                 <div id="pg_authportals_exists">
 
-                    <div class="ui-content  ui-body-h" style="text-align:center; font-size:small">
-                        Below are the churches that you have an account with. Cick the church name to 'Sign In' or click on the
-                        <a href="#" class="ui-btn ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-inline"></a> icon to remove this church from your account.
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center">Your Profile</div>
                     </div>
 
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                       
+                        <p>Below are the churches that you have activated on your profile. Click on the church name to 'Sign In'. Click the <strong>'X'</strong> to remove the
+                        church from your profile.</p>
+
+                        <a  class="btnAddPortal" href="#" data-transition="slide">Add another church</a>
+
+                    </div>                  
+
+                   
 
                     <div id="divAuthPortals">
                         <ul data-role="listview" data-split-icon="delete" data-split-theme="a" data-inset="true" data-theme="b" id="portalList" data-bind="template: { name: 'portallist-template', foreach: authorizedPortals}"></ul>
@@ -122,24 +143,24 @@
 
                 <div id="pg_authportal_noportal" style="display: none">
 
-                    <div data-role="header" data-theme="h" class="ui-corner-top">
-                        <h1>Activate</h1>
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center">Add a Church</div>
                     </div>
 
-
-
-                    <div class="ui-corner-bottom ui-content ui-body-h">
-
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
                         <p>
-                            There are currently <strong>no active churches</strong> registered in your profile. This is most likely because you have
-                            <strong>just signed in</strong> for the first time.
+                            You do not have any active churches in your profile. This is most likely because you have just registered for the first time.
                         </p>
                         <p>
-                            <strong>TO START: </strong>you need to activate at least one church in your profile. To find the church you are looking for click the button below.
+                            To begin, you need to connect your profile to at least one church or ministry. Click the button below to find the church you want to add to your profile.
                         </p>
-                        <button id="btnAddFirstPortal" class="ui-btn ui-btn-h">Connect New Church</button>
-                    </div>
+                        <div style="text-align:center">
+                            <button class="ui-btn ui-btn-h btnAddPortal ui-btn-inline">Add New Church</button>
+                        </div>
+                        
 
+
+                    </div>   
                 </div>
 
             </div>
@@ -178,7 +199,7 @@
                         To <strong>remove a church</strong> from your list of active profiles simply click the "X" next to the churches name. Note this will simply remove it from your active profile. You can
                             add it back at any stage.
                     </p>
-                    <p><strong>If there are no churches</strong> in the list below or if you want to add another church to your acive list, <strong>click "Connect to New Church"</strong> under the actions menu</p>
+                    <p><strong>If there are no churches</strong> in the list below or if you want to add another church to your acive list, <strong>click "Add Church..."</strong></p>
 
                     <a href="#"  data-rel="back" class="ui-btn ui-btn-h" >thanks!</a>
 

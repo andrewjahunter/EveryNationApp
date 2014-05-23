@@ -7,125 +7,65 @@
         window.location.href = "http://m.godochurch.com";
     </script>
 </head>
-<body  style="background-color:#343131;  color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+<body style="background-color:#343131;  color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+    <!--data-dom-cache="true"-->
+    <div data-role="page" id="pg_churchlife" class="ui-page-theme-a">
 
-    <div data-role="page" id="pg_churchlife"  class="ui-page-theme-a" data-dom-cache="true">
-        
 
 
         <div data-role="header">
-            <a href="#" id="pg_churchlife_showMenu" class="ui-btn ui-btn-b ui-icon-bars  ui-btn-icon-notext"><span class="slideMenuButtonBubbleSpan"></span></a>
-            <h1 class="pageHeader" id="pg_churchlife_header" data-bind="html:labels[1350]">Church Life</h1>
-             <a href="#" id="pgChurchLifeGoHome" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext "></a>
+            <a href="#" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext headerMenuHome">home</a>
+
+            <h1 class="pageHeader" data-bind="html:labels[1350]">Church Life</h1>
+            <a href="#" class="ui-btn ui-btn-b ui-icon-refresh ui-btn-icon-notext " id="btnRefreshFields">refresh</a>
+
         </div>
-        <!-- /header -->
-        <div  class="ui-content" style="padding: 15px">
-            <div data-role="popup" class="ui-content" id="pg_churchlife_errpopup" data-theme="e">
-                <div id="pg_churchlife_errpopmessage"></div>
-            </div>
-            <div data-role="popup" class="ui-content" id="msgpopup" data-theme="h">
-                <div id="msgpopupcontent"></div>
-            </div>
 
-            <div data-role="popup" class="ui-content" id="pg_churchlife_msgpopup" data-theme="h">
-                <div id="pg_churchlife_msgpopmessage"></div>
-            </div>
+        <div class="ui-content" style="padding: 15px">
 
-            <script id="customfields-template" type="text/html">
-                <div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="b">
-                    <h4 data-bind="text: name"></h4>
-                    <div class="ui-body-b  ui-corner-all" style="padding: 10px; text-align: center">
-                            <strong data-bind="text: description()"></strong>
-                        </div>
-                   
-                    <div data-role="collapsible-set" data-bind="foreach: fields">
-                        <div data-role="collapsible" data-collapsed="true" data-theme="d" data-content-theme="d">
-                            <h4 data-bind="text: name"></h4>
-                            <div class="ui-body-d  ui-corner-all" style="padding: 10px; text-align: center">
-                            <strong data-bind="text: description()"></strong>
-                        </div>
-                            <div data-role="collapsible-set" data-bind="foreach: listItems">
-                                <div data-role="collapsible" data-bind="attr:{id:id()}" class="listItemCollapsible" data-collapsed="true" data-theme="c" data-content-theme="c">
-                                    <h4 data-bind="text: name"></h4>
+            <div class="pageViewContent">
 
-                                    <fieldset data-role="controlgroup" data-type="horizontal" class="ui-mini" >
-                                        <legend></legend>
-                                        <input type="radio" data-theme="b" data-bind="attr: {name: id(), id: 'li1' + id()}" value="-1">
-                                        <label data-bind="attr: {for: 'li1' + id()}, text:$parent.unknownWording()">minus1 1</label>
+                <div id="fieldContent" style="display:none">
+                    <script id="boolfields-template" type="text/html">
+                        <li>
+                            <div class="ui-bar ui-bar-h">
+                                <div style="text-align: center" data-bind="html: name"></div>
 
-                                        <input type="radio" data-theme="b" data-bind="attr: {name: id(), id: 'li2' + id()}" value="0">
-                                        <label data-bind="attr: {for: 'li2' + id()}, text:$parent.uncheckedWording()">zero</label>
-
-                                        <input type="radio" data-theme="b" data-bind="attr: {name: id(), id: 'li3' + id()}" value="1">
-                                        <label data-bind="attr: {for: 'li3' + id()}, text:$parent.checkedWording()">one</label>
-
-                                    </fieldset>
-
-
-                                </div>
                             </div>
 
-                        </div>
+                            <table width="100%" >
+
+                                <tbody data-bind="foreach: mappings">
+                                    <tr>
+                                        <td data-bind="text: name" ></td>
+
+                                        <td align="right"><input type="checkbox" data-role="flipswitch" data-theme="a" data-off-text="X" data-on-text="✓" data-bind="checked:value,attr:{'data-id':id}" class="ui-mini fieldFlipSwitch"></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                    </script>
+                    <ul data-role="listview" data-theme="a" data-inset="true" data-bind="template: { name: 'boolfields-template', foreach: fields}"></ul>
+                </div>
+                <div style="text-align:center; margin-top:15px" id="fieldsLoadingContent">
+                    Loading...
+                </div>
+
+                <div id="pg_churchlife_none" style="display:none">
+
+                    <div class="ui-bar ui-bar-h">
+
+                        <div style="text-align:center">Profile Is Empty</div>
                     </div>
-                   
-                </div>
-               
-            </script>
 
-            
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        <p>We do not have any records on file for your profile</p>
+                        <p>The Church Life lists help you effectively keep track of your profile in this church.</p>
+                    </div>                   
 
-            <div id="cflistcontainer">
-                                 <a href="#pg_churchlife_whatisthis"  class="ui-btn ui-btn-h "   data-rel="popup"  data-transition="slideup">what is this?</a>
-
-                <div data-role="collapsible-set" id="cflistcallapse" data-bind="template: { name: 'customfields-template', foreach: cfGroups}">
-                </div>
-
-            </div>
-
-            <div data-role="popup" id="pg_churchlife_whatisthis"  data-overlay-theme="a" style="max-width: 400px;"
-                class="ui-corner-all">
-                <div data-role="header" data-theme="h" class="ui-corner-top">
-                    <h1>Church Life</h1>
-                </div>
-                <div  class="ui-content ui-body-a ui-corner-bottom ">
-
-                    <p>
-                       Church Life is a very powerful and flexible system of simple <strong>lists</strong> that your church/ministry
-                        can use to help communicate and group people meaningfully.
-
-                    </p>
-                    <p>All lists are neatly grouped into <strong>2 layers</strong> starting with the top level category, followed by the 2nd level fields and then all the list items in that
-                        field.
-                    </p>
-                    <p>
-                        Each list item has <strong>three options</strong> for you to choose from. Using the navigation tool below simply navigate down to the list 
-                        you would like edit against your profile and set the required field
-                    </p>
-                   
-  
-                    <a href="#"  class="ui-btn ui-btn-h"  data-rel="back">thanks!</a>
-                  
                 </div>
             </div>
-
-             <div id="pg_churchlife_none" style="display:none">
-
-                  <div data-role="header" data-theme="h" class="ui-corner-top">
-                    <h1>No Church Fields</h1>
-                </div>
-                <div class="ui-body-h ui-corner-bottom ui-content">
-                     <p>
-                        Currently this church has not set any church life fields which are visible by your profile.  
-                    </p>
-                    <p>
-                        Church Life fields provide a church/ministry with endless ways in which to communicate, shepherd and group people
-                        within their congregation. Please contact your church or ministry office to encourage them to activate some of the fields.
-                    </p>
-
-                </div>
-
-            </div>
-
         </div>
 
     </div>

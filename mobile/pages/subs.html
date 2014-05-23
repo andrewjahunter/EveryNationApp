@@ -7,124 +7,74 @@
         window.location.href = "http://m.godochurch.com";
     </script>
 </head>
-<body  style="background-color:#343131;  color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+<body style="background-color:#343131;  color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+    <!--data-dom-cache="true"-->
+    <div data-role="page" id="pg_subs" class="ui-page-theme-a">
 
-    <div data-role="page" id="pg_subs" class="ui-page-theme-a" >
-    
+
+
         <div data-role="header">
-            <a href="#" id="pg_subs_showMenu" class="ui-btn ui-btn-b ui-icon-bars ui-btn-icon-notext">menu<span class="slideMenuButtonBubbleSpan"></span></a>
-
-            <a href="#" id="pgSubGoHome" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext"       >home</a>
+            <a href="#" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext headerMenuHome">home</a>
 
             <h1 class="pageHeader" data-bind="html:labels[1300]">News</h1>
+            <a href="#" class="ui-btn ui-btn-b ui-icon-refresh ui-btn-icon-notext " id="btnRefreshSubs">refresh</a>
+
         </div>
-        <!-- /header -->
-        <div  class="ui-content" style="padding: 15px">
-            <div data-role="popup" class="ui-content" id="pg_subs_errpopup" data-theme="e">
-                <div id="pg_subs_errpopmessage"></div>
-            </div>
-            <div data-role="popup" class="ui-content" id="msgpopup" data-theme="b">
-                <div id="msgpopupcontent"></div>
-            </div>
 
+        <div class="ui-content" style="padding: 15px">
 
+            <div class="pageViewContent">
 
-            <script id="subs-template" type="text/html">
+                <div id="subsContent" style="display:none">
+                    <script id="subs-template" type="text/html">
+                        <li>                           
 
-                <div data-bind="if: subscribed">
-                    <div class="ui-body-c  ui-corner-all" style="padding: 10px; margin-bottom:10px">
-                        <div class="ui-body-c  ui-corner-all" style="padding: 10px; text-align: center">
-                            <strong data-bind="text: name()"></strong>
-                        </div>
+                            <table width="100%">
 
-                       
-                        <button class="ui-btn ui-btn-c"   data-bind="attr: {id: id()}">Un-Subscribe</button>
+                                <tbody >
+                                    <tr>
+                                        <td data-bind="text: name"></td>
 
-                    </div>
-                    
+                                        <td align="right"><input type="checkbox" data-role="flipswitch" data-theme="a" data-off-text="X" data-on-text="✓" data-bind="checked:value,attr:{'data-id':id}" class="ui-mini subsFlipSwitch"></td>
 
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                    </script>
 
+                    <div class="ui-bar ui-bar-h">
 
-                </div>
-
-                <div data-bind="ifnot: subscribed">
-                    <div class="ui-body-d  ui-corner-all" style="padding: 10px; margin-bottom:10px">
-                            <div class="ui-body-d  ui-corner-all" style="padding: 10px; text-align: center">
-                        <strong data-bind="text: name()"></strong>
+                        <div style="text-align:center">Choose News</div>
                     </div>
 
-                    
-                        <button class="ui-btn ui-btn-d"  data-bind="attr: {id: id()}">Subscribe</button>
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        <p>Below are the news channels we communicate on. Simply check the channels you would like to 
+                        be subscribed to.</p>
                     </div>
 
-                
+                    <ul data-role="listview" data-theme="a" data-inset="true" data-bind="template: { name: 'subs-template', foreach: fields}"></ul>
+                </div>
+                <div style="text-align:center; margin-top:15px" id="subsLoadingContent">
+                    Loading...
                 </div>
 
+                <div id="pgSubsNone" style="display:none">
 
-            </script>
+                    <div class="ui-bar ui-bar-h">
 
-           
+                        <div style="text-align:center">No Subscriptions</div>
+                    </div>
 
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        <p>We do not have any records on file for your profile</p>
+                        <p>
+                            The Subscriptions module allows you to select which news you would like to receive from us
+                        </p>
+                    </div>
 
-            <div id="subs_container">
-                
-
-                 <a href="#pg_subs_whatisthis" class="ui-btn ui-btn-h"   data-rel="popup"  data-transition="slideup">what is this?</a>
-                <div data-bind="template: { name: 'subs-template', foreach: subsList}">
-                </div>
-
-            </div>
-
-             <div id="pg_subs_nosubs" style="display:none">
-                 <div data-role="header" data-theme="h" class="ui-corner-top">
-                     <h1>No Newsletters</h1>
-
-                 </div>
-
-                 <div  class="ui-content ui-body-h ui-corner-bottom">
-                     <p>
-                        There are no newsletters available. 
-                    </p>
-                    <p>
-                        Newsletters are a great way for your church/ministry to
-                    <strong>keep you updated with whats happening</strong>. Please contact your church/ministry and encourage them to
-                    add this feature to the system.
-                    </p>
-
-                 </div>
-
-
-
-               
-
-            </div>
-
-            <div data-role="popup" id="pg_subs_whatisthis"  data-overlay-theme="b" style="max-width: 400px;"
-                class="ui-corner-all">
-                <div data-role="header" data-theme="h" class="ui-corner-top">
-                    <h1>What Is This?</h1>
-                </div>
-                <div  class="ui-corner-bottom ui-content ui-body-h">
-
-                    <p>
-                       Subscriptions are a simple way for your church/ministry to be able to <strong>communicate with you</strong>. Below are listed all the the available
-                        subscriptions your church offers.
-
-                    </p>
-                    <p>The <strong>green regions</strong> indicate the subscriptions you are a member of, the <strong>Orange areas</strong> indicate those
-                        that you have not subscribed to.</p>
-                    <p>Simply <strong>click the relevant subscription</strong> to change your status for that item.</p>
-                   
-
-                
-                    <a href="#" class="ui-btn ui-btn-h"   data-rel="back">thanks!</a>
-                  
                 </div>
             </div>
-
-             
-
-
         </div>
 
     </div>
