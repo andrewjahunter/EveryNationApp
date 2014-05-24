@@ -151,7 +151,7 @@ gdd.init = {
             var d = new Date();
             gdd.init.timePaused = d.getTime();
             
-            alert("Paused at: " + gdd.init.timePaused)
+            //alert("Paused at: " + gdd.init.timePaused)
            
         }
         catch (err) {
@@ -168,7 +168,7 @@ gdd.init = {
             try {
                 
 
-                alert("resmue")
+               // alert("resmue")
 
                 if (gdd.views.pageinfo) {
                    
@@ -185,14 +185,14 @@ gdd.init = {
                         var newDT = new Date();
                         var newTime = newDT.getTime();
 
-                        var pauseHrs=gdd.init.timePaused / (1000 * 60 );
-                        var startHours = newTime / (1000 * 60 );
+                        var pauseHrs=gdd.init.timePaused / (1000 * 60*60 );
+                        var startHours = newTime / (1000 * 60*60 );
                         
 
-                        alert("Pause Time: (hrs) " + pauseHrs + ' Resmue Time: ' + startHours)
+                        //alert("Pause Time: (hrs) " + pauseHrs + ' Resmue Time: ' + startHours)
 
-                        if ((startHours - pauseHrs) > 1) {
-                            alert("lets restart")
+                        if ((startHours - pauseHrs) > 3) {
+                            //alert("lets restart")
                             restart = true;
                         }
                     }
