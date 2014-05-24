@@ -74,6 +74,8 @@ gdd.init = {
 
             //alert("Device Is Ready is set")
 
+            document.addEventListener("pause", gdd.init.onPause, false);
+
             document.addEventListener("resume", gdd.init.onAppResume, false);
 
             document.addEventListener("menubutton", gdd.init.onMenuKeyDown, false);
@@ -140,82 +142,84 @@ gdd.init = {
 
     },
 
+    timePaused:null,
+
+
+    onPause: function () {
+        try {
+          
+            var d = new Date();
+            gdd.init.timePaused = d.getTime();
+            
+            alert("Paused at: " + gdd.init.timePaused)
+           
+        }
+        catch (err) {
+            gdd.init.showPageIndexError("The following error occurred when the application came online: " + err)
+        }
+    },
+
+
+
     onAppResume: function () {
         try {
             var restart = false;
+
             try {
-                // alert(JSON.stringify(gdd.views.pageinfo))
+                
+
+                alert("resmue")
+
                 if (gdd.views.pageinfo) {
-                    //alert(gdd.models.session.isSignedIn())
+                   
                     if (!gdd.models.session.isSignedIn()) {
                         restart = true
                     }
                 } else {
                     restart = true;
                 }
+
+                if (!restart) {
+
+                    if (gdd.init.timePaused) {
+                        var newDT = new Date();
+                        var newTime = newDT.getTime();
+
+                        var pauseHrs=gdd.init.timePaused / (1000 * 60 );
+                        var startHours = newTime / (1000 * 60 );
+                        
+
+                        alert("Pause Time: (hrs) " + pauseHrs + ' Resmue Time: ' + startHours)
+
+                        if ((startHours - pauseHrs) > 1) {
+                            alert("lets restart")
+                            restart = true;
+                        }
+                    }
+                   
+
+
+                }
+
+
             } catch (e) {
-                // alert("oops:" + err)
+                
                 restart = true;
             }
-            // alert("restart: " + restart)
+           
+
+
             if (restart) {
                 if (gdd.init.indexPagePath()) {
-                    // alert("href: " + gdd.init.indexPagePath())
+                   
                     window.location.href = gdd.init.indexPagePath()
                 } else {
                     alert("While the application was dorment, the session data was lost. Please restart this appication.")
                 }
             }
 
-            //alert("App resume")
-            //if ((gdd.init.isReady()) && (gdd.init.onLine())) {
-
-            //    gdd.views.utils.processAppStart();
-            //} else {
-
-            //    if (gdd.init.indexPageIsActive()) {
-            //        runProgressState()
-            //    } else {
-            //        window.location.href = gdd.init.indexPagePath();
-            //    }
-            //}
-            //try {
-            //    alert("pathToIndexPage:" + gdd.init.pathToIndexPage)
-
-            //}
-            //catch (err) {
-            //    alert("index path error:" + err)
-
-            //}
-            //try {
-            //    alert("views:" + JSON.stringify( gdd.views.pageinfo))
-            //}
-            //catch (err) {
-            //    alert("views error:" + err)
-            //}
-            //try {
-            //    alert("location:" + JSON.stringify(location))
-            //    alert("Final Big Boy:" + location.origin + location.pathname.replace(location.pathname.substring(location.pathname.indexOf("mobile")), 'index.html'))
-
-            //} catch (e) {
-            //    alert("big boy error:" + err)
-
-            //}
-
-            //try {
-            //    alert("href: " + location.href)
-            //} catch (e) {
-            //    alert("href err:" + err)
-
-            //}
-
-            //location.reload()
-
-            //if (gdd.init.indexPageIsActive()) {
-            //    gdd.init.runIndexPageLoadingProcess();
-            //} else {
-            //    window.location.href = gdd.init.indexPagePath();
-            //}
+            
+           
         }
         catch (err) {
             gdd.init.showPageIndexError("The following error occurred when the application came online: " + err)
