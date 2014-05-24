@@ -191,7 +191,7 @@ gdd.init = {
 
                         //alert("Pause Time: (hrs) " + pauseHrs + ' Resmue Time: ' + startHours)
 
-                        if ((startHours - pauseHrs) > 3) {
+                        if ((startHours - pauseHrs) > 10) {
                             //alert("lets restart")
                             restart = true;
                         }
