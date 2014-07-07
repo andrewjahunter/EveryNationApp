@@ -9,29 +9,165 @@
 </head>
 <body style="background-color: #343131; color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
 
-    <div data-role="page" id="pg_followupnew" class="ui-page-theme-a" >
+    <div data-role="page" id="pg_followupnew" class="ui-page-theme-a">
 
 
         <div data-role="header">
             <a href="#" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext headerMenuHome">home</a>
 
-            <h1 class="pageHeader" id="pg_followupnew_header">New...</h1>
+            <h1 class="pageHeader" id="pg_followupnew_header">Add Person</h1>
             <a href="#" id="pgFUPNewBack" class="ui-btn ui-btn-b ui-icon-delete ui-btn-icon-notext">cancel</a>
 
         </div>
         <!-- /header -->
-        <div  class="ui-content" style="padding: 15px">
+        <div class="ui-content" style="padding: 15px">
             <div class="pageViewContent">
                 <div data-role="popup" class="ui-content" id="pg_FUPNew_errpopup" data-theme="e">
                     <div id="pg_FUPNew_errpopup_msg"></div>
                 </div>
-                <form id="formFUPNew">
+
+                <div class="fupNewSubView fupNewView1" style="display:none">
+
+
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center">Who will do the follow up?</div>
+                    </div>
+                    <div class="ui-content ui-body-h" style="text-align: left; font-size:small">
+                        <p>
+                            Can you do the follow up for this person and ensure they get connected? <a href="#" id="btnIWillDoFollowUp">Yes, I will do the follow up</a>
+                        </p>
+                        <p>
+                            Do you know a small group leader in the church who you would like to assign this person to?
+                            <a id="btnFUPNewAssignGroup" href="#">Yes, I would like to assign this follow up to a group leader</a>
+                        </p>
+
+
+                        <br />
+
+                    </div>
+
+                    <div id="FUBNewGroupAssigned" style="display:none">
+                        <div class="ui-bar ui-bar-h">
+                            <div style="text-align:center">Assigned To Group</div>
+                        </div>
+                        <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                            <div id="FUBNewGroupInfo"></div>
+                            <br />
+                            <div><a href="#" id="btnFUPClearGroup">Remove from Group</a></div>
+                        </div>
+
+
+
+                    </div>
+
+
+                    <button class="ui-btn ui-btn-b ui-btn-inline btnFupNewGoTo2">Next</button><span>Step 1 of 4</span>
+                </div>
+
+                <div class="fupNewSubView fupNewView2" style="display:none">
+
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center">Reason for Follow Up</div>
+                    </div>
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        From the list below please tell us the main reason why this person needs to be followed up.
+                    </div>
+                    <div class="ui-field-contain">
+
+                        <select id="ddlFUPNewReason" class="newFupDDL" data-bind="options: refData.reasons, value:selectedRecord.reasonId, optionsText: 'reason', optionsValue: 'id'"></select>
+
+                    </div>
+
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center"><span data-bind="html:labels[2000]"></span> Information</div>
+                    </div>
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        What <span data-bind="html:labels[2000]"></span> is closest to where this person either lives or works? We will
+                        use this information to help us connect them with people closest to them. If unsure leave the default selection that was pre-loaded.
+                    </div>
+                    <div class="ui-field-contain">
+
+                        <select id="ddlFUPNewRegions" class="newFupDDL" data-bind="options: refData.regions, value:selectedRecord.regionId, optionsText: 'name', optionsValue: 'id'"></select>
+
+                    </div>
+                    
+                    
+
+                   
+                    <button class="ui-btn ui-btn-a ui-btn-inline btnFupNewGoTo1">Back</button>
+
+                    <button class="ui-btn ui-btn-b ui-btn-inline btnFupNewGoTo3">Next</button><span>Step 2 of 4</span>
+
+                </div>
+
+                <div class="fupNewSubView fupNewView3" style="display:none">
+
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center"><span data-bind="html:labels[1152]"></span> Information</div>
+                    </div>
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        At what <span data-bind="html:labels[1152]"></span> did you connect with this person? We will use this information to track where our follow up
+                        is being generated from. If unsure leave the default selection that was pre-loaded.
+                    </div>
+
+
+                    <div class="ui-field-contain">
+
+                        <select id="ddlFUPNewLocations" data-bind="options: refData.locations, value:selectedRecord.locationId, optionsText: 'name', optionsValue: 'id'"></select>
+
+                    </div>
+
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center">Age Group</div>
+                    </div>
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        What is the age profile of the person. We will use this to help find the right small group for them
+                    </div>
+                    <div class="ui-field-contain">
+                        
+                        <select id="ddlFUPNewAgeProfiles" data-bind="options: refData.ageProfiles, value:selectedRecord.ageProfileId, optionsText: 'name', optionsValue: 'id'"></select>
+
+                    </div>
+
+                    
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center">Gender</div>
+                    </div>
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        What is the gender of the person. We use this to ensure we connect them with the right people in the church.
+                    </div>
+                    <div class="ui-field-contain">
+                        <!--<label for="ddlFUPNewGender">
+                            What is the gender of the person
+                        </label>-->
+                        <select id="ddlFUPNewGender" data-bind="value:selectedRecord.personGender">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+
+                    </div>
+                    <button class="ui-btn ui-btn-a ui-btn-inline btnFupNewGoTo2">Back</button>
+
+                    <button class="ui-btn ui-btn-b ui-btn-inline btnFupNewGoTo4">Next</button><span>Step 3 of 4</span>
+
+                </div>
+
+                <div class="fupNewSubView fupNewView4" style="display:none">
+
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center">Persons Information</div>
+                    </div>
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        Please fill out the following personal information about the person who needs to be followed up.
+                    </div>
+
                     <div class="ui-field-contain">
                         <label for="txtFUPNewFirstName">
                             First Name
                         </label>
                         <input id="txtFUPNewFirstName" data-bind="value:selectedRecord.firstName" data-clear-btn="true" placeholder="first name" name="firstname" value="" type="text" required="required" />
                     </div>
+
                     <div class="ui-field-contain">
 
                         <label for="txtFUPNewLastName">
@@ -56,59 +192,31 @@
                         <input id="txtFUPNewMobileNumber" name="telnumber" data-bind="value:selectedRecord.personTel" data-clear-btn="true" placeholder="mobile number" value="" type="text" />
                     </div>
 
+                    
+                   
+                    <button class="ui-btn ui-btn-a ui-btn-inline btnFupNewGoTo3">Back</button>
 
-
-                    <div class="ui-field-contain">
-                        <label for="ddlFUPNewRegions">
-                            <span data-bind="html:labels[2000]"></span>
-                        </label>
-                        <select id="ddlFUPNewRegions" data-bind="options: refData.regions, value:selectedRecord.regionId, optionsText: 'name', optionsValue: 'id'"></select>
-
-                    </div>
-
-                    <div class="ui-field-contain">
-                        <label for="ddlFUPNewLocations">
-                            <span data-bind="html:labels[1152]"></span>
-
-                        </label>
-                        <select id="ddlFUPNewLocations" data-bind="options: refData.locations, value:selectedRecord.locationId, optionsText: 'name', optionsValue: 'id'"></select>
-
-                    </div>
-
-                    <div class="ui-field-contain">
-                        <label for="ddlFUPNewAgeProfiles">
-                            Age Profile
-                        </label>
-                        <select id="ddlFUPNewAgeProfiles" data-bind="options: refData.ageProfiles, value:selectedRecord.ageProfileId, optionsText: 'name', optionsValue: 'id'"></select>
-
-                    </div>
-
-                    <div class="ui-field-contain">
-                        <label for="ddlFUPNewReason">
-                            Reason
-                        </label>
-                        <select id="ddlFUPNewReason" data-bind="options: refData.reasons, value:selectedRecord.reasonId, optionsText: 'reason', optionsValue: 'id'"></select>
-
-                    </div>
-
-                    <div class="ui-field-contain">
-                        <label for="ddlFUPNewGender">
-                            Gender
-                        </label>
-                        <select id="ddlFUPNewGender" data-bind="value:selectedRecord.personGender">
-                            <option value="M">Male</option>
-                            <option value="F">Female</option>
-                        </select>
-
-                    </div>
-
-                </form>
-                <button id="btnFUPNewAssignGroup" class="ui-btn ui-btn-d">Assign To Group</button>
-                <div id="FUBNewGroupAssigned" style="display:none">
-                    <div id="FUBNewGroupInfo"></div>
-                    <a href="#" id="btnFUPClearGroup">Remove Group</a>
+                    <button id="btnFUPNewAddRecord" class="ui-btn ui-btn-b ui-btn-inline">Update</button><span>Step 4 of 4</span>
                 </div>
-                <button id="btnFUPNewAddRecord" class="ui-btn ui-btn-b">Add This Record</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -132,7 +240,7 @@
 
             </div>
 
-            </div>
+        </div>
 
     </div>
 

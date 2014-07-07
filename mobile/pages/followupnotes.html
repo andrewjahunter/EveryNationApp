@@ -25,11 +25,17 @@
         <div  class="ui-content" style="padding: 15px">
 
             <div class="pageViewContent">
-
+                <div class="ui-bar ui-bar-h">
+                    <div style="text-align:center">Notes</div>
+                </div>
+                <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                    These are all the previous notes for <span data-bind="html:selectedRecord.personName"></span> that you
+                    are permitted to view.
+                </div>
                 <div data-role="popup" class="ui-content" id="pg_FUPNotes_errpopup" data-theme="e">
                     <div id="pg_FUPNotes_errpopup_msg"></div>
                 </div>
-
+                
 
                 <div data-bind="foreach: notes">
                     <div class="ui-body-d  ui-corner-all" style="padding: 10px">

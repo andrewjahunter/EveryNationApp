@@ -12,7 +12,12 @@
 .pageViewContent {
     max-width:400px; 
     margin-left:auto; 
-    margin-right:auto
+    margin-right:auto;
+    
+}
+
+.appPopup {
+max-width:450px;
 }
 
  .mainMenuBtn {
@@ -27,7 +32,7 @@
             .menuBtnTxt {
                 white-space: normal;
                 font-size:small;
-                text-align:left
+                text-align:center
             }
 
 

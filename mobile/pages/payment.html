@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>My Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <script type="text/javascript">
+        window.location.href = "http://m.godochurch.com";
+    </script>
+</head>
+<body style="background-color: #343131; color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+
+    <div data-role="page" id="pg_payment" class="ui-page-theme-a">
+        <div data-role="header">
+            <a href="#" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext headerMenuHome">home</a>
+
+            <h1 class="pageHeader">Pay Now</h1>
+            <a href="#" class="ui-btn ui-btn-b ui-icon-delete ui-btn-icon-notext btnPayNowCancel ">cancel</a>
+
+        </div>
+
+
+
+
+
+
+        <div class="ui-content" style="padding: 15px">
+            <div class="pageViewContent">
+
+                <div class="ui-bar ui-bar-h">
+                    <div style="text-align:center" data-bind="html:auth.description()"></div>
+                </div>
+                <div class="ui-bar ui-bar-c" id="ccPmtOnlineNotice" style="text-align: center; font-size:small; display:none">
+                    Payment gateway is online
+                </div>
+                <div class="ui-bar ui-bar-e" id="ccPmtSimulateNotice" style="text-align: center; font-size:small; display:none">
+                    Simulation mode active
+                </div>
+
+                <div class="ui-content ui-body-h" style="text-align: left; font-size:small">
+                    Enter your credit card information below. When you are done, click the pay now button.
+                </div>
+
+                <label for="txtCardHolder">
+                    Name on card
+                </label>
+                <input id="txtCardHolder" data-clear-btn="true" required value="" type="text" data-bind="value:auth.cardHolder" />
+
+
+
+
+                <label for="txtCardNumber">
+                    Credit card number
+                </label>
+                <input id="txtCardNumber" data-clear-btn="true" required value="" type="text" data-bind="value:auth.cardNumber" />
+
+
+
+
+                <div class="ui-grid-a">
+                    <label>
+                        Expiry month and year
+                    </label>
+                    <div class="ui-block-a">
+                        <select id="ddlCCExpMonth" data-mini="true" data-bind="value:auth.expMonth">
+                            <option value="01">Jan</option>
+                            <option value="02">Feb</option>
+                            <option value="03">Mar</option>
+                            <option value="04">Apr</option>
+                            <option value="05">May</option>
+                            <option value="06">Jun</option>
+                            <option value="07">Jul</option>
+                            <option value="08">Aug</option>
+                            <option value="09">Sep</option>
+                            <option value="10">Oct</option>
+                            <option value="11">Nov</option>
+                            <option value="12">Dec</option>
+                        </select>
+
+
+                    </div>
+                    <div class="ui-block-b">
+                        <select id="ddlCCExpYear" data-mini="true" data-bind="value:auth.expYear">
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="ui-grid-a">
+
+                    <div class="ui-block-a">
+                        <label for="txtCCCvc">
+                            Cvc Number
+                        </label>
+                        <input id="txtCCCvc" required value="" type="text" data-bind="value:auth.cvc" style="margin-right:5px" />
+
+
+
+                    </div>
+                    <div class="ui-block-b">
+                        <label for="txtCCAmount">
+                            Amount
+                        </label>
+                        <input id="txtCCAmount" disabled="disabled" type="text" data-bind="value:auth.amount" style="margin-left:5px" />
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <button type="button" class="ui-btn ui-btn-b ui-mini ui-btn-inline" id="btnCcPayNow">
+                    Pay
+                </button>
+
+                <button type="button" class="ui-btn ui-btn-a ui-mini ui-btn-inline btnPayNowCancel">
+                    Cancel
+                </button>
+
+                <div id="ccSimulate" style="display:none" class="ui-mini">
+                    <fieldset data-role="controlgroup">
+                        <legend>Choose Simulation Option</legend>
+                        <input type="radio" class="ccSimulate" name="ccSimulateOption" id="ccSimulateOption1" value="1" checked="checked">
+                        <label for="ccSimulateOption1">Visa 3D Secure</label>
+                        <input type="radio" class="ccSimulate" name="ccSimulateOption" id="ccSimulateOption2" value="2">
+                        <label for="ccSimulateOption2">Simulate Success</label>
+                        <input type="radio" class="ccSimulate" name="ccSimulateOption" id="ccSimulateOption3" value="3">
+                        <label for="ccSimulateOption3">Simulate Fail</label>
+
+                    </fieldset>
+                </div>
+
+                <div data-role="popup" id="popupCCSimulation" data-transition="slideup" style="max-width: 450px;"
+                     class="ui-corner-all">
+                    <div data-role="header" data-theme="b" class="ui-corner-top">
+                        <h1>Simulation</h1>
+                    </div>
+                    <div class="ui-corner-bottom ui-content ui-body-a">
+                        <h3 class="ui-title">The payment gateway is running in simulation mode</h3>
+                        <p>
+                            This database is running under simulation mode. This allows you to run the credit card module in a test environment.
+                        </p>
+                        <p>You can choose one of the three simulation tests to run below. Once selected click the Pay Now button.</p>
+                        <a href="#" class="ui-btn ui-btn-b ui-btn-inline" data-rel="back">Ok</a>
+                    </div>
+                </div>
+
+                <div data-role="popup" id="PopupCC3DReq" data-overlay-theme="a" style="max-width: 450px;"
+                     class="ui-corner-all">
+                    <div data-role="header" data-theme="b" class="ui-corner-top">
+                        <h2>Pin Required</h2>
+                    </div>
+                    <div class="ui-corner-bottom ui-content ui-body-a">
+                        <h3 class="ui-title">You card is enrolled for 3D security</h3>
+                        <p>
+                            This credit card has been enrolled by you and your bank for 3D security. To proceed with the payment we require further authentication. 
+                        </p>
+                        <p>If you click 'OK' we will transfer you to your banks terminal where you will be able to enter your pin. Click 'Cancel' to terminate the payment.</p>
+                        <a href="#" class="ui-btn ui-btn-b ui-btn-inline" id="btn3DSecGo">OK</a>
+
+                        <a href="#" class="ui-btn ui-btn-a ui-btn-inline" data-rel="back">Cancel</a>
+                    </div>
+                </div>
+
+                <div data-role="popup" id="popupCCFailed" data-overlay-theme="a" style="max-width: 400px;" class="ui-corner-all">
+                    <div data-role="header" data-theme="e" class="ui-corner-top">
+                        <h1>Card Error</h1>
+                    </div>
+                    <div class="ui-corner-bottom ui-content">
+                        <h4 class="ui-title">The following error occurred while trying to process your card</h4>
+                        <p id="ccAuthError"></p>
+                        <a class="ui-btn ui-btn-e ui-btn-inline" data-rel="back">Ok</a>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div data-role="popup" id="ccPaymentSuccess" data-transition="slideup" style="max-width: 450px;"
+                     class="ui-corner-all">
+                    <div data-role="header" data-theme="c" class="ui-corner-top">
+                        <h1>Success</h1>
+                    </div>
+                    <div class="ui-corner-bottom ui-content ui-body-a">
+                        <h3 class="ui-title">The payment was successfull.</h3>
+                        <p>
+                            Thank you for your payment. You will recieve a confirmation notification via email and push notification.
+                        </p>
+                        <a class="ui-btn ui-btn-c ui-btn-inline"  data-rel="back">Ok</a>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
+    <!-- /page -->
+
+</body>
+</html>

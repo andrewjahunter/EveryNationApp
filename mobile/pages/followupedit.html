@@ -28,28 +28,56 @@
                 <div data-role="popup" class="ui-content" id="pg_FUPEDIT_errpopup" data-theme="e">
                     <div id="pg_FUPEDIT_errpopup_msg"></div>
                 </div>
-                <div class="ui-bar-h" style="text-align:center">
+                <div class="ui-bar-a" style="text-align:center">
                     <h4 data-bind="html:selectedRecord.personName"></h4>
                 </div>
+                <br/>
 
-                <div class="ui-field-contain">
-                    <label for="ddlFUPEditStatus">
-                        Status
-                    </label>
-                    <select id="ddlFUPEditStatus" data-bind="options: refData.status, value:selectedRecord.statusId, optionsText: 'status', optionsValue: 'id'"></select>
-
+                <div class="ui-bar ui-bar-b">
+                    <div style="text-align:center">Update Status</div>
                 </div>
+                <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                    From the list below you can set this person to a certain status in the system. This allows us to track
+                    somebody through the follow up life cycle
+                    <div class="ui-field-contain">
 
-                <form>
-                    <label for="fRecNewNote">Note/Comment:</label>
-                    <textarea id="fRecNewNote"></textarea>
-                    <small><i>notes added here are viewable by Trusted Users and higher</i></small>
-                </form>
-                <button id="btnFUPEditRequestTransfer" class="ui-btn ui-btn-a ui-mini ui-btn-inline" >Request Transfer</button>
-                <button id="btnFUPEditAddNote" class="ui-btn ui-btn-b ui-mini ui-btn-inline">Add Note</button>
-                <div>
-                    <a href="#" id="btnFUPViewNotes">View Notes</a>
+                        <select id="ddlFUPEditStatus" data-theme="a" data-bind="options: refData.status, value:selectedRecord.statusId, optionsText: 'status', optionsValue: 'id'"></select>
+
+                    </div>
                 </div>
+                
+
+                <div class="ui-bar ui-bar-b">
+                    <div style="text-align:center">Add Note</div>
+                </div>
+                <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                    You can add notes about this person at any stage in the follow up cycle. Simply type in your note
+                    in the textbox below and click 'Add Note' when you are done.
+                    <div>
+                        <a href="#" id="btnFUPViewNotes">View previous notes</a>
+                    </div>
+                    <form>
+                   
+                        <textarea id="fRecNewNote"></textarea>
+                        <small><i>notes added here are viewable by Trusted Users and higher</i></small>
+                    </form>
+                    <button id="btnFUPEditAddNote" class="ui-btn ui-btn-a ui-mini ui-btn-inline  ">Add Note</button>
+                </div>
+                
+
+                <div class="ui-bar ui-bar-b">
+                    <div style="text-align:center">Request Transfer</div>
+                </div>
+                <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                    If for any reason you are NOT able to follow this person up, you can request that the person is given to
+                    somebody else to follow up. Enter the reason for this request in the note/comment box above and click 'Request Transfer'.
+                    <div>
+                        <a id="btnFUPEditRequestTransfer" href="#">Request Transfer</a>
+                    </div>
+                </div>
+                
+                <br/>
+                
                 
 
                 <div data-role="popup" id="popupTransferRquestDone" data-overlay-theme="a" data-dismissible="false" style="max-width: 400px;" class="ui-corner-all">
@@ -59,10 +87,16 @@
                     <div class="ui-corner-bottom ui-content">
 
                         <p>
-                            Your transfer request has been sent. As soon as the administrator has assigned this person to another individual it will be removed from your
-                            profile. Please stay in contact with this person until the transfer has been completed.
+                            Your transfer request has been sent.  
                         </p>
-                        <button id="btnTransferReqOk" class="ui-btn ui-btn-b">Ok</button>
+                        <p>
+                            As soon as the administrator has assigned this person to another individual it will be removed from your
+                            profile.
+                        </p>
+                        <p>
+                            Please stay in contact with this person until the transfer has been completed.
+                        </p>
+                        <a href="#" class="ui-btn ui-btn-b" data-rel="back">Ok</a>
 
                     </div>
                 </div>
@@ -72,13 +106,20 @@
                     <div style="text-align:center">Been in Contact?</div>
                 </div>-->
 
-
+                <div class="ui-bar ui-bar-b">
+                    <div style="text-align:center">Update Contact Date</div>
+                </div>
                 <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
                     Clicking the button below simply lets us know that you have been in contact with this person recently. People who
                     have not been contacted in a 14 day period will be flagged by the pastoral team.
+                    <div>
+                        <a id="btnFUPUpdateContactDate" href="#">Update Contact Date</a>
+                    </div>
                 </div>
 
-                <button id="btnFUPUpdateContactDate" class="ui-btn ui-btn-b">Update Contact Date</button>
+                
+
+                
                
 
 

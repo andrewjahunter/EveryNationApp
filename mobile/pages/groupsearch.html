@@ -14,7 +14,7 @@
 
 
         <div data-role="header">
-            <a href="#"  class="ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext pgGrpSearchGoopGrpMenu" data-direction="reverse">Groups Menu</a>
+            <a href="#"  class="ui-btn ui-btn-b ui-icon-check ui-btn-icon-notext pgGrpSearchDone" data-direction="reverse">Groups Menu</a>
             <h1 class="pageHeader">Search</h1>
             <a href="#" class="btnClearSearch ui-btn ui-btn-b ui-icon-refresh ui-btn-icon-notext">clear</a>
 
@@ -36,12 +36,11 @@
                     <div class="ui-bar ui-bar-h">
                         <div style="text-align:center">Step One</div>
                     </div>
-                    <div class="ui-content ui-body-h">
-                        <div>
-                            From the list below select which kind of group you are looking for.
-                        </div>
-
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                       The first step in looking for a group is to choose which category of groups you want to search in within your church. Below
+                        are the list of categories you are permitted to search in.
                     </div>
+                  
                     <ul data-role="listview" data-inset="true" id="catSelectListView" data-theme="b" data-bind="template: { name: 'catselect-template', foreach: refData.categories}"></ul>
 
 
@@ -54,32 +53,36 @@
                         <div style="text-align:center">Search Filters</div>
 
                     </div>
-                    <div class="ui-content ui-body-h" style="text-align:center; font-size:small">
-                        <div>Select your search filters below and click search</div>
-
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        To help you find the group you are looking for, select any number of the search filters below. When you are done click 'Search'
                     </div>
 
                     <div class="ui-field-contain" data-bind="visible:selectedCategory.showAgeProfileInSearch()">
-                        <label for="ddlGrpSearchAgeProfile">
+                        <!--<label for="ddlGrpSearchAgeProfile">
                             Groups age profile
-                        </label>
+                        </label>-->
+                       
+                        <div style="font-size:small">Look for groups in this <strong>age profile.</strong></div>
                         <select id="ddlGrpSearchAgeProfile" name="" data-bind="options: refData.ageProfiles, value:searchQry.ageProfileId, optionsText: 'name', optionsValue: 'id',optionsCaption: 'select option...'"></select>
 
 
                     </div>
 
                     <div class="ui-field-contain" data-bind="visible:selectedCategory.showSuburbInSearch()">
-                        <label for="ddlGrpSearchSuburb">
-                            Suburb where group meets
-                        </label>
+                        <!--<div>
+                            <label for="ddlGrpSearchSuburb">
+                                Suburb where group meets
+                            </label>
+                        </div>-->
+                        <div style="font-size:small">Restrict your search to a specific <strong>suburb?</strong></div>
                         <select id="ddlGrpSearchSuburb" name="" data-bind="options: refData.suburbs, value:searchQry.suburb,optionsCaption: 'select option...'"></select>
 
                     </div>
 
                     <div class="ui-field-contain" data-bind="visible:selectedCategory.showMeetingDayInSearch()">
-                        <label for="ddlGrpSearchMeetingDay">
-                            Day group meets on
-                        </label>
+                       
+                        <div style="font-size:small">View only groups that meet on a certain <strong>day?</strong></div>
+
                         <select id="ddlGrpSearchMeetingDay" name="" data-bind="value:searchQry.meetingDay">
                             <option value="">select option...</option>
                             <option value="Monday">Monday</option>
@@ -95,12 +98,12 @@
                     </div>
 
                     <div class="ui-field-contain" data-bind="visible:selectedCategory.showGenderInSearch()">
-                        <label for="ddlGrpSearchGender">
-                            Gender of group
-                        </label>
+                     
+                        <div style="font-size:small">What <strong>gender</strong> must the group be?</div>
+
                         <select id="ddlGrpSearchGender" name="" data-bind="value:searchQry.gender">
                             <option value="">select option...</option>
-                            <option value="M/F">Male/Female</option>
+                            <option value="M/F">Does not matter</option>
                             <option value="M">Male</option>
                             <option value="F">Female</option>
                         </select>
@@ -108,17 +111,16 @@
                     </div>
 
                     <div class="ui-field-contain" data-bind="visible:selectedCategory.showTypesInSearch()">
-                        <label for="ddlGrpSearchType">
-                            Group Type
-                        </label>
+                       
+                        <div style="font-size:small">Restrict your search to a specific <strong>group type?</strong></div>
                         <select id="ddlGrpSearchType" name="" data-bind="options: refData.groupTypes,  value:searchQry.groupTypeId, optionsText: 'name', optionsValue: 'id',optionsCaption: 'select option...'"></select>
 
                     </div>
 
                     <div class="ui-field-contain" data-bind="visible:selectedCategory.showRegionInSearch()">
-                        <label for="ddlGrpSearchRegion">
-                            Region
-                        </label>
+                        
+                        <div style="font-size:small">What <strong>region</strong> would you like to search in?</div>
+
                         <select id="ddlGrpSearchRegion" name="" data-bind="options: refData.regions,  value:searchQry.regionId, optionsText: 'name', optionsValue: 'id',optionsCaption: 'select option...'"></select>
 
                     </div>
@@ -173,15 +175,17 @@
                         <div style="text-align:center">Matching Results</div>
 
                     </div>
-                    <div class="ui-content ui-body-h" style="text-align:center; font-size:small">
-                        <div>These are the groups that match you search criteria</div>
-                        <!--<a href="#" class="btnClearSearch">Search Again</a><br/>-->
-                        <div><a href="#grpSearchMissingGroupsPopup" data-rel="popup" class="ui-btn ui-btn-h " data-transition="slideup">Can't find group?</a></div>
-
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                       These are the groups that match the search criteria you selected on the previous screen.
+                        <div><a href="#grpSearchMissingGroupsPopup" data-rel="popup"  data-transition="slideup">Can't find group?</a></div>
+                        <div>
+                            <a href="#" id="btnViewSearchGroupsMaps">View results on Google maps?</a>
+                        </div>
                     </div>
+                    
 
 
-                    <button class="ui-btn ui-btn-a " id="btnViewSearchGroupsMaps">View Google Map View</button>
+                    
                     <ul data-role="listview" data-inset="true" data-divider-theme="b" data-theme="a" id="grpSearchResultsListView" data-bind="template: { name: 'groupsearchlist-template', foreach: loadedGroups}"></ul>
                 </div>
 
@@ -198,8 +202,8 @@
                             Here are some reasons why this may be the case:
                             <ul>
                                 <li>Your <strong>search criteria is to narrow.</strong> Run the search again with a different criteria</li>
-                                <li>You church can choose which group types are shown on this mobile application. They may have <strong>disabled the group from being viewed</strong> in this app</li>
-                                <li>Some groups can only be viewed with <strong>higher security permissions</strong>. You account may not have sufficient privileges</li>
+                                <li>Your church can choose which group types are shown on this mobile application. They may have <strong>disabled the group from being viewed</strong> in this app</li>
+                                <li>Some groups can only be viewed with <strong>higher security permissions</strong>. Your account may not have sufficient privileges</li>
                             </ul>
                         </p>
 
