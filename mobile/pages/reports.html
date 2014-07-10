@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>My Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        window.location.href = "http://m.godochurch.com";
+    </script>
+</head>
+<body style="background-color: #343131; color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
+
+    <div data-role="page" id="pg_reports" class="ui-page-theme-a">
+
+
+
+        <div data-role="header">
+            <a href="#" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext headerMenuHome">home</a>
+
+            <!--<a href="#" id="pg_followup_showMenu" class="ui-btn ui-btn-b ui-icon-bars ui-btn-icon-notext ">menu<span class="slideMenuButtonBubbleSpan"></span></a>-->
+            <h1 class="pageHeader" >Reports</h1>
+            
+
+
+        </div>
+        <!-- /header -->
+        <div class="ui-content" style="padding: 15px">
+
+            <div class="pageViewContent">
+
+                <div class="repSubView repMenuView">
+                    <div class="ui-bar ui-bar-h">
+
+                        <div style="text-align:center">Reports Menu</div>
+                    </div>
+
+
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        Choose which of the available reports below you want to view.
+                        <p><i>Currently these reports are aimed at staff and churches who are a part of the Ministry Partnership
+                            program</i></p>
+                    </div>
+
+                    <div class="mainMenuBtn ui-btn ui-btn-b btnRepShowTran">
+                        <div>
+                            <img src="../img/appimg/report3.png" class="menuBtnImg" />
+
+                        </div>
+                        <div class="menuBtnTxt" style="text-align:center" data-bind="html: reportProfile.tranListReportTitle">
+                           
+                        </div>
+                       
+                        
+                    </div>
+                    <div class="ui-bar ui-bar-a" style="text-align: center; font-size:small">
+                        
+                            <small><i>Use the above report to view your gifts/transactions that exist in your account</i></small>
+                        
+                    </div>
+                   
+
+                    <div class="mainMenuBtn ui-btn ui-btn-b btnRepShowPledge">
+                        <div>
+                            <img src="../img/appimg/report4.png" class="menuBtnImg" />
+
+                        </div>
+                        <div class="menuBtnTxt" style="text-align:center" data-bind="html: reportProfile.pledgeListReportTite">
+
+                        </div>
+                        
+
+                    </div>
+                    <div class="ui-bar ui-bar-a" style="text-align: center; font-size:small">
+                        
+                            <small><i>Use the above report to view the pledges from donors that are active in your account</i></small>
+                        
+                    </div>
+
+                    <div class="mainMenuBtn ui-btn ui-btn-b btnRepShowFundPerf">
+                        <div>
+                            <img src="../img/appimg/report5.png" class="menuBtnImg" />
+
+                        </div>
+                        <div class="menuBtnTxt" style="text-align:center" data-bind="html: reportProfile.fundPerfReportTitle">
+
+                        </div>
+                        
+
+                    </div>
+                    <div class="ui-bar ui-bar-a" style="text-align: center; font-size:small">
+                        
+                            <small><i>Use the above report to view how well your staff are performing in their Ministry Partnership</i></small>
+                        
+                    </div>
+
+                </div>
+
+                <div class="repSubView repTranRepView" style="display:none">
+
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center" data-bind="html:reportProfile.tranListReportTitle"></div>
+                    </div>
+                    
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        <div>You have chosen the fund <strong><span data-bind="html:repParam.entityName"></span></strong> for this report.</div>
+
+                        <a class="showReportsMenu" href="#">Reports Menu</a><span>  </span>
+                       
+                    </div>
+
+                    
+                
+                   
+
+
+
+                   
+                    <select id="ddlTranListDtOption" class="ui-mini" data-bind="options:reportProfile.tranListDateOptions, value:repParam.tranListDtOption, optionsText: 'value', optionsValue: 'id'"></select>
+                    <div style="text-align:center">
+                        <a href="#"  id="btnGetGiftListing">Get Report</a>
+                    </div>
+                   
+
+                    <div id="tranListReport" style="display:none">
+
+
+
+                        <script id="tranlist-template" type="text/html">
+                            <tr>
+
+                                <td ><small data-bind="html:person"></small></td>
+
+                                <td ><small data-bind="html: amount"></small></td>
+                                <td ><small data-bind="html: paymentMethod"></small></td>
+                                <td ><small data-bind="html: tranDate"></small></td>
+                                <td ><small data-bind="html: ccy"></small></td>
+
+
+                            </tr>
+
+                        </script>
+
+
+                        <button class="ui-btn ui-btn-a ui-btn-inline ui-mini" id="btnRepTranListSummary">View Summary</button>
+                        <table class="ui-responsive table-stroke" id="tranListTable" data-role="table" data-mode="columntoggle" data-column-btn-text="Choose columns..." data-column-btn-theme="b">
+
+                            <thead>
+                                <tr>
+                                    <th >Name</th>
+
+                                    <th >Amount</th>
+                                    <th >Type</th>
+                                    <th data-priority="5">Date</th>
+                                    <th data-priority="4">CCY</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody data-bind="template: { name: 'tranlist-template', foreach: tranReport.transactions}"></tbody>
+                        </table>
+                    </div>
+                   
+
+                </div>
+
+
+
+                <div class="repSubView repPledgeRepView" style="display:none">
+
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center" data-bind="html:reportProfile.pledgeListReportTite"></div>
+                    </div>
+
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        <div>You have chosen the fund <strong><span data-bind="html:repParam.entityName"></span></strong> for this report.</div>
+
+                        <a class="showReportsMenu" href="#">Reports Menu</a><span>  </span>
+
+                    </div>
+
+                    <div class="ui-field-contain">
+                        <label>
+                            <input type="checkbox" id="chkBoxPledgesInclInActive" />
+
+                            <small>Tick this box if you want to include in-active pledges (not recommended).</small>
+                        </label>
+                    </div>
+
+                   
+                    <div style="text-align:center">
+                        <a href="#" id="btnGetPledgeListing">Get Report</a>
+                    </div>
+
+
+                    <div id="pledgeListReport" style="display:none">
+
+                     
+
+                        <script id="pledgelist-template" type="text/html">
+                            <tr>
+
+                                <td><small data-bind="html:person"></small></td>
+
+                                <td><small data-bind="html: amount"></small></td>
+                                <td><small data-bind="html: ccy"></small></td>
+                                <td><small data-bind="html: paymentMethod"></small></td>
+                                
+                             
+                                
+                                <td><small data-bind="html: active"></small></td>
+                                <td class="ui-table-cell-hidden"><small data-bind="html: nrd"></small></td>
+                            </tr>
+
+                        </script>
+
+
+                        <button class="ui-btn ui-btn-a ui-btn-inline ui-mini" id="btnRepPledgeListSummary">View Summary</button>
+                        <table class="ui-responsive table-stroke" id="pledgeListTable" data-role="table" data-mode="columntoggle" data-column-btn-text="Choose columns..." data-column-btn-theme="b">
+
+                            <thead>
+                                <tr>
+                                    <th >Name</th>
+
+                                    <th >Amount</th>
+                                    <th >CCY</th>
+                                    <th data-priority="4">Type</th>
+                                    <th data-priority="5">Active</th>
+                                    <th data-priority="6" class="ui-table-cell-hidden">NRD</th>
+                                  
+                                    
+                                </tr>
+                            </thead>
+
+
+                            <tbody data-bind="template: { name: 'pledgelist-template', foreach: pledgeReport.pledges}"></tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+
+
+                <div class="repSubView repFundPerfRepView" style="display:none">
+
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center" data-bind="html:reportProfile.fundPerfReportTitle"></div>
+                    </div>
+
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        <div>You have chosen the fund center <strong><span data-bind="html:repParam.entityName"></span></strong> for this report.</div>
+
+                        <a class="showReportsMenu" href="#">Reports Menu</a><span>  </span>
+
+                    </div>
+
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        This report will give you a summary of the staff/funds in your church.'Goal'-Their current MPD goal, 'Avg'-the current average,
+                        'Period1'-Funds raised last month, 'Period2'-Funds raised 2 months ago, 'Period3'-Funds raised 3 months ago
+                        
+                    </div>
+
+                   
+
+
+                    <div style="text-align:center">
+                        <a href="#" id="btnGetFundPerfReport">Get Report</a>
+                    </div>
+
+
+                    <div id="fundPerfReport" style="display:none">
+
+                       
+
+
+                        <script id="fundperflist-template" type="text/html">
+                            <tr>
+
+                                <td><small data-bind="html:fund"></small></td>
+                                <td><small data-bind="html: goal"></small></td>
+                                <td><small data-bind="html: avg"></small></td>
+                                <td><small data-bind="html: period1"></small></td>
+                                <td><small data-bind="html: period2"></small></td>
+                                <td><small data-bind="html: period3"></small></td>
+
+                                
+                                
+
+                            </tr>
+
+                        </script>
+
+
+                        <button class="ui-btn ui-btn-a ui-btn-inline ui-mini" id="btnRepFundPerfSummary">View Summary</button>
+                        <table class="ui-responsive table-stroke" id="fundPerfListTable" data-role="table" data-mode="columntoggle" data-column-btn-text="Choose columns..." data-column-btn-theme="b">
+
+                            <thead>
+                                <tr>
+                                    <th >Fund</th>
+                                    <th >Goal</th>
+                                    <th >Avg</th>
+                                    <th data-priority="4">Period1</th>
+                                    <th data-priority="5">Period2</th>
+                                    <th data-priority="6">Period3</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody data-bind="template: { name: 'fundperflist-template', foreach: fundPerfReport.funds}"></tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+                    <div data-role="popup" id="popupRepFunds" data-overlay-theme="a"
+                         class="ui-corner-all appPopup">
+                        <div data-role="header" data-theme="b" class="ui-corner-top">
+                            <h1>Choose which fund</h1>
+                        </div>
+
+                        <div role="main" class="ui-content">
+                            <h3 class="ui-title">Choose which fund you want to report on</h3>
+
+                            <script id="repfunds-template" type="text/html">
+
+                                <li>
+                                    <a data-bind="attr: {'data-id': id,'data-name':value}" class="repFundSelect">
+                                        <small data-bind="html:value"></small>
+                                    </a>
+                                </li>
+                            </script>
+
+
+
+                            <ul data-role="listview" data-inset="true" id="repFundsList" style="min-width: 210px;" data-theme="i" data-bind="template: { name: 'repfunds-template', foreach: reportProfile.funds }"></ul>
+
+                            <a href="#" class="ui-btn ui-btn-b " data-rel="back">Cancel</a>
+
+                        </div>
+
+
+
+                    </div>
+
+                <div data-role="popup" id="popupRepFundCenters" data-overlay-theme="a"
+                     class="ui-corner-all appPopup">
+                    <div data-role="header" data-theme="b" class="ui-corner-top">
+                        <h1>Choose which fund center</h1>
+                    </div>
+
+                    <div role="main" class="ui-content">
+                        <h3 class="ui-title">Choose which of the fund centers below you want to report on</h3>
+
+                        <script id="repfundcenter-template" type="text/html">
+
+                            <li>
+                                <a data-bind="attr: {'data-id': id,'data-name':value}" class="repFundCenterSelect">
+                                    <small data-bind="html:value"></small>
+                                </a>
+                            </li>
+                        </script>
+
+
+
+                        <ul data-role="listview" data-inset="true" id="repFundCenterList" style="min-width: 210px;" data-theme="i" data-bind="template: { name: 'repfundcenter-template', foreach: reportProfile.fundcentres }"></ul>
+
+                        <a href="#" class="ui-btn ui-btn-b " data-rel="back">Cancel</a>
+
+                    </div>
+
+
+
+                </div>
+
+                </div>
+        </div>
+
+    </div>
+
+    <!-- /page -->
+
+</body>
+</html>
