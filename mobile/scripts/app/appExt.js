@@ -84,6 +84,13 @@ gdd.init = {
 
             document.addEventListener("online", gdd.init.wentOnline, false);
 
+            document.addEventListener("backbutton", gdd.init.onBackKeyDown, false);
+
+           
+
+
+
+
         }
         catch (err) {
             gdd.init.showPageIndexError("The following error occured during the onDeviceReady event: " + err + ". Please check you are connected to the Internet and try again.")
@@ -269,6 +276,26 @@ gdd.init = {
         catch (err) {
 
             gdd.init.showPageIndexError("The following occurred when app went offline: " + err);
+        }
+
+    },
+
+    onBackKeyDown: function () {
+
+        try {
+            if (gdd.app.previousPage) {
+                gdd.app.loadPage(gdd.app.previousPage)
+            } else {
+                window.location.href = gdd.init.indexPagePath()
+            }
+
+            if (gdd.app.inAppBrowser) {
+                gdd.app.inAppBrowser.close();
+                gdd.app.inAppBrowser = null;
+            }
+        }
+        catch (e) {
+            window.location.href = gdd.init.indexPagePath()
         }
 
     },

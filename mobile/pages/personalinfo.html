@@ -28,163 +28,244 @@
             <div class="pageViewContent">
 
 
+                <div class="pInfoMenu pInfoSubView" >
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        Please choose from below what you would like to do.
+                    </div>
 
-                <div id="pInfoPartOne">
-                    <form id="pg_pinfo_form">
-                        <div class="ui-field-contain">
-                            <label for="txtPInfoFirstName">
-                                First Name
-                            </label>
-                            <input id="txtPInfoFirstName" data-clear-btn="true" data-bind="value: firstName" name="firstname" placeholder="enter your first name" />
+                    <div class="mainMenuBtn ui-btn ui-btn-b btnPInfoEdit">
+                        <div>
+                            <img src="../img/appimg/edit.png" class="menuBtnImg" />
+
+                        </div>
+                        <div class="menuBtnTxt" style="text-align:center">
+                            I want to edit my personal info.
                         </div>
 
-                        <div class="ui-field-contain">
-                            <label for="txtPInfoFirstName">
-                                Last Name
-                            </label>
-                            <input id="txtPInfoLastName" data-clear-btn="true" data-bind="value: lastName" name="lastname" placeholder="enter your surname" />
+                    </div>
+
+                    <div class="mainMenuBtn ui-btn ui-btn-b  " id="btnPinfoUpdateSecInfo">
+                        <div>
+                            <img src="../img/appimg/lock.png" class="menuBtnImg" />
+
+                        </div>
+                        <div class="menuBtnTxt" style="text-align:center">
+                           Update your login and password details.
                         </div>
 
-                        <div class="ui-field-contain">
-                            <label for="txtPInfoEmail">Email</label>
-                            <input type="email" data-clear-btn="true" data-bind="value: email1" name="email" id="txtPInfoEmail" value="" />
+                    </div>
+
+                    <div class="mainMenuBtn ui-btn ui-btn-b btnPinfoViewQrCode" >
+                        <div>
+                            <img src="../img/appimg/qrcode.png" class="menuBtnImg" />
+
+                        </div>
+                        <div class="menuBtnTxt" style="text-align:center">
+                            View my digital ID.
                         </div>
 
-                        <div class="ui-field-contain">
-                            <label for="txtPInfoMobileNumber">Mobile</label>
-                            <input type="tel" data-clear-btn="true" data-bind="value: mobileNumber" name="mobilenumber" id="txtPInfoMobileNumber" value="" />
-                        </div>
+                    </div>
 
-                        <div class="ui-field-contain">
-                            <label for="txtHomeNumber">Home Number</label>
-                            <input type="text" data-clear-btn="true" data-bind="value: homeNumber" name="homenumber" id="txtHomeNumber" value="" />
-                        </div>
+                </div>
 
-                        <div class="ui-field-contain">
-                            <label for="txtWorkNumber">Work Number</label>
-                            <input type="text" data-clear-btn="true" data-bind="value: workNumber" name="worknumber" id="txtWorkNumber" value="" />
-                        </div>
+                <div class="pInfoQrCode pInfoSubView " style="display:none">
+                    <div class="ui-bar ui-bar-h">
+
+                        <div style="text-align:center">Digital ID</div>
+                    </div>
 
 
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        <div>This is your digital identification on our systems. You can use this code to access a number of
+                        features within the database</div>
 
-                    </form>
-                    <button class="ui-btn ui-btn-a ui-btn-inline btnPInfoCancel">Cancel</button>
-                    <button id="btnPInfoGoPart2" class="ui-btn ui-btn-b ui-btn-inline">Next</button>
-                    <div>
-                        <a href="#" id="btnPinfoUpdateSecInfo">change username/password</a>
+                        <a class="showPInfoMenu" href="#">Back</a>
+
+                    </div>
+
+                    <div style="text-align:center;margin:0 auto">
+                        <img id="pInfoImgQrCode" src="" />
+
                     </div>
 
 
                 </div>
+                    <div class="pInfoInfo pInfoSubView " style="display:none">
 
-                <div id="pInfoPartTwo" style="display:none">
+                        <div class="ui-bar ui-bar-h">
 
-                    <div class="ui-field-contain">
-                        <label for="ddlPInfoGender">
-                            Gender
-                        </label>
-                        <select id="ddlPInfoGender" data-bind="value: gender" name="" data-inline="true">
-                            <option value="-1"></option>
-                            <option value="F">Female</option>
-                            <option value="M">Male</option>
+                            <div style="text-align:center">Edit Details</div>
+                        </div>
 
-                        </select>
 
+                        <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                            <div>From here you can update your personal information we have on record.</div>
+
+                            <a class="showPInfoMenu" href="#">Back</a>
+
+                        </div>
+
+                        <div id="pInfoPartOne">
+                            <form id="pg_pinfo_form">
+                                <div class="ui-field-contain">
+                                    <label for="txtPInfoFirstName">
+                                        First Name
+                                    </label>
+                                    <input id="txtPInfoFirstName" data-clear-btn="true" data-bind="value: firstName" name="firstname" placeholder="enter your first name" />
+                                </div>
+
+                                <div class="ui-field-contain">
+                                    <label for="txtPInfoFirstName">
+                                        Last Name
+                                    </label>
+                                    <input id="txtPInfoLastName" data-clear-btn="true" data-bind="value: lastName" name="lastname" placeholder="enter your surname" />
+                                </div>
+
+                                <div class="ui-field-contain">
+                                    <label for="txtPInfoEmail">Email</label>
+                                    <input type="email" data-clear-btn="true" data-bind="value: email1" name="email" id="txtPInfoEmail" value="" />
+                                </div>
+
+                                <div class="ui-field-contain">
+                                    <label for="txtPInfoMobileNumber">Mobile</label>
+                                    <input type="tel" data-clear-btn="true" data-bind="value: mobileNumber" name="mobilenumber" id="txtPInfoMobileNumber" value="" />
+                                </div>
+
+                                <div class="ui-field-contain">
+                                    <label for="txtHomeNumber">Home Number</label>
+                                    <input type="text" data-clear-btn="true" data-bind="value: homeNumber" name="homenumber" id="txtHomeNumber" value="" />
+                                </div>
+
+                                <div class="ui-field-contain">
+                                    <label for="txtWorkNumber">Work Number</label>
+                                    <input type="text" data-clear-btn="true" data-bind="value: workNumber" name="worknumber" id="txtWorkNumber" value="" />
+                                </div>
+
+
+
+                            </form>
+                            <button class="ui-btn ui-btn-a ui-btn-inline showPInfoMenu">Cancel</button>
+                            <button id="btnPInfoGoPart2" class="ui-btn ui-btn-b ui-btn-inline">Next</button>
+
+
+
+                        </div>
+
+                        <div id="pInfoPartTwo" style="display:none">
+
+                            <div class="ui-field-contain">
+                                <label for="ddlPInfoGender">
+                                    Gender
+                                </label>
+                                <select id="ddlPInfoGender" data-bind="value: gender" name="" data-inline="true">
+                                    <option value="-1"></option>
+                                    <option value="F">Female</option>
+                                    <option value="M">Male</option>
+
+                                </select>
+
+                            </div>
+                            <div class="ui-field-contain">
+                                <label for="ddlPInfoMaritalStatus">
+                                    Marital Status
+                                </label>
+                                <select id="ddlPInfoMaritalStatus" data-bind="value: maritalStatus" name="" data-inline="true">
+                                    <option value="Single">Single</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Divorced">Divorced</option>
+                                    <option value="Widow">Widow</option>
+                                    <option value="Widower">Widower</option>
+                                </select>
+
+                            </div>
+                            <div class="ui-field-contain">
+                                <fieldset data-role="controlgroup" data-type="horizontal">
+                                    <legend>Date of Birth:</legend>
+
+                                    <label for="ddlPInfoBdayMonth">Month</label>
+                                    <select id="ddlPInfoBdayMonth" class="ui-mini" data-inline="true" name="months" data-bind="value: birthMonth">
+                                        <option value="-1">Month</option>
+
+                                    </select>
+
+                                    <label for="ddlPInfoBdayDay">Day</label>
+                                    <select id="ddlPInfoBdayDay" class="ui-mini" data-inline="true" name="days" data-bind="value: birthDay">
+                                        <option value="-1">Day</option>
+
+
+
+                                    </select>
+
+                                    <label for="ddlPInfoBdayYear">Year</label>
+                                    <select id="ddlPInfoBdayYear" class="ui-mini" data-inline="true" name="years" data-bind="value: birthYear">
+                                        <option value="-1">Year</option>
+
+
+                                    </select>
+                                </fieldset>
+                            </div>
+
+                            <div class="ui-field-contain">
+                                <fieldset data-role="controlgroup" data-type="horizontal">
+                                    <legend>Anniversary:</legend>
+
+                                    <label for="ddlPInfoAnnMonth">Month</label>
+                                    <select id="ddlPInfoAnnMonth" class="ui-mini" data-inline="true" name="months" data-bind="value: anniversaryMonth">
+                                        <option value="-1">Month</option>
+
+                                    </select>
+
+                                    <label for="ddlPInfoAnnDay">Day</label>
+                                    <select id="ddlPInfoAnnDay" class="ui-mini" data-inline="true" name="days" data-bind="value: anniversaryDay">
+                                        <option value="-1">Day</option>
+
+
+
+                                    </select>
+
+                                    <label for="ddlPInfoAnnYear">Year</label>
+                                    <select id="ddlPInfoAnnYear" class="ui-mini" data-inline="true" name="years" data-bind="value: anniversaryYear">
+                                        <option value="-1">Year</option>
+
+
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="ui-field-contain">
+                                <label for="txtFBId">
+                                    FacebookId
+                                </label>
+                                <input id="txtFBId" type="text" data-clear-btn="true" data-bind="value: facebookId" placeholder="" />
+                            </div>
+                            <button type="button" class="ui-btn ui-btn-b " id="btnPInfoUpdate">
+                                Update
+                            </button>
+                            <button id="btnPInfoBackToPartOne" class="ui-btn ui-btn-a ui-btn-inline">Back</button>
+                            <button class="ui-btn ui-btn-a ui-btn-inline showPInfoMenu">Cancel</button>
+
+                        </div>
+
+                        <div data-role="popup" id="popupPInfoMissingData" data-overlay-theme="a" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+                            <div data-role="header" data-theme="e" class="ui-corner-top">
+                                <h1>Missing?</h1>
+                            </div>
+                            <div class="ui-corner-bottom ui-content ">
+
+                                <p>You are missing some data that we really need. Please ensure you provide your firstname and either your email OR both your last name and mobile number.</p>
+                                <button id="btnPInfoCloseMissingDataMsg" class="ui-btn ui-btn-e">Ok</button>
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="ui-field-contain">
-                        <label for="ddlPInfoMaritalStatus">
-                            Marital Status
-                        </label>
-                        <select id="ddlPInfoMaritalStatus" data-bind="value: maritalStatus" name="" data-inline="true">
-                            <option value="Single">Single</option>
-                            <option value="Married">Married</option>
-                            <option value="Divorced">Divorced</option>
-                            <option value="Widow">Widow</option>
-                            <option value="Widower">Widower</option>
-                        </select>
-
-                    </div>
-                    <div class="ui-field-contain">
-                        <fieldset data-role="controlgroup" data-type="horizontal">
-                            <legend>Date of Birth:</legend>
-
-                            <label for="ddlPInfoBdayMonth">Month</label>
-                            <select id="ddlPInfoBdayMonth" class="ui-mini" data-inline="true" name="months" data-bind="value: birthMonth">
-                                <option value="-1">Month</option>
-
-                            </select>
-
-                            <label for="ddlPInfoBdayDay">Day</label>
-                            <select id="ddlPInfoBdayDay" class="ui-mini" data-inline="true" name="days" data-bind="value: birthDay">
-                                <option value="-1">Day</option>
 
 
 
-                            </select>
-
-                            <label for="ddlPInfoBdayYear">Year</label>
-                            <select id="ddlPInfoBdayYear" class="ui-mini" data-inline="true" name="years" data-bind="value: birthYear">
-                                <option value="-1">Year</option>
-
-
-                            </select>
-                        </fieldset>
-                    </div>
-
-                    <div class="ui-field-contain">
-                        <fieldset data-role="controlgroup" data-type="horizontal">
-                            <legend>Anniversary:</legend>
-
-                            <label for="ddlPInfoAnnMonth">Month</label>
-                            <select id="ddlPInfoAnnMonth" class="ui-mini" data-inline="true" name="months" data-bind="value: anniversaryMonth">
-                                <option value="-1">Month</option>
-
-                            </select>
-
-                            <label for="ddlPInfoAnnDay">Day</label>
-                            <select id="ddlPInfoAnnDay" class="ui-mini" data-inline="true" name="days" data-bind="value: anniversaryDay">
-                                <option value="-1">Day</option>
 
 
 
-                            </select>
 
-                            <label for="ddlPInfoAnnYear">Year</label>
-                            <select id="ddlPInfoAnnYear" class="ui-mini" data-inline="true" name="years" data-bind="value: anniversaryYear">
-                                <option value="-1">Year</option>
-
-
-                            </select>
-                        </fieldset>
-                    </div>
-                    <div class="ui-field-contain">
-                        <label for="txtFBId">
-                            FacebookId
-                        </label>
-                        <input id="txtFBId" type="text" data-clear-btn="true" data-bind="value: facebookId" placeholder="" />
-                    </div>
-                    <button type="button" class="ui-btn ui-btn-b " id="btnPInfoUpdate">
-                        Update
-                    </button>
-                    <button id="btnPInfoBackToPartOne" class="ui-btn ui-btn-a ui-btn-inline">Back</button>
-                    <button class="ui-btn ui-btn-a ui-btn-inline btnPInfoCancel">Cancel</button>
 
                 </div>
-
-
-                <div data-role="popup" id="popupPInfoMissingData" data-overlay-theme="a" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
-                    <div data-role="header" data-theme="e" class="ui-corner-top">
-                        <h1>Missing?</h1>
-                    </div>
-                    <div class="ui-corner-bottom ui-content ">
-
-                        <p>You are missing some data that we really need. Please ensure you provide your firstname and either your email OR both your last name and mobile number.</p>
-                        <button id="btnPInfoCloseMissingDataMsg" class="ui-btn ui-btn-e">Ok</button>
-
-                    </div>
-                </div>
-
-            </div>
 
             </div>
 

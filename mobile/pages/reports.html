@@ -46,17 +46,17 @@
 
                         </div>
                         <div class="menuBtnTxt" style="text-align:center" data-bind="html: reportProfile.tranListReportTitle">
-                           
+
                         </div>
-                       
-                        
+
+
                     </div>
                     <div class="ui-bar ui-bar-a" style="text-align: center; font-size:small">
-                        
-                            <small><i>Use the above report to view your gifts/transactions that exist in your account</i></small>
-                        
+
+                        <small>View gifts/transactions that exist in your account</small>
+
                     </div>
-                   
+
 
                     <div class="mainMenuBtn ui-btn ui-btn-b btnRepShowPledge">
                         <div>
@@ -66,13 +66,13 @@
                         <div class="menuBtnTxt" style="text-align:center" data-bind="html: reportProfile.pledgeListReportTite">
 
                         </div>
-                        
+
 
                     </div>
-                    <div class="ui-bar ui-bar-a" style="text-align: center; font-size:small">
-                        
-                            <small><i>Use the above report to view the pledges from donors that are active in your account</i></small>
-                        
+                    <div class="ui-bar ui-bar-a" style="text-align: center; font-size: small">
+
+                        <small>View the pledges from donors that are active in your account</small>
+
                     </div>
 
                     <div class="mainMenuBtn ui-btn ui-btn-b btnRepShowFundPerf">
@@ -83,14 +83,66 @@
                         <div class="menuBtnTxt" style="text-align:center" data-bind="html: reportProfile.fundPerfReportTitle">
 
                         </div>
-                        
+
 
                     </div>
-                    <div class="ui-bar ui-bar-a" style="text-align: center; font-size:small">
-                        
-                            <small><i>Use the above report to view how well your staff are performing in their Ministry Partnership</i></small>
-                        
+                    <div class="ui-bar ui-bar-a" style="text-align: center; font-size: small">
+
+                        <small>View how well your staff are performing in their MPD</small>
+
                     </div>
+
+                    <div class="mainMenuBtn ui-btn ui-btn-b btnRepShowCoachesReport">
+                        <div>
+                            <img src="../img/appimg/report6.png" class="menuBtnImg" />
+
+                        </div>
+                        <div class="menuBtnTxt" style="text-align:center" data-bind="html: reportProfile.coachesReportTitle">
+
+                        </div>
+
+
+                    </div>
+                    <div class="ui-bar ui-bar-a" style="text-align: center; font-size: small">
+
+                        <small>View how well the staff you are coaching are doing</small>
+
+                    </div>
+
+                    <!--<fieldset class="ui-grid-a">
+                        <div class="ui-block-a">
+
+                            
+
+
+                        </div>
+                        <div class="ui-block-b">
+
+
+
+
+                        </div>
+                    </fieldset>
+
+
+
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a">
+
+                           
+
+
+                        </div>
+                        <div class="ui-block-b">
+
+                           
+
+
+
+                        </div>
+                    </fieldset>-->
+
+
 
                 </div>
 
@@ -101,7 +153,7 @@
                     </div>
                     
                     <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
-                        <div>You have chosen the fund <strong><span data-bind="html:repParam.entityName"></span></strong> for this report.</div>
+                        <div>You have chosen to view the selected transactions for the fund/account <strong>'<span data-bind="html:repParam.entityName"></span>'</strong>.</div>
 
                         <a class="showReportsMenu" href="#">Reports Menu</a><span>  </span>
                        
@@ -114,9 +166,11 @@
 
 
                    
-                    <select id="ddlTranListDtOption" class="ui-mini" data-bind="options:reportProfile.tranListDateOptions, value:repParam.tranListDtOption, optionsText: 'value', optionsValue: 'id'"></select>
+                    <select id="ddlTranListDtOption" class="ui-mini" data-bind="options:reportProfile.tranListDateOptions, value:repParam.tranListDateOption, optionsText: 'value', optionsValue: 'id'"></select>
+                    <select id="ddlTranListDataOption" class="ui-mini" data-bind="options:reportProfile.tranListDataOptions, value:repParam.tranListDataOption, optionsText: 'value', optionsValue: 'id'"></select>
+
                     <div style="text-align:center">
-                        <a href="#"  id="btnGetGiftListing">Get Report</a>
+                        <a href="#" class="ui-btn ui-btn-c ui-mini " id="btnGetGiftListing">Get Report</a>
                     </div>
                    
 
@@ -133,7 +187,7 @@
                                 <td ><small data-bind="html: paymentMethod"></small></td>
                                 <td ><small data-bind="html: tranDate"></small></td>
                                 <td ><small data-bind="html: ccy"></small></td>
-
+                                <td><small data-bind="html: detail"></small></td>
 
                             </tr>
 
@@ -141,16 +195,17 @@
 
 
                         <button class="ui-btn ui-btn-a ui-btn-inline ui-mini" id="btnRepTranListSummary">View Summary</button>
-                        <table class="ui-responsive table-stroke" id="tranListTable" data-role="table" data-mode="columntoggle" data-column-btn-text="Choose columns..." data-column-btn-theme="b">
+                        <table class="ui-responsive table-stroke" id="tranListTable" data-role="table" data-mode="columntoggle" data-column-btn-text="Columns?" data-column-btn-theme="b">
 
                             <thead>
                                 <tr>
                                     <th >Name</th>
 
                                     <th >Amount</th>
-                                    <th >Type</th>
+                                    <th data-priority="4">Type</th>
                                     <th data-priority="5">Date</th>
                                     <th data-priority="4">CCY</th>
+                                    <th data-priority="6">Detail</th>
                                 </tr>
                             </thead>
 
@@ -171,7 +226,7 @@
                     </div>
 
                     <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
-                        <div>You have chosen the fund <strong><span data-bind="html:repParam.entityName"></span></strong> for this report.</div>
+                        <div>You have chosen to view all pledges for the fund <strong>'<span data-bind="html:repParam.entityName"></span>'</strong>.</div>
 
                         <a class="showReportsMenu" href="#">Reports Menu</a><span>  </span>
 
@@ -187,7 +242,7 @@
 
                    
                     <div style="text-align:center">
-                        <a href="#" id="btnGetPledgeListing">Get Report</a>
+                        <a href="#" class="ui-btn ui-btn-c ui-mini "   id="btnGetPledgeListing">Get Report</a>
                     </div>
 
 
@@ -196,37 +251,46 @@
                      
 
                         <script id="pledgelist-template" type="text/html">
+                           <tr>
+                               <td colspan="5">
+                                   <div class="ui-bar ui-bar-h" style="text-align: center">
+                                       <small data-bind="html:person"></small>
+                                   </div>
+                               </td>
+                           </tr>
+                            
                             <tr>
 
-                                <td><small data-bind="html:person"></small></td>
+                                <td><small data-bind="html: paymentMethod"></small></td>
+
+                                <td><small data-bind="html: ccy"></small></td>
 
                                 <td><small data-bind="html: amount"></small></td>
-                                <td><small data-bind="html: ccy"></small></td>
-                                <td><small data-bind="html: paymentMethod"></small></td>
                                 
                              
-                                
+                                <td><small data-bind="html: nrd"></small></td>
+
                                 <td><small data-bind="html: active"></small></td>
-                                <td class="ui-table-cell-hidden"><small data-bind="html: nrd"></small></td>
                             </tr>
 
                         </script>
 
 
-                        <button class="ui-btn ui-btn-a ui-btn-inline ui-mini" id="btnRepPledgeListSummary">View Summary</button>
-                        <table class="ui-responsive table-stroke" id="pledgeListTable" data-role="table" data-mode="columntoggle" data-column-btn-text="Choose columns..." data-column-btn-theme="b">
+                        <button class="ui-btn ui-btn-a ui-btn-inline ui-mini" id="btnRepPledgeListSummary">Summary</button>
+                        <a class="ui-btn ui-btn-a ui-btn-inline ui-mini" href="#popupPledgeHelp" data-rel="popup" data-transition="slideup">Help</a>
+
+                        <table class="ui-responsive table-stroke" id="pledgeListTable" data-role="table" data-mode="columntoggle" data-column-btn-text="Columns?" data-column-btn-theme="b">
 
                             <thead>
                                 <tr>
-                                    <th >Name</th>
+                                    <th>Type</th>
+                                    <th>CCY</th>
 
-                                    <th >Amount</th>
-                                    <th >CCY</th>
-                                    <th data-priority="4">Type</th>
+                                    <th>Amount</th>
+                                    <th data-priority="2">NRD</th>
+
                                     <th data-priority="5">Active</th>
-                                    <th data-priority="6" class="ui-table-cell-hidden">NRD</th>
-                                  
-                                    
+
                                 </tr>
                             </thead>
 
@@ -246,23 +310,19 @@
                     </div>
 
                     <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
-                        <div>You have chosen the fund center <strong><span data-bind="html:repParam.entityName"></span></strong> for this report.</div>
+                        <div>You have opted to view the performance of all funds belonging to <strong>'<span data-bind="html:repParam.entityName"></span>'</strong>.</div>
 
                         <a class="showReportsMenu" href="#">Reports Menu</a><span>  </span>
 
                     </div>
 
-                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
-                        This report will give you a summary of the staff/funds in your church.'Goal'-Their current MPD goal, 'Avg'-the current average,
-                        'Period1'-Funds raised last month, 'Period2'-Funds raised 2 months ago, 'Period3'-Funds raised 3 months ago
-                        
-                    </div>
+                  
 
                    
 
 
                     <div style="text-align:center">
-                        <a href="#" id="btnGetFundPerfReport">Get Report</a>
+                        <a href="#" class="ui-btn ui-btn-c ui-mini"   id="btnGetFundPerfReport">Get Report</a>
                     </div>
 
 
@@ -273,10 +333,17 @@
 
                         <script id="fundperflist-template" type="text/html">
                             <tr>
+                                <td colspan="6">
+                                    <div class="ui-bar ui-bar-h" style="text-align: center">
+                                        <small data-bind="html:fund"></small>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
 
-                                <td><small data-bind="html:fund"></small></td>
                                 <td><small data-bind="html: goal"></small></td>
                                 <td><small data-bind="html: avg"></small></td>
+                                <td><small data-bind="html: pledges"></small></td>
                                 <td><small data-bind="html: period1"></small></td>
                                 <td><small data-bind="html: period2"></small></td>
                                 <td><small data-bind="html: period3"></small></td>
@@ -289,14 +356,16 @@
                         </script>
 
 
-                        <button class="ui-btn ui-btn-a ui-btn-inline ui-mini" id="btnRepFundPerfSummary">View Summary</button>
-                        <table class="ui-responsive table-stroke" id="fundPerfListTable" data-role="table" data-mode="columntoggle" data-column-btn-text="Choose columns..." data-column-btn-theme="b">
+                        <button class="ui-btn ui-btn-a ui-btn-inline ui-mini" id="btnRepFundPerfSummary">Summary</button>
+                        <a class="ui-btn ui-btn-a ui-btn-inline ui-mini" href="#popupFundPerfHelp" data-rel="popup" data-transition="slideup">Help</a>
+                        <table class="ui-responsive table-stroke" id="fundPerfListTable" data-role="table" data-mode="columntoggle" data-column-btn-text="Columns?" data-column-btn-theme="b">
 
                             <thead>
                                 <tr>
-                                    <th >Fund</th>
-                                    <th >Goal</th>
-                                    <th >Avg</th>
+
+                                    <th>Goal</th>
+                                    <th>Avg</th>
+                                    <th>Pledges</th>
                                     <th data-priority="4">Period1</th>
                                     <th data-priority="5">Period2</th>
                                     <th data-priority="6">Period3</th>
@@ -312,6 +381,75 @@
                 </div>
 
 
+
+                <div class="repSubView repCoachesRepView" style="display:none">
+
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center" data-bind="html:reportProfile.coachesReportTitle"></div>
+                    </div>
+
+                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
+                        <div>This report will show you how well the staff whom you are coaching are doing.</div>
+
+                        <a class="showReportsMenu" href="#">Reports Menu</a><span>  </span>
+
+                    </div>
+
+                   
+
+
+
+
+                    <div style="text-align:center">
+                        <a href="#" class="ui-btn ui-btn-c ui-mini "  id="btnGetCoachesReport">Get Report</a>
+                    </div>
+
+
+                    <div id="coachesReport" style="display:none">
+
+                        <script id="coaches-template" type="text/html">
+                            <tr >
+                                <td colspan="6">
+                                    <div class="ui-bar ui-bar-h"  style="text-align: center">
+                                        <small data-bind="html:fund"></small>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                               
+                                <td><small data-bind="html: goal"></small></td>
+                                <td><small data-bind="html: avg"></small></td>
+                                <td><small data-bind="html: pledges"></small></td>
+                                <td><small data-bind="html: period1"></small></td>
+                                <td><small data-bind="html: period2"></small></td>
+                                <td><small data-bind="html: period3"></small></td>
+                            </tr>
+                        </script>
+
+
+                        <button class="ui-btn ui-btn-a ui-btn-inline ui-mini" id="btnCoachesSummary">Summary</button>
+                        <a class="ui-btn ui-btn-a ui-btn-inline ui-mini" href="#popupFundPerfHelp" data-rel="popup" data-transition="slideup">Help</a>
+                        <table class="ui-responsive table-stroke" id="coachesListTable" data-role="table" data-mode="columntoggle" data-column-btn-text="Columns?" data-column-btn-theme="b">
+
+                            <thead>
+                                <tr>
+
+                                    <th>Goal</th>
+                                    <th>Avg</th>
+                                    <th>Pledges</th>
+                                    <th data-priority="4">Period1</th>
+                                    <th data-priority="5">Period2</th>
+                                    <th data-priority="6">Period3</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody data-bind="template: { name: 'coaches-template', foreach: coachesReport.funds}"></tbody>
+                        </table>
+                    </div>
+
+
+                </div>
 
 
 
@@ -376,6 +514,61 @@
 
                 </div>
 
+
+                <div data-role="popup" id="popupFundPerfHelp" data-overlay-theme="a"
+                     class="ui-corner-all appPopup">
+                    <div data-role="header" data-theme="b" class="ui-corner-top">
+                        <h1>Report Fields</h1>
+                    </div>
+
+                    <div role="main" class="ui-content">
+                        <p>Below you will find a brief description of what each field means</p>
+                        <ul>
+                            <li><small><strong>Fund: </strong>The name of the staff member/fund</small></li>
+                            <li><small><strong>Goal: </strong>The current goal this person has on MPD</small></li>
+                            <li><small><strong>Avg: </strong>Their average over the last three months</small></li>
+                            <li><small><strong>Pledges: </strong>Total pledges/commitments. (Foreign currencies not taken into account)</small></li>
+                            <li><small><strong>Period1: </strong>Amount raised in the most recent payroll month</small></li>
+                            <li><small><strong>Period2: </strong>Amount raised two periods ago</small></li>
+                            <li><small><strong>Period3: </strong>Amount raised three periods ago</small></li>
+
+                        </ul>
+
+                        
+                        <a href="#" class="ui-btn ui-btn-b ui-btn-inline " data-rel="back">OK</a>
+
+                    </div>
+
+
+
+                </div>
+
+                <div data-role="popup" id="popupPledgeHelp" data-overlay-theme="a"
+                     class="ui-corner-all appPopup">
+                    <div data-role="header" data-theme="b" class="ui-corner-top">
+                        <h1>Report Fields</h1>
+                    </div>
+
+                    <div role="main" class="ui-content">
+                        <p>Below you will find a brief description of what each field means</p>
+                        <ul>
+                            <li><small><strong>Amount: </strong>The amount that has been pledged in the donors local curreny</small></li>
+                            <li><small><strong>CCY: </strong>The base currency of the pledged amount</small></li>
+                            <li><small><strong>Type: </strong>This is the method used to pay the pledge</small></li>
+                            <li><small><strong>Active: </strong>Indicates whether this pledge is currently active</small></li>
+                            <li><small><strong>NRD: </strong>This is the date that this pledge is scheduled to run next</small></li>
+                            
+
+                        </ul>
+
+
+                        <a href="#" class="ui-btn ui-btn-b ui-btn-inline " data-rel="back">OK</a>
+
+                    </div>
+
+
+
+                </div>
                 </div>
         </div>
 

@@ -12,7 +12,7 @@
 
         <div data-role="header">
 
-            <a href="#" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext headerMenuHome">home</a>
+            <a href="#" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext headerMenuHome" id="scanPgHeaderMenuHome">home</a>
 
             <h1 class="pageHeader">Events</h1>
             <a href="#" class="ui-btn ui-btn-b ui-icon-refresh ui-btn-icon-notext" id="btnEvListRefresh">refresh</a>
@@ -37,6 +37,11 @@
                     <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
                         Choose which events you would like to view.
                     </div>
+
+                    <div class="ui-btn ui-btn-d ui-btn-inline ui-mini btnUnsynTickets"  id="btnSaveUnSynedTickets" style="display:none">Save Unsynced Data</div>
+                    <div class="ui-btn ui-btn-e ui-btn-inline ui-mini btnUnsynTickets" id="btnDelUnsynedTickets" style="display:none">Delete Tickets</div>
+
+                    <!--<div class="ui-btn ui-btn-d" id="btnTESTYY" >Scan Test</div>-->
 
                     <div class="mainMenuBtn ui-btn ui-btn-b showEvListComingView">
                         <div>
@@ -155,6 +160,13 @@
                                     <td colspan="2">
                                         <div class="ui-content ui-body-h" style="text-align: left; font-size:small" data-bind="html: summary">
 
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="ui-content ui-body-c" style="text-align: left; font-size:small" data-bind="visible: isVolunteer">
+                                            You have volunteered at this event. If you cannot volunteer any longer you can change this option from the menu.
                                         </div>
                                     </td>
                                 </tr>
@@ -316,7 +328,7 @@
                                     </div>
                                 </div>
                             </a>
-                             
+                             <br/>
 
                         </div>
                     </div>
@@ -329,8 +341,15 @@
                             <div>
                                 Click the 'Scan Ticket' button below to start the scan.
                             </div><br />
-                            <a class="showEvListMenuView" href="#">Menu</a>
+                            <!--<a class="showEvListMenuView" href="#">Menu</a>-->
 
+                        </div>
+
+                        <div class="ui-bar ui-bar-c" id="scanTicketLive" style="text-align: center; font-size:small; display:none">
+                            Live scanning enabled
+                        </div>
+                        <div class="ui-bar ui-bar-e" id="scanTicketLocal" style="text-align: center; font-size:small; display:none">
+                            Local scanning enabled
                         </div>
 
 
@@ -344,6 +363,24 @@
                             </div>
 
                         </div>
+
+                        <div class="ui-btn ui-btn-a " id="btnScanDone" >
+                          I'm Finished Scanning
+                        </div>
+
+
+                        <!--<div class="ui-btn ui-btn-a " id="btnTestScan0">
+                            Test Scan 0
+                        </div>
+
+                        <div class="ui-btn ui-btn-a " id="btnTestScan1">
+                            Test Scan 1
+                        </div>
+
+                        <div class="ui-btn ui-btn-a " id="btnTestScan2">
+                            Test Scan Fake
+                        </div>-->
+
 
                     </div>
 
@@ -394,6 +431,7 @@
                         <li><a href="#" id="btnEventFillOutGoogleForm">Complete Registration</a></li>
                         <li><a href="#" id="btnEventPayNow">Pay Now</a></li>
                         <li><a href="#" id="btnEventViewTicket">View My Ticket</a></li>
+                        <li><a href="#" id="btnEventVolunteer">Volunteer at this event</a></li>
                         <li><a href="#" id="btnEventEmailTicket">Email Me My Ticket</a></li>
                         <li><a href="#" id="btnEventCancel">Cancel</a></li>
 
@@ -449,6 +487,42 @@
                 </div>
 
 
+                <div data-role="popup" id="popupScanType" class="appPopup" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+                    <div data-role="header" data-theme="b">
+                        <h1>Scan Option</h1>
+                    </div>
+                    <div role="main" class="ui-content">
+
+                        <p>Would you like to load the registration list before scanning?</p>
+                        <p>If you load the tickets into your device prior to scanning, the scanning process will be much
+                        quicker as you will not be relying on an internet connection at the event. You will however have to sync
+                        the data to the servers when you are done</p>
+                        
+                        <a href="#" class="ui-btn ui-btn-b " id="btnScanLocal">Load Tickets</a>
+                        <a href="#" class="ui-btn ui-btn-b " id="btnScanLocalExisting">Use Existing Cache</a>
+                        <a href="#" class="ui-btn ui-btn-c  " id="btnScanLive">No, scan live</a>
+                    </div>
+                </div>
+
+                <div data-role="popup" id="popupLocalScanSave" class="appPopup" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+                    <div data-role="header" data-theme="b">
+                        <h1>Sync Now?</h1>
+                    </div>
+                    <div role="main" class="ui-content">
+
+                        <p>You enabled local cache scanning and need to sync the data to our servers.</p>
+                        <p>You need to ensure you are connected to the internet in order to complete this request. </p>
+                        <p>Would you like to sync the data to our servers now?</p>
+
+                        <a href="#" class="ui-btn ui-btn-b ui-btn-inline ui-mini  " id="btnScanSaveLater">No, sync later</a>
+                        <a href="#" class="ui-btn ui-btn-c ui-btn-inline ui-mini  " id="btnScanSaveNow">Yes, sync now</a>
+                    </div>
+                </div>
+
+
+
+
+
                 <div data-role="popup" id="popupChoosePayment" class="appPopup" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
                     <div data-role="header" data-theme="b">
                         <h1>Credit Card?</h1>
@@ -499,6 +573,18 @@
                         <p id="ticketError"></p>
                         <a href="#" class="ui-btn ui-corner-all  ui-btn-inline ui-btn-a" data-rel="back">Ok</a>
                         <a href="#" class="ui-btn ui-corner-all  ui-btn-inline ui-btn-e" id="btnTicketOverride" >Override</a>
+                    </div>
+                </div>
+
+                <div data-role="popup" id="popupDeleteTickets" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+                    <div data-role="header" data-theme="e">
+                        <h3 style="text-align:center">Delete Tickets?</h3>
+                    </div>
+                    <div role="main" class="ui-content">
+                       <p>WARNING! If you delete your ticket cache, any tickets you have scanned will not be synced to the database.</p>
+                        <p>Are you sure you want to delete the ticket cache?</p>
+                        <a href="#" class="ui-btn ui-corner-all  ui-btn-inline ui-btn-a" data-rel="back">No</a>
+                        <a href="#" class="ui-btn ui-corner-all  ui-btn-inline ui-btn-e" id="btnYesDeleteTickets">Yes, delete</a>
                     </div>
                 </div>
 
