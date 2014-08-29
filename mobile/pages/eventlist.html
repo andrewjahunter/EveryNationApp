@@ -10,12 +10,19 @@
 <body style="background-color: #343131; color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
     <div data-role="page" id="pg_eventlist" class="ui-page-theme-a">
 
+        <style>
+            .comingImg {
+                width: 40px;
+                height: 40px;
+            }
+        </style>
+
         <div data-role="header">
 
             <a href="#" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext headerMenuHome" id="scanPgHeaderMenuHome">home</a>
 
             <h1 class="pageHeader">Events</h1>
-            <a href="#" class="ui-btn ui-btn-b ui-icon-refresh ui-btn-icon-notext" id="btnEvListRefresh">refresh</a>
+            <a href="#" class="ui-btn ui-btn-b ui-icon-refresh ui-btn-icon-notext" id="btnEvRefresh">refresh</a>
 
 
         </div>
@@ -26,60 +33,12 @@
         <div class="ui-content" style="padding: 15px">
             <div class="pageViewContent">
 
-                <div class="evListSubView evListMenuView">
+                <div class="evListSubView evListView" style="display:none">
 
-                    <div class="ui-bar ui-bar-h">
+                    <div class="ui-btn ui-btn-d ui-btn-inline ui-mini btnUnsyncedRegInfo" id="btnSaveUnSyncedRegInfo" style="display:none">Save Unsynced Data</div>
+                    <div class="ui-btn ui-btn-e ui-btn-inline ui-mini btnUnsyncedRegInfo" id="btnDelUnsyncedRegInfo" style="display:none">Delete Cache</div>
 
-                        <div style="text-align:center">Events Menu</div>
-                    </div>
-
-
-                    <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
-                        Choose which events you would like to view.
-                    </div>
-
-                    <div class="ui-btn ui-btn-d ui-btn-inline ui-mini btnUnsynTickets"  id="btnSaveUnSynedTickets" style="display:none">Save Unsynced Data</div>
-                    <div class="ui-btn ui-btn-e ui-btn-inline ui-mini btnUnsynTickets" id="btnDelUnsynedTickets" style="display:none">Delete Tickets</div>
-
-                    <!--<div class="ui-btn ui-btn-d" id="btnTESTYY" >Scan Test</div>-->
-
-                    <div class="mainMenuBtn ui-btn ui-btn-b showEvListComingView">
-                        <div>
-                            <img src="../img/appimg/list.png" class="menuBtnImg" />
-
-                        </div>
-                        <div class="menuBtnTxt" style="text-align:center">
-                            View the events I am coming to
-                        </div>
-
-                    </div>
-
-                    <div class="mainMenuBtn ui-btn ui-btn-b showEvListNotComingView">
-                        <div>
-                            <img src="../img/appimg/plus.png" class="menuBtnImg" />
-
-                        </div>
-                        <div class="menuBtnTxt" style="text-align:center">
-                            View events I have not responded to
-                        </div>
-
-                    </div>
-
-                    <div class="mainMenuBtn ui-btn ui-btn-b" id="btnQrCodeScan">
-                        <div>
-                            <img src="../img/appimg/qrcode.png" class="menuBtnImg" />
-
-                        </div>
-                        <div class="menuBtnTxt" style="text-align:center">
-                            Scan Event Tickets
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="evListSubView evListComingView" style="display:none">
-
-                    <div class="evListComingViewSub evListComingViewNone">
+                    <div class="evListViewSub evListViewNone">
                         <div class="ui-bar ui-bar-h">
 
                             <div style="text-align:center">No Events Found</div>
@@ -87,40 +46,26 @@
 
 
                         <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
-                            <div>We have no record of any events that you have indicated you will be coming to.</div>
+                            <div>We have no record of any events that are visible in your profile.</div>
 
-                            <a class=" showEvListMenuView" href="#">Menu</a><span> | </span>
-                            <a class=" showEvListNotComingView" href="#">View New Events</a>
+
                         </div>
 
 
                     </div>
 
-                    <div class="evListComingViewSub evListComingViewList">
+                    <div class="evListViewSub evListViewList">
 
 
-
-                        <div class="ui-bar ui-bar-h">
-
-                            <div style="text-align:center">Events You Are Attending</div>
-                        </div>
-
-
-                        <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
-                            <div>These are the events that you have indicated that you will be coming to.</div><br />
-                            <a class="showEvListMenuView" href="#">Menu</a><span> | </span>
-                            <a class="showEvListNotComingView" href="#">View New Events</a>
-                        </div>
-
-
-
-                        <div data-bind=" foreach: ko.utils.arrayFilter(events(), function(itm){ return (itm.coming()=='1')})">
+                        <div data-bind=" foreach: events">
                             <div class="ui-bar ui-bar-b">
                                 <div style="text-align: center" data-bind="html: eventName()"></div>
                                 <div style="text-align:center">
                                     <small data-bind="html: startDate() + '(' + startTime() + ')' "></small>
                                 </div>
                             </div>
+
+
                             <table>
                                 <tr>
                                     <td valign="top">
@@ -143,11 +88,11 @@
                                                     <td><span style="font-size:small">Venue:</span></td>
                                                     <td><span style="font-size:small" data-bind="html:eventVenue"></span></td>
                                                 </tr>
-                                                <tr>
+                                                <tr data-bind="visible:(coming() === 1) ? true:false  ">
                                                     <td><span style="font-size:small">Reg Code:</span></td>
                                                     <td><span style="font-size:small" data-bind="html:regCode"></span></td>
                                                 </tr>
-                                                <tr>
+                                                <tr data-bind="visible:(coming() === 1) ? true:false  ">
                                                     <td><span style="font-size:small">Type:</span></td>
                                                     <td><span style="font-size:small" data-bind="html:regType() + '(' + ccy() + cost() + ')'"></span></td>
                                                 </tr>
@@ -163,7 +108,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr data-bind="visible:(coming() === 1) ? true:false  ">
                                     <td colspan="2">
                                         <div class="ui-content ui-body-c" style="text-align: left; font-size:small" data-bind="visible: isVolunteer">
                                             You have volunteered at this event. If you cannot volunteer any longer you can change this option from the menu.
@@ -171,11 +116,34 @@
                                     </td>
                                 </tr>
                             </table>
+
                             <div style="text-align:left">
-                                <div class="ui-btn ui-btn-b ui-mini ui-btn-inline evNotComing" data-bind="attr: {'data-id': eventId}">I'm not coming</div>
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <div class="ui-btn ui-btn-c ui-mini ui-btn-inline evNotComing" data-bind="attr: {'data-id': eventId}, visible:(coming() === 0) ? false:true  ">Not coming</div>
+                                            <div class="ui-btn ui-btn-e ui-mini ui-btn-inline evComing" data-bind="attr: {'data-id': eventId}, visible:(coming() === 1) ? false:true  ">Register</div>
 
 
-                                <div class="ui-btn ui-btn-a ui-mini ui-btn-inline evMore" data-bind="attr: {'data-id': eventId}">More...</div>
+
+
+                                            <div class="ui-btn ui-btn-a ui-mini ui-btn-inline evMore" data-bind="attr: {'data-id': eventId}">More</div>
+                                        </td>
+                                        <td align="right">
+                                            <div data-bind="visible:(coming() === 0) ? true:false  ">
+                                                <img src="../img/appimg/reddelete.png" class="comingImg" />
+                                            </div>
+                                            <div data-bind="visible:(coming() === 1) ? true:false  ">
+                                                <img src="../img/appimg/greencheck.png" class="comingImg" />
+                                            </div>
+                                            <div data-bind="visible:(coming() === -1) ? true:false  ">
+                                                <img src="../img/appimg/orangequestion.png" class="comingImg" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+
+
                             </div>
 
 
@@ -185,95 +153,87 @@
 
                 </div>
 
-                <div class="evListSubView evListNotComingView " style="display:none">
-
-                    <div class="evListNotComingViewSub evListNotComingViewNone">
-                        <div class="ui-bar ui-bar-h">
-
-                            <div style="text-align:center">No New Events</div>
+                <div class="evListSubView evAttendanceView" style="display:none">
+                    <div class="ui-bar ui-bar-b">
+                        <div style="text-align: center" data-bind="html: selectedEvent.eventName()"></div>
+                        <div style="text-align:center">
+                            <small>Attendees</small>
                         </div>
 
+                    </div>
 
-                        <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
-                            <div>There are currently no new events that have been published.</div>
-                            <a class="showEvListMenuView" href="#">Menu</a><span> | </span>
-                            <a class="showEvListComingView" href="=#">View Events I'm Coming To</a>
-                        </div>
+                    <div>
+                        <a href="#" id="btnViewAttList" class="ui-btn ui-btn-inline ui-mini ui-icon-bullets ui-btn-icon-left">List</a>
+                        <a href="#" id="btnViewAttScan" class="ui-btn ui-btn-inline ui-mini ui-icon-camera ui-btn-icon-left">Scan</a>
+                        <a href="#" id="btnViewAttDone" class="ui-btn ui-btn-inline ui-mini ui-icon-check ui-btn-icon-left">Done</a>
+
+                    </div><!-- /grid-b -->
+                    <label for="evAttEnableLocalCache">Enable local cache scanning?</label>
+                    <select name="evAttEnableLocalCache" id="evAttEnableLocalCache" data-bind="value:scanType" data-role="slider" data-mini="true">
+                        <option value="1">No</option>
+                        <option value="2">Yes</option>
+                    </select>
+
+                    <div class="evAttSubView evAttListView">
+
+                        <script id="evAttList-template" type="text/html">
+                            <li>
+                                <table width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div style="white-space: normal" data-bind="text: firstName + ' ' + lastName"></div>
+                                            </td>
+
+                                            <td align="right"><input type="checkbox" data-role="flipswitch" data-theme="a" data-off-text="X" data-on-text="✓" data-bind="checked:attended,attr:{'data-id':personId}" class="ui-mini btnAttRegListFlipSwitch"></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </li>
+                        </script>
+                        <ul data-role="listview" data-theme="a" data-filter="true" data-autodividers="true" data-filter-placeholder="Search person..." data-inset="true" id="evAttList" data-bind="template: { name: 'evAttList-template', foreach: selectedEvent.attendees}"></ul>
 
 
 
                     </div>
 
-                    <div class="evListNotComingViewSub evListNotComingViewList">
-
-
-
-                        <div class="ui-bar ui-bar-d">
-
-                            <div style="text-align:center">Not Attending</div>
-                        </div>
-
-
+                    <div class="evAttSubView evAttScanView" style="display:none">
                         <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
-                            <div>These are the new events OR events that you have inidcated you will NOT be attending.</div><br />
-                            <a class=" showEvListMenuView" href="#">Menu</a><span> | </span>
-                            <a class=" showEvListComingView" href="#">View Events I'm Coming To</a>
+                            <div>
+                                Click the 'Scan Ticket' button below to start the scan.
+                            </div><br />
+
                         </div>
 
+                        <div class="mainMenuBtn ui-btn ui-btn-b " id="scanStart">
+                            <div>
+                                <img src="../img/appimg/qrcode.png" class="menuBtnImg" />
 
-
-
-                        <div data-bind=" foreach: ko.utils.arrayFilter(events(), function(itm){ return (itm.coming()!='1')})">
-                            <div class="ui-bar ui-bar-h">
-                                <div style="text-align: center" data-bind="html: eventName()"></div>
-                                <div style="text-align:center">
-                                    <small data-bind="html: startDate() + '(' + startTime() + ')' "></small>
-                                </div>
                             </div>
-                            <table>
-                                <tr>
-                                    <td valign="top">
-                                        <div style="text-align:center; margin-bottom:5px">
-                                            <img width="80" height="80" data-bind="attr: {src: imageUrl}" />
-                                        </div>
-                                    </td>
-                                    <td valign="top">
-                                        <table>
-                                            <tr>
-                                                <td><span style="font-size:small">Hosted By:</span></td>
-                                                <td><span style="font-size:small" data-bind="html:ownerPortalName"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><span style="font-size:small">Tag Line:</span></td>
-                                                <td><span style="font-size:small" data-bind="html:tagLine"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><span style="font-size:small">Venue:</span></td>
-                                                <td><span style="font-size:small" data-bind="html:eventVenue"></span></td>
-                                            </tr>
-                                        </table>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <div class="ui-content ui-body-h" style="text-align: left; font-size:small" data-bind="html: summary">
-
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                            <div style="text-align:left">
-                                <div class="ui-btn ui-btn-b ui-mini ui-btn-inline evComing" data-bind="attr: {'data-id': eventId}">I'm Coming</div>
-
-
-                                <div class="ui-btn ui-btn-a ui-mini ui-btn-inline evMore" data-bind="attr: {'data-id': eventId}">More...</div>
+                            <div class="menuBtnTxt" style="text-align:center">
+                                Scan Ticket
                             </div>
+
+                            
 
 
                         </div>
+
+                        <!--<div class="ui-btn ui-btn-a " id="btnTestScan0">
+                            Test Scan 0
+                        </div>
+
+                        <div class="ui-btn ui-btn-a " id="btnTestScan1">
+                            Test Scan 1
+                        </div>
+
+                        <div class="ui-btn ui-btn-a " id="btnTestScan2">
+                            Test Scan 2
+                        </div>-->
 
                     </div>
+
 
                 </div>
 
@@ -288,7 +248,7 @@
                         <div>
                             Below is your digital ticket for the event (<span id="evNameDigiTicket"></span>). You can use this code to gain access to the event if required.
                         </div>
-                        <a class="showEvListMenuView" href="#">Menu</a><span> </span>
+                        <a class="showEvListView" href="#">Back to events</a><span> </span>
 
                     </div>
                     <div style="text-align:center;margin:0 auto">
@@ -300,93 +260,31 @@
 
 
 
-                <div class="evListSubView evListScanTickets" style="display:none">
-
-                    <div id="scanEventList">
-                        <div class="ui-bar ui-bar-h">
-                            <div style="text-align:center">Choose Event</div>
-                        </div>
-
-
-                        <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
-                            <div>
-                                Below are the events that you have been authorized to scan tickets for. Please choose the relevent event. If the event
-                                you are looking for is not here, please request that your church give you the required permissions
-                            </div><br />
-                            <a class="showEvListMenuView" href="#">Menu</a>
-
-                        </div>
 
 
 
-                        <div data-bind=" foreach: ko.utils.arrayFilter(events(), function(itm){ return (itm.coming()=='1' && (itm.isScanner()===true))})">
-                            <a href="#" class="scanMe" data-bind="attr: {'data-id': eventId}">
-                                <div class="ui-bar ui-bar-b ">
-                                    <div style="text-align: center" data-bind="html: eventName()"></div>
-                                    <div style="text-align:center">
-                                        <small data-bind="html: startDate() + '(' + startTime() + ')' "></small>
-                                    </div>
-                                </div>
-                            </a>
-                             <br/>
-
-                        </div>
-                    </div>
-
-                    <div id="scanEventAction" style="display:none">
-                        <div class="ui-bar ui-bar-h">
-                            <div style="text-align:center" id="scanEventName"></div>
-                        </div>
-                        <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
-                            <div>
-                                Click the 'Scan Ticket' button below to start the scan.
-                            </div><br />
-                            <!--<a class="showEvListMenuView" href="#">Menu</a>-->
-
-                        </div>
-
-                        <div class="ui-bar ui-bar-c" id="scanTicketLive" style="text-align: center; font-size:small; display:none">
-                            Live scanning enabled
-                        </div>
-                        <div class="ui-bar ui-bar-e" id="scanTicketLocal" style="text-align: center; font-size:small; display:none">
-                            Local scanning enabled
-                        </div>
-
-
-                        <div class="mainMenuBtn ui-btn ui-btn-b " id="scanStart">
-                            <div>
-                                <img src="../img/appimg/qrcode.png" class="menuBtnImg" />
-
-                            </div>
-                            <div class="menuBtnTxt" style="text-align:center">
-                                Scan Ticket
-                            </div>
-
-                        </div>
-
-                        <div class="ui-btn ui-btn-a " id="btnScanDone" >
-                          I'm Finished Scanning
-                        </div>
-
-
-                        <!--<div class="ui-btn ui-btn-a " id="btnTestScan0">
-                            Test Scan 0
-                        </div>
-
-                        <div class="ui-btn ui-btn-a " id="btnTestScan1">
-                            Test Scan 1
-                        </div>
-
-                        <div class="ui-btn ui-btn-a " id="btnTestScan2">
-                            Test Scan Fake
-                        </div>-->
-
-
-                    </div>
 
 
 
-                    </div>
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+                
 
 
 
@@ -411,7 +309,7 @@
 
 
 
-                        <ul data-role="listview" data-inset="true" id="evListRegTypes" style="min-width: 210px;" data-theme="i" data-bind="template: { name: 'regtypes-template', foreach: selectedEventRegTypes }"></ul>
+                        <ul data-role="listview" data-inset="true" id="evListRegTypes" style="min-width: 210px;" data-theme="i" data-bind="template: { name: 'regtypes-template', foreach: selectedEvent.regTypesList }"></ul>
 
 
 
@@ -433,6 +331,7 @@
                         <li><a href="#" id="btnEventViewTicket">View My Ticket</a></li>
                         <li><a href="#" id="btnEventVolunteer">Volunteer at this event</a></li>
                         <li><a href="#" id="btnEventEmailTicket">Email Me My Ticket</a></li>
+                        <li><a href="#" id="btnEventManageAttendance">Manage Attendance</a></li>
                         <li><a href="#" id="btnEventCancel">Cancel</a></li>
 
 
@@ -487,22 +386,7 @@
                 </div>
 
 
-                <div data-role="popup" id="popupScanType" class="appPopup" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
-                    <div data-role="header" data-theme="b">
-                        <h1>Scan Option</h1>
-                    </div>
-                    <div role="main" class="ui-content">
-
-                        <p>Would you like to load the registration list before scanning?</p>
-                        <p>If you load the tickets into your device prior to scanning, the scanning process will be much
-                        quicker as you will not be relying on an internet connection at the event. You will however have to sync
-                        the data to the servers when you are done</p>
-                        
-                        <a href="#" class="ui-btn ui-btn-b " id="btnScanLocal">Load Tickets</a>
-                        <a href="#" class="ui-btn ui-btn-b " id="btnScanLocalExisting">Use Existing Cache</a>
-                        <a href="#" class="ui-btn ui-btn-c  " id="btnScanLive">No, scan live</a>
-                    </div>
-                </div>
+               
 
                 <div data-role="popup" id="popupLocalScanSave" class="appPopup" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
                     <div data-role="header" data-theme="b">
@@ -531,7 +415,7 @@
 
                         <p>Would you like to pay now with your credit card?</p>
 
-                      
+
                         <a href="#" class="ui-btn ui-btn-a ui-btn-inline " id="btnPayNoCC">No</a>
                         <a href="#" class="ui-btn ui-btn-b ui-btn-inline " id="btnPayWithCC">Yes</a>
                     </div>
@@ -544,7 +428,7 @@
                     </div>
                     <div role="main" class="ui-content">
 
-                       
+
                         <p id='evListPmtInst' style="width: 100%"></p>
 
 
@@ -557,10 +441,10 @@
                         <h3 style="text-align:center">Success</h3>
                     </div>
                     <div role="main" class="ui-content">
-                     
+
                         <p id="ticketSuccessMsg"></p>
                         <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-c" data-rel="back">Done</a>
-                     
+
                     </div>
                 </div>
 
@@ -572,19 +456,19 @@
                         <h3 class="ui-title">There is a problem with this ticket</h3>
                         <p id="ticketError"></p>
                         <a href="#" class="ui-btn ui-corner-all  ui-btn-inline ui-btn-a" data-rel="back">Ok</a>
-                        <a href="#" class="ui-btn ui-corner-all  ui-btn-inline ui-btn-e" id="btnTicketOverride" >Override</a>
+                        <a href="#" class="ui-btn ui-corner-all  ui-btn-inline ui-btn-e" id="btnTicketOverride">Override</a>
                     </div>
                 </div>
 
-                <div data-role="popup" id="popupDeleteTickets" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+                <div data-role="popup" id="popupDeleteDirtyRegItems" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
                     <div data-role="header" data-theme="e">
-                        <h3 style="text-align:center">Delete Tickets?</h3>
+                        <h3 style="text-align:center">Delete Changes?</h3>
                     </div>
                     <div role="main" class="ui-content">
-                       <p>WARNING! If you delete your ticket cache, any tickets you have scanned will not be synced to the database.</p>
-                        <p>Are you sure you want to delete the ticket cache?</p>
+                        <p>WARNING! If you delete your event cache, any registration items you have updated will not be synced to the database.</p>
+                        <p>Are you sure you want to delete the event cache?</p>
                         <a href="#" class="ui-btn ui-corner-all  ui-btn-inline ui-btn-a" data-rel="back">No</a>
-                        <a href="#" class="ui-btn ui-corner-all  ui-btn-inline ui-btn-e" id="btnYesDeleteTickets">Yes, delete</a>
+                        <a href="#" class="ui-btn ui-corner-all  ui-btn-inline ui-btn-e" id="btnYesDeleteDirtyRegItems">Yes, delete</a>
                     </div>
                 </div>
 
@@ -612,7 +496,7 @@
                             </p>
                             <p>
                                 To complete your registration please take a moment to fill out the online form by clicking the
-                                button below. The online form requires your event code above
+                                button below.
                             </p>
                             <a href="#" class="ui-btn ui-btn-b ui-btn-inline " id="btnCompleteOnlineForm">Complete Online Form</a>
                         </div>

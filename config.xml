@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.godochurch.everynation"
-        version   = "1.2.4">
+        version   = "1.2.5">
 
   <name>Every Nation Churches</name>
 
@@ -18,7 +18,7 @@
   <preference name="permissions"                value="none"/>
 
   <preference name="splash-screen-duration" value="3000" />
-  <preference name="phonegap-version"  value="3.3.0" />
+  <preference name="phonegap-version"  value="3.5.0" />
   <preference name="orientation"                value="default" />
   <preference name="fullscreen"                 value="false" />
   <preference name="target-device"              value="universal" />
@@ -39,7 +39,8 @@
   <gap:plugin name="org.apache.cordova.geolocation" />
   <gap:plugin name="org.apache.cordova.network-information" />
   <gap:plugin name="org.apache.cordova.inappbrowser" version="0.3.3" />
-  <gap:plugin name="com.phonegap.plugins.barcodescanner" version="1.1.0" />
+  <gap:plugin name="com.phonegap.plugins.barcodescanner" version="2.0.0" />
+  <gap:plugin name="org.apache.cordova.media" version="0.2.8" />
   
   <!--<feature name="http://api.phonegap.com/1.0/device" />-->
   <feature name="http://api.phonegap.com/1.0/geolocation"/>
