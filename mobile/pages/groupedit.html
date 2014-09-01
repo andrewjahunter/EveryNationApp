@@ -8,386 +8,400 @@
     </script>
 </head>
 
-    <body style="background-color: #343131; color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
-        <div data-role="page" id="pg_groupedit" class="ui-page-theme-a">
-
-            <div data-role="header">
-                <a href="#" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext headerMenuHome">home</a>
+<body style="background-color: #343131; color: white; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif">
 
 
-                <h1 class="pageHeader" data-bind="html:selectedGroup.groupName()">Edit</h1>
-                <a href="#" class=" ui-btn ui-btn-b ui-icon-delete ui-btn-icon-notext btnBackToGroupsList" data-transition="flip">cancel</a>
+    <div data-role="page" id="pg_groupedit" class="ui-page-theme-a">
+
+        <div data-role="header">
+            <a href="#" class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext headerMenuHome">home</a>
 
 
-            </div>
-            <div class="ui-content" style="padding: 15px">
-
-                <div class="pageViewContent">
-                    <div data-role="popup" class="ui-content" id="pg_groupedit_errpopup" data-theme="e">
-                        <div id="pg_groupedit_errpopmsg"></div>
-                    </div>
-
-                    <div class="grpEditSubView grpEditStep1View" style="display:none">
+            <h1 class="pageHeader" data-bind="html:selectedGroup.groupName()">Edit</h1>
+            <a href="#" class=" ui-btn ui-btn-b ui-icon-delete ui-btn-icon-notext btnBackToGroupsList" data-transition="flip">cancel</a>
 
 
-                        <div class="ui-bar ui-bar-h">
+        </div>
+        <div class="ui-content" style="padding: 15px">
 
-                            <div style="text-align:center">Group Category</div>
-                        </div>
+            <div class="pageViewContent">
+                <div data-role="popup" class="ui-content" id="pg_groupedit_errpopup" data-theme="e">
+                    <div id="pg_groupedit_errpopmsg"></div>
+                </div>
+
+                <div class="grpEditSubView grpEditStep1View" style="display:none">
 
 
-                        <div class="ui-content ui-body-h" style="text-align: center">
-                            Your profile is permitted to select from the following categories. Choose the one you
-                            want to assign this group to.
-                        </div>
+                    <div class="ui-bar ui-bar-h">
 
-
-                        <script id="assigncat-template" type="text/html">
-                            <li>
-                                <a data-bind="attr: {'data-id': id}" class="grpEditAssignCat" style="white-space:normal">
-                                    <div data-bind="html: editLabel"></div>
-                                    <div><small>(<i data-bind="html: description"></i>)</small></div> <div></div>
-                                </a>
-                            </li>
-                        </script>
-                        <ul data-role="listview" data-inset="true" data-theme="b" class="grpEditCatSelector" data-bind="template: { name: 'assigncat-template', foreach: permittedEditGrpCategories}"></ul>
-
+                        <div style="text-align:center">Group Category</div>
                     </div>
 
 
-                    <div class="grpEditSubView grpEditStep2View" style="display:none">
-                        <div class="ui-bar ui-bar-h">
-
-                            <div style="text-align:center">Group Type</div>
-                        </div>
-                        <div class="ui-content ui-body-h" style="text-align: center">
-                            Your profile is permitted to select from the following types in this category. Choose the one you
-                            want to assign this group to.
-                        </div>
-
-                        <script id="edittype-template" type="text/html">
-                            <li>
-                                <a data-bind="attr: {'data-id': id}" class="grpEditAssignType" style="white-space:normal">
-                                    <div data-bind="html: editLabel"></div>
-                                    <div><small>(<i data-bind="html: description"></i>)</small></div> <div></div>
-                                </a>
-                            </li>
-                        </script>
-                        <ul data-role="listview" data-inset="true" data-theme="b" class="grpEditTypeSelector" data-bind="template: { name: 'edittype-template', foreach: permittedEditGrpTypes}"></ul>
-
-
-                        <button type="button" data-inline="true" class="ui-btn-inline ui-btn ui-btn-a  btnGoStep1">Back</button>
+                    <div class="ui-content ui-body-h" style="text-align: center">
+                        Assign this group to one of the following categories by clicking on the category name.
+                        <p style="font-size:small"><strong>(If unsure then choose the first one in the list)</strong></p>
                     </div>
 
-                    <div class="grpEditSubView grpEditStep3View" style="display:none">
-                        <div class="ui-bar ui-bar-h">
 
-                            <div style="text-align:center">Group Info</div>
-                        </div>
-                        <div class="ui-content ui-body-h" style="text-align: center">
-                            Enter the basic group information here
-                        </div>
-                        <form id="formGrpEditStep3">
+                    <script id="assigncat-template" type="text/html">
+                        <li>
+                            <a data-bind="attr: {'data-id': id}" class="grpEditAssignCat" style="white-space:normal">
+                                <div data-bind="html: editLabel"></div>
+                                <div><small>(<i data-bind="html: description"></i>)</small></div> <div></div>
+                            </a>
+                        </li>
+                    </script>
+                    <ul data-role="listview" data-inset="true" data-theme="b" class="grpEditCatSelector" data-bind="template: { name: 'assigncat-template', foreach: permittedEditGrpCategories}"></ul>
 
-                            <div class="ui-field-contain" id="txtGroupName">
+                </div>
+
+
+                <div class="grpEditSubView grpEditStep2View" style="display:none">
+                    <div class="ui-bar ui-bar-h">
+
+                        <div style="text-align:center">Group Type</div>
+                    </div>
+                    <div class="ui-content ui-body-h" style="text-align: center">
+                        Assign this group to one of the following group types in this category. Simply click on the group type name.
+                        <p style="font-size:small"><strong>(If unsure then choose the first one in the list)</strong></p>
+                    </div>
+
+                    <script id="edittype-template" type="text/html">
+                        <li>
+                            <a data-bind="attr: {'data-id': id}" class="grpEditAssignType" style="white-space:normal">
+                                <div data-bind="html: editLabel"></div>
+                                <div><small>(<i data-bind="html: description"></i>)</small></div> <div></div>
+                            </a>
+                        </li>
+                    </script>
+                    <ul data-role="listview" data-inset="true" data-theme="b" class="grpEditTypeSelector" data-bind="template: { name: 'edittype-template', foreach: permittedEditGrpTypes}"></ul>
+
+
+                    <button type="button" data-inline="true" class="ui-btn-inline ui-btn ui-btn-a  btnGoStep1">Back</button>
+                </div>
+
+
+                <div class="grpEditSubView grpEditStep3View" style="display:none">
+                    <div class="ui-bar ui-bar-h">
+
+                        <div style="text-align:center">Group Info</div>
+                    </div>
+                    <div class="ui-content ui-body-h" style="text-align: center">
+                        Enter the basic group information here
+                    </div>
+                    <form id="formGrpEditStep3">
+
+                        <div class="ui-field-contain" id="txtGroupName">
+                            <div>
                                 <label for="txtSmallGroupName">
                                     Group Name
                                 </label>
-                                <input id="txtSmallGroupName" data-clear-btn="true" data-bind="value: selectedGroup.groupName" name="groupname" placeholder="enter group name" type="text" />
                             </div>
+                            <input id="txtSmallGroupName" data-clear-btn="true" data-bind="value: selectedGroup.groupName" name="groupname" placeholder="enter group name" type="text" />
+                        </div>
 
-                            <div class="ui-field-contain">
+                        <div class="ui-field-contain">
+                            <div>
                                 <label for="txtSmallGroupDescription">
-                                    Description
+                                    Describe the group briefly
                                 </label>
-                                <input id="txtSmallGroupDescription" data-clear-btn="true" data-bind="value: selectedGroup.groupDescription" name="groupdescription" placeholder="brief description..." type="text" />
                             </div>
+                            <input id="txtSmallGroupDescription" data-clear-btn="true" data-bind="value: selectedGroup.groupDescription" name="groupdescription" placeholder="brief description..." type="text" />
+                        </div>
 
-                            <div class="ui-field-contain">
+                        <div class="ui-field-contain">
+                            <div>
                                 <label for="ddlRegion">
                                     <span data-bind="html:labels[2000]"></span>
                                 </label>
-                                <select id="ddlRegion" name="" data-bind="options: refData.regions, value:selectedGroup.regionId, optionsText: 'name', optionsValue: 'id'"></select>
-
                             </div>
-
-                            <div class="ui-field-contain">
-                                <label for="ddlAgeProfile">
-                                    Age Profile
-                                </label>
-                                <select id="ddlAgeProfile" name="" data-bind="options: refData.ageProfiles, value:selectedGroup.ageProfileId, optionsText: 'name', optionsValue: 'id'"></select>
-
-                            </div>
-
-                            <div class="ui-field-contain">
-                                <label for="ddlFrequency">
-                                    Meeting Frequency
-                                </label>
-                                <select id="ddlFrequency" name="" data-bind="options: refData.groupMeetingFrequencies, value:selectedGroup.meetingFrequency"></select>
-
-                            </div>
-
-                            <div class="ui-field-contain">
-                                <label for="ddlMeetingDay">
-                                    Day
-                                </label>
-                                <select id="ddlMeetingDay" name="" data-bind="value:selectedGroup.meetingDay">
-                                    <option value="Monday">Monday</option>
-                                    <option value="Tuesday">Tuesday</option>
-                                    <option value="Wednesday">Wednesday</option>
-                                    <option value="Thursday">Thursday</option>
-                                    <option value="Friday">Friday</option>
-                                    <option value="Saturday">Saturday</option>
-                                    <option value="Sunday">Sunday</option>
-                                    <option value="Unknown">Unknown</option>
-                                </select>
-
-                            </div>
-
-                            <div class="ui-field-contain">
-                                <label for="ddlGender">
-                                    Gender
-                                </label>
-                                <select id="ddlGender" name="" data-bind="value:selectedGroup.gender">
-                                    <option value="M/F">Male/Female</option>
-                                    <option value="M">Male</option>
-                                    <option value="F">Female</option>
-                                </select>
-
-                            </div>
-
-                            <div class="ui-field-contain">
-                                <label for="txtMeetingTime">
-                                    Time
-                                </label>
-                                <input id="txtMeetingTime" data-clear-btn="true" data-bind="value: selectedGroup.meetingTime" placeholder="meeting time" type="time" />
-                            </div>
-
-                            <div class="ui-field-contain">
-                                <label>
-                                    <input type="checkbox" data-bind="checked:selectedGroup.isPrivate" />
-
-                                    This group is private
-                                </label>
-                            </div>
-
-                            <div class="ui-field-contain">
-                                <label>
-                                    <input type="checkbox" data-bind="checked:selectedGroup.openMembership" />
-
-                                    This groups membership is open
-                                </label>
-                            </div>
-
-                        </form>
-                        <button type="button" data-inline="true" class="ui-btn-inline ui-btn ui-btn-a  btnGoStep2">Back</button>
-                        <button type="button" data-inline="true" class="ui-btn-inline ui-btn ui-btn-b  btnGoStep4">Next</button>
-
-
-
-                    </div>
-
-                    <div class="grpEditSubView grpEditStep4View" style="display: none">
-                        <!--<div class="ui-bar ui-bar-h">
-
-                            <div style="text-align:center">Group Location</div>
-                        </div>-->
-
-                        <div class="ui-content ui-body-h" style="text-align: center; font-size:small">
-                            <div>Use the map below to drop a pin on the suburb where this group meets.</div>
-                        </div>
-
-
-                        <input id='txtGrpAddress' class="form-control" placeholder='or start typing your address in here...' type='text' />
-                        <div id='grpsGoogleMap' class="gmapsCanvas" style="width: 100%; "></div>
-
-                        <div><small id="grpsFormattedAddress"></small></div>
-
-                        <button type="button" data-inline="true" class="ui-btn-inline ui-btn ui-btn-a  btnGoStep3">Back</button>
-                        <button type="button" data-inline="true" class="ui-btn-inline ui-btn ui-btn-b  btnGoStep5">Next</button>
-
-                    </div>
-
-                    <div class="grpEditSubView grpEditStep5View" style="display: none">
-                        <div class="ui-bar ui-bar-h">
-
-                            <div style="text-align:center">Location Edit</div>
-                        </div>
-                        <div class="ui-content ui-body-h" style="text-align: center">
-                            <div>Edit any address values below.</div>
-                        </div>
-
-                        <div id="grpEditShowStreetInfo">
-                            <div class="ui-field-contain">
-                                <label for="txtGrpsEditStreetNumber">Street Number (OPTIONAL):</label>
-                                <input id="txtGrpsEditStreetNumber" data-clear-btn="true" data-bind="value: selectedGroup.streetNumber" type="text" />
-
-                            </div>
-
-                            <div class="ui-field-contain">
-                                <label for="txtGrpsEditStreetName">Street Name (OPTIONAL):</label>
-                                <input id="txtGrpsEditStreetName" data-clear-btn="true" data-bind="value: selectedGroup.streetName" type="text" />
-
-                            </div>
-                        </div>
-
-                        <div id="grpEditHideStreetInfo" class="ui-content ui-bar-h" style="font-size:small">
-                            As a church we have chosen, for security reasons, not to allow street info to be stored for groups. Use the 'Other Info'
-                            option below provide more info about the group location if you like.
+                            <select id="ddlRegion" name="" data-bind="options: refData.regions, value:selectedGroup.regionId, optionsText: 'name', optionsValue: 'id'"></select>
 
                         </div>
-
-
-                        <div id="grpEditSuburb" style="display:none">
-                            <div data-role="fieldcontain">
-                                <label for="txtGrpsEditSuburb">Suburb:</label>
-                                <input id="txtGrpsEditSuburb" data-bind="value: selectedGroup.suburb" type="text" />
-
-                            </div>
-                        </div>
-
-
 
                         <div class="ui-field-contain">
-                            <label for="txtGrpsEditOtherInfo">Other Info:</label>
-                            <input id="txtGrpsEditOtherInfo" data-clear-btn="true" data-bind="value: selectedGroup.otherInfo" type="text" />
+                            <div>
+                                <label for="ddlAgeProfile">
+                                    What is groups age profile?
+                                </label>
+                            </div>
+                            <select id="ddlAgeProfile" name="" data-bind="options: refData.ageProfiles, value:selectedGroup.ageProfileId, optionsText: 'name', optionsValue: 'id'"></select>
 
                         </div>
 
-                        <!--  <div data-role="fieldcontain">
-                <label for="txtGrpsEditGeoLng">Longitude:</label>
-                <input id="txtGrpsEditGeoLng" disabled="disabled" data-bind="value: selectedGroup.geoLng" type="text" />
+                        <div class="ui-field-contain">
+                            <div>
+                                <label for="ddlFrequency">
+                                    How often does the group meet?
+                                </label>
+                            </div>
+                            <select id="ddlFrequency" name="" data-bind="options: refData.groupMeetingFrequencies, value:selectedGroup.meetingFrequency"></select>
 
-            </div>
-
-            <div data-role="fieldcontain">
-                <label for="txtGrpsEditGeoLat">Latitude:</label>
-                <input id="txtGrpsEditGeoLat" disabled="disabled" data-bind="value: selectedGroup.geoLat" type="text" />
-
-            </div>-->
-                        <!-- <div><small data-bind="html:geoAddress"></small></div>-->
-
-                        <button type="button" data-inline="true" class="ui-btn-inline ui-btn ui-btn-a   btnGoStep4">Back</button>
-                        <button type="button" data-inline="true" class="ui-btn-inline ui-btn ui-btn-b  btnGoStep6">Next</button>
+                        </div>
 
 
+
+                    </form>
+                    <button type="button" data-inline="true" class="ui-btn-inline ui-btn ui-btn-a  btnGoStep2">Back</button>
+                    <button type="button" data-inline="true" class="ui-btn-inline ui-btn ui-btn-b  btnGoStep4">Next</button>
+
+
+
+                </div>
+
+                <div class="grpEditSubView grpEditStep4View" style="display: none">
+                    <div class="ui-bar ui-bar-h">
+                        <div style="text-align:center">Group Info</div>
+                    </div>
+                    <div class="ui-content ui-body-h" style="text-align: center">
+                        Enter the basic group information here
+                    </div>
+
+                    <form id="formGrpEditStep4">
+                        <div class="ui-field-contain">
+                            <div>
+                                <label for="ddlMeetingDay">
+                                    What day does group meet on?
+                                </label>
+                            </div>
+                            <select id="ddlMeetingDay" name="" data-bind="value:selectedGroup.meetingDay">
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                                <option value="Unknown">Unknown</option>
+                            </select>
+
+                        </div>
+
+                        <div class="ui-field-contain">
+                            <div>
+                                <label for="ddlGender">
+                                    What is groups gender?
+                                </label>
+                            </div>
+                            <select id="ddlGender" name="" data-bind="value:selectedGroup.gender">
+                                <option value="M/F">Male/Female</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+
+                        </div>
+
+                        <div class="ui-field-contain">
+                            <div>
+                                <label for="txtMeetingTime">
+                                    What time does group meet?
+                                </label>
+                            </div>
+                            <input id="txtMeetingTime" data-clear-btn="true" data-bind="value: selectedGroup.meetingTime" placeholder="meeting time" type="time" />
+                        </div>
+
+                        <div class="ui-field-contain">
+                            <label>
+                                <input type="checkbox" data-bind="checked:selectedGroup.isPrivate" />
+
+                                This group is private
+                            </label>
+                            <div><small>(If checked this group will be not show up in search results)</small></div>
+                        </div>
+
+                        <div class="ui-field-contain">
+                            <label>
+                                <input type="checkbox" data-bind="checked:selectedGroup.openMembership" />
+
+                                This groups membership is open
+                            </label>
+                            <div><small>(If checked then people will be able to add themselves as members to this group.)</small></div>
+
+                        </div>
+                    </form>
+
+
+                    <button type="button" data-inline="true" class="ui-btn-inline ui-btn ui-btn-a  btnGoStep3">Back</button>
+                    <button type="button" data-inline="true" class="ui-btn-inline ui-btn ui-btn-b  " id="btnChooseGrpLocation">Meeting Location</button>
+
+                </div>
+
+
+
+
+
+                <div class="grpEditSubView grpEditStep5View" style="display: none">
+                    <div class="ui-bar ui-bar-h">
+
+                        <div style="text-align:center">Location Edit</div>
+                    </div>
+                    <div class="ui-content ui-body-h" style="text-align: center">
+                        <div>Edit any address values below.</div>
+                    </div>
+
+                    <div id="grpEditShowStreetInfo">
+                        <div class="ui-field-contain">
+                            <div><label for="txtGrpsEditStreetNumber">Street Number (OPTIONAL):</label></div>
+                            <input id="txtGrpsEditStreetNumber" data-clear-btn="true" data-bind="value: selectedGroup.streetNumber" type="text" />
+
+                        </div>
+
+                        <div class="ui-field-contain">
+                            <div> <label for="txtGrpsEditStreetName">Street Name (OPTIONAL):</label></div>
+                            <input id="txtGrpsEditStreetName" data-clear-btn="true" data-bind="value: selectedGroup.streetName" type="text" />
+
+                        </div>
+                    </div>
+
+                    <div id="grpEditHideStreetInfo" class="ui-content ui-bar-h" style="font-size:small">
+                        As a church we have chosen, for security reasons, not to allow street info to be stored for groups. Use the 'Other Info'
+                        option below provide more info about the group location if you like.
 
                     </div>
 
-                    <div class="grpEditSubView grpEditStep6View" style="display: none" data-bind="with:selectedGroup">
-                        <div class="ui-bar ui-bar-h">
 
-                            <div style="text-align:center">Confirm</div>
+                    <div id="grpEditSuburb" style="display:none">
+                        <div data-role="fieldcontain">
+                            <div><label for="txtGrpsEditSuburb">Group Suburb</label></div>
+                            <input id="txtGrpsEditSuburb" data-bind="value: selectedGroup.suburb" type="text" />
+
                         </div>
-                        <div class="ui-content ui-body-h" style="text-align: center">
-                            Confirm that the details about this group are correct. Then click update.
-                        </div>
-
-
-                        <table border="1" width="100%">
-                            <tr>
-                                <td>Group Name:</td>
-                                <td>
-                                    <div data-bind="html:groupName"></div>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>Gender:</td>
-                                <td>
-                                    <div data-bind="html:gender"></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Category:</td>
-                                <td>
-                                    <div data-bind="html:categoryName() + '(' + categoryId() + ')'"></div>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>Group Type:</td>
-                                <td>
-                                    <div data-bind="html:groupType() + '(' + groupTypeId() + ')'"></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Meeting Time:</td>
-                                <td>
-                                    <div data-bind="html:meetingTime"></div>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>Meeting Day:</td>
-                                <td>
-                                    <div data-bind="html:meetingDay"></div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Private:</td>
-                                <td>
-                                    <div data-bind="html:isPrivate"></div>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>Open Membership:</td>
-                                <td>
-                                    <div data-bind="html:openMembership"></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Active:</td>
-                                <td>
-                                    <div data-bind="html:isActive"></div>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>De-Active Reason:</td>
-                                <td>
-                                    <div data-bind="html:'Reason: ' + stsReason() + '(id:' + stsReasonId() + ')'"></div>
-                                </td>
-                            </tr>
-
-                        </table>
-
-                        <button type="button" class="ui-btn ui-btn-a ui-btn-inline  btnGoStep5">Back</button>
-                        <button type="button" id="btnGrpEditUpdate" class="ui-btn ui-btn-inline ui-btn-b">Update</button>
+                        <small>(The Google map was not able to determine the suburb where this group meets. Please manually enter it here)</small>
                     </div>
 
 
-                    <div id="grpEditNotAllowed" style="display: none">
 
-                        <div data-role="header" data-theme="h" class="ui-corner-top">
-                            <h1>Not Permitted</h1>
-                        </div>
-                        <div class="ui-content ui-body-h  ui-corner-bottom">
+                    <div class="ui-field-contain">
+                        <div><label for="txtGrpsEditOtherInfo">Other Info:</label></div>
+                        <input id="txtGrpsEditOtherInfo" data-clear-btn="true" data-bind="value: selectedGroup.otherInfo" type="text" />
+                        <small>(Enter any extra info about the meeting location of this group. E.g. Room number)</small>
 
-                            <p>
-                                Currently your profile is not permitted to add/edit any groups.
-                            </p>
-                            <p>
-                                This is a security feature which helps us protect personal information from being viewed by the wrong people. The following
-                                reasons could be the cause for you seeing this message:
-                                <ul>
-                                    <li>
-                                        Your church has the ability to set a minimum security level for adding/editing groups at both the group
-                                        category and group type level. There are no categories/types that fall inside of the security scope you have been assigned. Please
-                                        request that your church reduce the security on at least one of their categories
-                                    </li>
-                                    <li>Your account needs to given higher permissions. Please request this from your church.</li>
-                                </ul>
-                            </p>
-                            <button class="ui-btn ui-btn-h  btnBackToGroupsList">OK</button>
-                        </div>
+                    </div>
 
+
+
+                    <button type="button" data-inline="true" class="ui-btn-inline ui-btn ui-btn-a   btnGoStep4">Back</button>
+                    <button type="button" data-inline="true" class="ui-btn-inline ui-btn ui-btn-b  btnGoStep6">Next</button>
+
+
+
+                </div>
+
+                <div class="grpEditSubView grpEditStep6View" style="display: none" data-bind="with:selectedGroup">
+                    <div class="ui-bar ui-bar-h">
+
+                        <div style="text-align:center">Confirm</div>
+                    </div>
+                    <div class="ui-content ui-body-h" style="text-align: center">
+                        Confirm that the details about this group are correct. Then click update.
+                    </div>
+
+
+                    <table border="1" width="100%">
+                        <tr>
+                            <td>Group Name:</td>
+                            <td>
+                                <div data-bind="html:groupName"></div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Gender:</td>
+                            <td>
+                                <div data-bind="html:gender"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Category:</td>
+                            <td>
+                                <div data-bind="html:categoryName() + '(' + categoryId() + ')'"></div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Group Type:</td>
+                            <td>
+                                <div data-bind="html:groupType() + '(' + groupTypeId() + ')'"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Meeting Time:</td>
+                            <td>
+                                <div data-bind="html:meetingTime"></div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Meeting Day:</td>
+                            <td>
+                                <div data-bind="html:meetingDay"></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Private:</td>
+                            <td>
+                                <div data-bind="html:isPrivate"></div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Open Membership:</td>
+                            <td>
+                                <div data-bind="html:openMembership"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Active:</td>
+                            <td>
+                                <div data-bind="html:isActive"></div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>De-Active Reason:</td>
+                            <td>
+                                <div data-bind="html:'Reason: ' + stsReason() + '(id:' + stsReasonId() + ')'"></div>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                    <button type="button" class="ui-btn ui-btn-a ui-btn-inline  btnGoStep5">Back</button>
+                    <button type="button" id="btnGrpEditUpdate" class="ui-btn ui-btn-inline ui-btn-b">Update</button>
+                </div>
+
+
+                <div id="grpEditNotAllowed" style="display: none">
+
+                    <div data-role="header" data-theme="h" class="ui-corner-top">
+                        <h1>Not Permitted</h1>
+                    </div>
+                    <div class="ui-content ui-body-h  ui-corner-bottom">
+
+                        <p>
+                            Currently your profile is not permitted to add/edit any groups.
+                        </p>
+                        <p>
+                            This is a security feature which helps us protect personal information from being viewed by the wrong people. The following
+                            reasons could be the cause for you seeing this message:
+                            <ul>
+                                <li>
+                                    Your church has the ability to set a minimum security level for adding/editing groups at both the group
+                                    category and group type level. There are no categories/types that fall inside of the security scope you have been assigned. Please
+                                    request that your church reduce the security on at least one of their categories
+                                </li>
+                                <li>Your account needs to given higher permissions. Please request this from your church.</li>
+                            </ul>
+                        </p>
+                        <button class="ui-btn ui-btn-h  btnBackToGroupsList">OK</button>
                     </div>
 
                 </div>
+
             </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>
