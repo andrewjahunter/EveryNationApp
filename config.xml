@@ -15,6 +15,18 @@
   <author href="http://phonegap.com" email="support@gododata.com">
     Godochurch Team
   </author>
+
+  <gap:config-file platform="ios" parent="CFBundleVersion">
+    <string>1.2.6</string>
+  </gap:config-file>
+
+  <gap:config-file platform="ios" parent="CFBundleShortVersionString">
+    <array>
+      <string>126</string>
+    </array>
+  </gap:config-file>
+  
+  
   <preference name="permissions"                value="none"/>
 
   <preference name="splash-screen-duration" value="3000" />
