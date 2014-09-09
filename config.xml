@@ -21,9 +21,9 @@
   </gap:config-file>
 
   <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-    <array>
+   
       <string>126</string>
-    </array>
+    
   </gap:config-file>
   
   
